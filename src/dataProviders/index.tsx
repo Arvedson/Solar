@@ -5,6 +5,7 @@ import create from './create';
 import update from './update';
 import deleteResource from './delete';
 
+
 const createDataProvider = (apiUrl: string): DataProvider => ({
   getList: getList(apiUrl, fetchUtils.fetchJson),
   getOne: getOne(apiUrl, fetchUtils.fetchJson),

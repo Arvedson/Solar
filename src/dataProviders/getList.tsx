@@ -1,14 +1,21 @@
-import { fetchUtils, DataProvider } from 'ra-core';
-console.log("holagetlist")
+import { GetListParams, GetListResult } from 'ra-core';
+import Installer from '../models/Installer';
+import dbConnect from '../lib/mongodb';
 
-const getList = (apiUrl: string, httpClient = fetchUtils.fetchJson): DataProvider['getList'] => async (resource, params) => {
-    console.log("holagetlist")
-    const url = `${apiUrl}/${resource}?${params}`;
-    const { json } = await httpClient(url);
-    return {
-        data: json.data.map((item: any) => ({ ...item, id: item._id })), // Mapear _id a id
-        total: json.total,
-    };
+const getList = (apiUrl: string, httpClient: any) => async (resource: string, params: GetListParams): Promise<GetListResult> => {
+  await dbConnect();
+
+  const { page, perPage } = params.pagination;
+  const { field, order } = params.sort;
+  const sort = { [field]: order === 'ASC' ? 1 : -1 };
+  
+  const total = await Installer.countDocuments();
+  const installers = await Installer.find()
+    .sort(sort)
+    .skip((page - 1) * perPage)
+    .limit(perPage);
+  
+  return { data: installers.map(installer => ({ ...installer.toObject(), id: installer._id })), total };
 };
 
 export default getList;

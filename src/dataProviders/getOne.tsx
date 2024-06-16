@@ -1,10 +1,15 @@
-// src/dataProviders/getOne.ts
-import { fetchUtils, DataProvider } from 'ra-core';
+import { GetOneParams, GetOneResult } from 'ra-core';
+import Installer from '../models/Installer';
+import dbConnect from '../lib/mongodb';
 
-const getOne = (apiUrl: string, httpClient = fetchUtils.fetchJson): DataProvider['getOne'] => async (resource, params) => {
-    const url = `${apiUrl}/${resource}?id=${params.id}`;
-    const { json } = await httpClient(url);
-    return { data: { ...json.data, id: json.data._id } };
+const getOne = (apiUrl: string, httpClient: any) => async (resource: string, params: GetOneParams): Promise<GetOneResult> => {
+  await dbConnect();
+
+  const installer = await Installer.findById(params.id);
+  if (!installer) {
+    throw new Error('Installer not found');
+  }
+  return { data: { ...installer.toObject(), id: installer._id } };
 };
 
 export default getOne;

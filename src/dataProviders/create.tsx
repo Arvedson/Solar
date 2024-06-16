@@ -1,15 +1,12 @@
-import { fetchUtils } from 'ra-core';
-console.log("holacreate")
+import { CreateParams, CreateResult } from 'ra-core';
+import Installer from '../models/Installer';
+import dbConnect from '../lib/mongodb';
 
-const create = (apiUrl: string, httpClient = fetchUtils.fetchJson) => async (resource: string, params: any) => {
-    const url = `${apiUrl}/${resource}`;
-    const { json } = await httpClient(url, {
-        method: 'POST',
-        body: JSON.stringify(params.data),
-    });
-    return {
-        data: { ...params.data, id: json.data._id },
-    };
+const create = (apiUrl: string, httpClient: any) => async (resource: string, params: CreateParams): Promise<CreateResult> => {
+  await dbConnect();
+
+  const createdInstaller = await Installer.create(params.data);
+  return { data: { ...createdInstaller.toObject(), id: createdInstaller._id } };
 };
 
 export default create;

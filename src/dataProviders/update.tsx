@@ -1,21 +1,15 @@
-import { fetchUtils, DataProvider } from 'ra-core';
-console.log("holaupdate")
+import { UpdateParams, UpdateResult } from 'ra-core';
+import Installer from '../models/Installer';
+import dbConnect from '../lib/mongodb';
 
-const update = (apiUrl: string, httpClient = fetchUtils.fetchJson): DataProvider['update'] => async (resource, params) => {
-    const id = params?.data?._id || params.id;
-    if (!id) {
-        console.error('ID is missing in the parameters');
-        throw new Error('ID is required for update operation');
-    }
+const update = (apiUrl: string, httpClient: any) => async (resource: string, params: UpdateParams): Promise<UpdateResult> => {
+  await dbConnect();
 
-    const url = `${apiUrl}/${resource}/${id}`;
-    const { json } = await httpClient(url, {
-        method: 'PUT',
-        body: JSON.stringify(params.data),
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-    });
-
-    return { data: { ...json.data, id: json.data._id } };
+  const updatedInstaller = await Installer.findByIdAndUpdate(params.id, params.data, { new: true, runValidators: true });
+  if (!updatedInstaller) {
+    throw new Error('Installer not found');
+  }
+  return { data: { ...updatedInstaller.toObject(), id: updatedInstaller._id } };
 };
 
 export default update;

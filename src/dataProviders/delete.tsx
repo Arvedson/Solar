@@ -1,27 +1,15 @@
-import { fetchUtils, DataProvider } from 'ra-core';
+import { DeleteParams, DeleteResult } from 'ra-core';
+import Installer from '../models/Installer';
+import dbConnect from '../lib/mongodb';
 
-const deleteResource = (apiUrl: string, httpClient = fetchUtils.fetchJson): DataProvider['delete'] => async (resource, params) => {
-    console.log("holadelete");
-    const id = params.id;
-    if (!id) {
-        console.error('ID is missing in the parameters');
-        throw new Error('ID is required for delete operation');
-    }
+const deleteResource = (apiUrl: string, httpClient: any) => async (resource: string, params: DeleteParams): Promise<DeleteResult> => {
+  await dbConnect();
 
-    const url = `${apiUrl}/${resource}/${id}`;
-    console.log('Delete URL:', url);
-
-    try {
-        const { json } = await httpClient(url, {
-            method: 'DELETE',
-        });
-
-        console.log('Response JSON:', JSON.stringify(json, null, 2));
-        return { data: { id } };
-    } catch (error) {
-        console.error('Delete error:', error);
-        throw error;
-    }
+  const deletedInstaller = await Installer.findByIdAndDelete(params.id);
+  if (!deletedInstaller) {
+    throw new Error('Installer not found');
+  }
+  return { data: { ...deletedInstaller.toObject(), id: deletedInstaller._id } };
 };
 
 export default deleteResource;
