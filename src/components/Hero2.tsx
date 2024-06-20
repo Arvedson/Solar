@@ -1,8 +1,9 @@
 "use client"
 import React, { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import Link from 'next/link';
+
 import FadeSeparator from './FadeSeparator'; // Asegúrate de ajustar la ruta según tu estructura de archivos
 
 const Hero2: React.FC = () => {
@@ -89,7 +90,7 @@ const Hero2: React.FC = () => {
               Soluciones solares innovadoras para un futuro sostenible.
             </p>
           </motion.div>
-          <Link href="/cotizacion" passHref>
+          <Link href="/Installsystempage" passHref>
             <motion.div variants={itemVariants}>
               <Button 
                 as="a" 

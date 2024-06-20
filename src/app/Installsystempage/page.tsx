@@ -8,6 +8,8 @@ import FileUpload from '@/components/FileUpload';
 import ComboboxTarifas from '../../components/ComboboxTarifas';
 import TarifasInfo from '../../components/TarifasInfo';
 
+import ImageReader from '@/components/ImageReader';
+
 const InstallSystemPage: React.FC = () => {
   const [selectedForm, setSelectedForm] = useState<'annual' | 'bimonthly' | 'monthly' | null>(null);
   const [annualConsumption, setAnnualConsumption] = useState<number | null>(null);
@@ -81,12 +83,28 @@ const InstallSystemPage: React.FC = () => {
           {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm bimonthlyConsumption={bimonthlyConsumption} setBimonthlyConsumption={setBimonthlyConsumption} />}
           {selectedForm === 'monthly' && <MonthlyConsumptionForm monthlyConsumption={monthlyConsumption} setMonthlyConsumption={setMonthlyConsumption} />}
         </div>
+        <ImageReader/>
         <FileUpload />
         
-        <div className=" mt-6 ">
+        <div className="  mt-6 gap-12 ">
+
+          <div className='flex flex-row gap-12'>
+          <button onClick={toggleTarifasInfo} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
+          {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
+        </button>
+
         <button onClick={toggleTarifasInfo} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
           {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
         </button>
+
+        
+
+          </div>
+
+          
+
+
+
         {showTarifasInfo && <TarifasInfo />}
         
       </div>
