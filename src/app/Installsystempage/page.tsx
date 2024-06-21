@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 import AnnualConsumptionForm from '../../components/AnnualConsumptionForm';
 import BimonthlyConsumptionForm from '../../components/BimonthlyConsumptionForm';
@@ -7,8 +6,8 @@ import MonthlyConsumptionForm from '../../components/MonthlyConsumptionForm';
 import FileUpload from '@/components/FileUpload';
 import ComboboxTarifas from '../../components/ComboboxTarifas';
 import TarifasInfo from '../../components/TarifasInfo';
-
 import ImageReader from '@/components/ImageReader';
+import AnnualConsumptionComponent from '../../components/AnnualConsumptionComponent ';
 
 const InstallSystemPage: React.FC = () => {
   const [selectedForm, setSelectedForm] = useState<'annual' | 'bimonthly' | 'monthly' | null>(null);
@@ -17,6 +16,7 @@ const InstallSystemPage: React.FC = () => {
   const [monthlyConsumption, setMonthlyConsumption] = useState<number | null>(null);
   const [selectedTarifa, setSelectedTarifa] = useState<string>("");
   const [showTarifasInfo, setShowTarifasInfo] = useState<boolean>(false);
+  const [showAnnualConsumptionComponent, setShowAnnualConsumptionComponent] = useState<boolean>(false);
 
   const handleCheckboxChange = (formType: 'annual' | 'bimonthly' | 'monthly') => {
     setSelectedForm((prevForm) => (prevForm === formType ? null : formType));
@@ -31,9 +31,13 @@ const InstallSystemPage: React.FC = () => {
     setShowTarifasInfo(!showTarifasInfo);
   };
 
+  const toggleAnnualConsumptionComponent = () => {
+    setShowAnnualConsumptionComponent(!showAnnualConsumptionComponent);
+  };
+
   return (
     <div className="container mx-auto p-6 bg-background text-foreground">
-      <div className="bg-card p-6 rounded-lg shadow-lg">
+      <div className="bg-card p-6 rounded-lg shadow-lg border border-gray-300">
         <h1 className="text-3xl font-bold mb-6 text-center">Instala tu Sistema</h1>
         <div className="mb-6">
           <label className="block text-lg font-semibold mb-4 text-center">Consumo Eléctrico</label>
@@ -67,7 +71,6 @@ const InstallSystemPage: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col items-center">
-            
             <p className="text-muted-foreground text-center mt-6">
               Selecciona una opción para ingresar tu consumo eléctrico.
             </p>
@@ -77,39 +80,27 @@ const InstallSystemPage: React.FC = () => {
             <ComboboxTarifas className="mt-6" onSelectTarifa={handleSelectTarifa} />
           </div>
         </div>
-        
+
         <div className="bg-card p-4 rounded-lg shadow-lg mt-6">
           {selectedForm === 'annual' && <AnnualConsumptionForm annualConsumption={annualConsumption} setAnnualConsumption={setAnnualConsumption} />}
           {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm bimonthlyConsumption={bimonthlyConsumption} setBimonthlyConsumption={setBimonthlyConsumption} />}
           {selectedForm === 'monthly' && <MonthlyConsumptionForm monthlyConsumption={monthlyConsumption} setMonthlyConsumption={setMonthlyConsumption} />}
         </div>
-        <ImageReader/>
+        <ImageReader />
         <FileUpload />
-        
-        <div className="  mt-6 gap-12 ">
 
-          <div className='flex flex-row gap-12'>
-          <button onClick={toggleTarifasInfo} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
-          {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
-        </button>
-
-        <button onClick={toggleTarifasInfo} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
-          {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
-        </button>
-
-        
-
-          </div>
-
-          
-
-
+        <div className="mt-6 gap-6 flex flex-col sm:flex-row justify-center items-center">
+          <button onClick={toggleTarifasInfo} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-primary-foreground hover:text-primary transition">
+            {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
+          </button>
+          <button onClick={toggleAnnualConsumptionComponent} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition">
+            {showAnnualConsumptionComponent ? 'Ocultar como interpretar mi recibo' : 'Como interpretar mi recibo?'}
+          </button>
+        </div>
 
         {showTarifasInfo && <TarifasInfo />}
-        
+        {showAnnualConsumptionComponent && <AnnualConsumptionComponent />}
       </div>
-      </div>
-
     </div>
   );
 };

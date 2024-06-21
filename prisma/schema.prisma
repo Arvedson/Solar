@@ -1,0 +1,27 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Installer {
+  id          Int     @id @default(autoincrement())
+  name        String
+  cost_per_kw Float
+  email       String  @unique
+  phone       String
+  serviceAreas String
+}
+
+model Territorio {
+  id              Int      @id @default(autoincrement())
+  estado          String
+  zonasCubiertas  String[]
+  costoPorKw      Float
+  indiceRadiacion Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

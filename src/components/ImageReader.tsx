@@ -92,12 +92,14 @@ const ImageReader: React.FC = () => {
           </ul>
         </div>
       </div>
-      <button
-        onClick={handleSubmit}
-        className="px-4 py-2 bg-primary text-white rounded mb-4"
-      >
-        Leer imagen de tu recibo
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={handleSubmit}
+          className="px-4 py-2 bg-primary text-white rounded mb-4 hover:bg-primary-foreground hover:text-primary transition"
+        >
+          Leer imagen de tu recibo
+        </button>
+      </div>
       {loading && <p>Cargando... Esto podría tomar algunos segundos</p>}
       {error && <p>Error: {error}</p>}
       <div>

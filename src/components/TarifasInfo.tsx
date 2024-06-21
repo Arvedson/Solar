@@ -3,6 +3,7 @@ import BoltIcon from '@mui/icons-material/Bolt';
 import BusinessIcon from '@mui/icons-material/Business';
 import { Separator } from '@radix-ui/react-separator';
 
+
 const TarifasInfo = () => {
   return (
     <div className="mt-6 bg-card text-card-foreground p-6 rounded-lg shadow-lg w-full lg:max-w-4xl mx-auto">
@@ -11,6 +12,10 @@ const TarifasInfo = () => {
       <p className="mb-2 text-center lg:text-lg">
         Las tarifas de la Comisión Federal de Electricidad (CFE) se asignan principalmente en función del consumo de energía y la región, considerando la temperatura ambiental.
       </p>
+
+      <Separator className="my-4 w-full bg-gray-300 h-px" />
+
+      
       <p className="mb-2 text-center lg:text-lg">
         <strong>Tarifas Residenciales:</strong> Estas tarifas varían desde consumos bajos hasta consumos muy altos. Las regiones con temperaturas extremas tienen tarifas especiales que incluyen subsidios gubernamentales.
       </p>
@@ -48,6 +53,7 @@ const TarifasInfo = () => {
           <strong className="spacing-after-colon">Tarifa DAC</strong> Doméstica de Alto Consumo
         </li>
       </ul>
+      
 
       <Separator className="my-4 bg-gray-200 h-px w-full" />
 
