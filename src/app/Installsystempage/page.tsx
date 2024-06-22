@@ -8,15 +8,18 @@ import ComboboxTarifas from '../../components/ComboboxTarifas';
 import TarifasInfo from '../../components/TarifasInfo';
 import ImageReader from '@/components/ImageReader';
 import AnnualConsumptionComponent from '../../components/AnnualConsumptionComponent ';
+import CotizarButton from '../../components/CotizarButton';
 
 const InstallSystemPage: React.FC = () => {
   const [selectedForm, setSelectedForm] = useState<'annual' | 'bimonthly' | 'monthly' | null>(null);
   const [annualConsumption, setAnnualConsumption] = useState<number | null>(null);
-  const [bimonthlyConsumption, setBimonthlyConsumption] = useState<number | null>(null);
-  const [monthlyConsumption, setMonthlyConsumption] = useState<number | null>(null);
   const [selectedTarifa, setSelectedTarifa] = useState<string>("");
   const [showTarifasInfo, setShowTarifasInfo] = useState<boolean>(false);
   const [showAnnualConsumptionComponent, setShowAnnualConsumptionComponent] = useState<boolean>(false);
+  const [highlightAnnualInput, setHighlightAnnualInput] = useState<boolean>(false);
+  const [calculated, setCalculated] = useState(false);
+  const [showCalculateButton, setShowCalculateButton] = useState(true);
+  const [showTarifaWarning, setShowTarifaWarning] = useState(false);
 
   const handleCheckboxChange = (formType: 'annual' | 'bimonthly' | 'monthly') => {
     setSelectedForm((prevForm) => (prevForm === formType ? null : formType));
@@ -24,6 +27,7 @@ const InstallSystemPage: React.FC = () => {
 
   const handleSelectTarifa = (value: string) => {
     setSelectedTarifa(value);
+    setShowTarifaWarning(false);
     console.log("Tarifa seleccionada:", value);
   };
 
@@ -33,6 +37,65 @@ const InstallSystemPage: React.FC = () => {
 
   const toggleAnnualConsumptionComponent = () => {
     setShowAnnualConsumptionComponent(!showAnnualConsumptionComponent);
+  };
+
+  const handleCotizar = () => {
+    if (!selectedTarifa) {
+      setShowTarifaWarning(true);
+    } else {
+      console.log("Cotizar clicked");
+      console.log("Consumo anual:", annualConsumption);
+      console.log("Tarifa seleccionada:", selectedTarifa);
+    }
+  };
+
+  const continueWithoutTarifa = () => {
+    setShowTarifaWarning(false);
+    console.log("Cotizar clicked");
+    console.log("Consumo anual:", annualConsumption);
+    console.log("Tarifa no seleccionada");
+  };
+
+  const handleBimonthlySubmit = (consumption: number) => {
+    const totalAnnual = consumption;
+    setAnnualConsumption(totalAnnual);
+    setHighlightAnnualInput(true);
+    setSelectedForm('annual');
+    setCalculated(true);
+    setShowCalculateButton(false);
+  };
+
+  const handleMonthlySubmit = (consumption: number) => {
+    const totalAnnual = consumption;
+    setAnnualConsumption(totalAnnual);
+    setHighlightAnnualInput(true);
+    setSelectedForm('annual');
+    setCalculated(true);
+    setShowCalculateButton(false);
+  };
+
+  const handleImageReaderSubmit = (annualKwh: number) => {
+    setAnnualConsumption(annualKwh);
+    setHighlightAnnualInput(true);
+    setSelectedForm('annual');
+    setCalculated(true);
+    setShowCalculateButton(false);
+  };
+
+  const handleAnnualSubmit = (consumption: number) => {
+    setAnnualConsumption(consumption);
+    setHighlightAnnualInput(true);
+    setCalculated(true);
+    setShowCalculateButton(false);
+  };
+
+  const resetAnnualConsumption = () => {
+    setAnnualConsumption(null);
+    setHighlightAnnualInput(false);
+    setSelectedForm(null);
+    setCalculated(false);
+    setShowCalculateButton(true);
+    setShowTarifaWarning(false);
   };
 
   return (
@@ -48,6 +111,7 @@ const InstallSystemPage: React.FC = () => {
                 checked={selectedForm === 'annual'}
                 onChange={() => handleCheckboxChange('annual')}
                 className="mr-2"
+                disabled={calculated} // Desactivar checkbox si se ha calculado
               />
               <label>Ingresar consumo anual</label>
             </div>
@@ -57,6 +121,7 @@ const InstallSystemPage: React.FC = () => {
                 checked={selectedForm === 'bimonthly'}
                 onChange={() => handleCheckboxChange('bimonthly')}
                 className="mr-2"
+                disabled={calculated} // Desactivar checkbox si se ha calculado
               />
               <label>Ingresar consumo bimensual</label>
             </div>
@@ -66,6 +131,7 @@ const InstallSystemPage: React.FC = () => {
                 checked={selectedForm === 'monthly'}
                 onChange={() => handleCheckboxChange('monthly')}
                 className="mr-2"
+                disabled={calculated} // Desactivar checkbox si se ha calculado
               />
               <label>Ingresar consumo mensual</label>
             </div>
@@ -79,28 +145,62 @@ const InstallSystemPage: React.FC = () => {
             </p>
             <ComboboxTarifas className="mt-6" onSelectTarifa={handleSelectTarifa} />
           </div>
+
+          {showTarifaWarning && (
+            <div className="bg-red-200 text-red-800 p-4 rounded-lg mt-4">
+              <p>No has ingresado tu tarifa, esto no afecta tu cotización pero sí afecta en poder darte una comparativa de tu antes y después.</p>
+              <button
+                onClick={continueWithoutTarifa}
+                className="bg-primary text-primary-foreground mt-2 px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition"
+              >
+                Continuar sin tarifa
+              </button>
+            </div>
+          )}
+
+{highlightAnnualInput && (
+  <div className="flex justify-center mt-4 space-x-4">
+    <button
+      onClick={resetAnnualConsumption}
+      className="bg-destructive text-destructive-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-destructive-foreground hover:text-destructive transition flex items-center justify-center"
+    >
+      Eliminar
+    </button>
+
+    <button
+      onClick={handleCotizar}
+      className="bg-primary text-primary-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition flex items-center justify-center"
+    >
+      Cotizar
+    </button>
+  </div>
+)}
+
+
         </div>
 
         <div className="bg-card p-4 rounded-lg shadow-lg mt-6">
-          {selectedForm === 'annual' && <AnnualConsumptionForm annualConsumption={annualConsumption} setAnnualConsumption={setAnnualConsumption} />}
-          {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm bimonthlyConsumption={bimonthlyConsumption} setBimonthlyConsumption={setBimonthlyConsumption} />}
-          {selectedForm === 'monthly' && <MonthlyConsumptionForm monthlyConsumption={monthlyConsumption} setMonthlyConsumption={setMonthlyConsumption} />}
+          {selectedForm === 'annual' && <AnnualConsumptionForm annualConsumption={annualConsumption} setAnnualConsumption={handleAnnualSubmit} highlight={highlightAnnualInput} showCalculateButton={showCalculateButton} />}
+          {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm setBimonthlyConsumption={handleBimonthlySubmit} />}
+          {selectedForm === 'monthly' && <MonthlyConsumptionForm setMonthlyConsumption={handleMonthlySubmit} />}
         </div>
-        <ImageReader />
+        <ImageReader onAnnualKwhChange={handleImageReaderSubmit} />
         <FileUpload />
 
         <div className="mt-6 gap-6 flex flex-col sm:flex-row justify-center items-center">
-          <button onClick={toggleTarifasInfo} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-primary-foreground hover:text-primary transition">
-            {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
-          </button>
-          <button onClick={toggleAnnualConsumptionComponent} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition">
-            {showAnnualConsumptionComponent ? 'Ocultar como interpretar mi recibo' : 'Como interpretar mi recibo?'}
-          </button>
-        </div>
+  <button onClick={toggleTarifasInfo} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-muted hover:text-muted-foreground transition">
+    {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
+  </button>
+  <button onClick={toggleAnnualConsumptionComponent} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-muted hover:text-muted-foreground transition">
+    {showAnnualConsumptionComponent ? 'Ocultar como interpretar mi recibo' : 'Como interpretar mi recibo?'}
+  </button>
+</div>
+
 
         {showTarifasInfo && <TarifasInfo />}
         {showAnnualConsumptionComponent && <AnnualConsumptionComponent />}
       </div>
+
     </div>
   );
 };

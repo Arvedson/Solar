@@ -5,7 +5,11 @@ interface AnnualKwhData {
   annualKwh: number;
 }
 
-const ImageReader: React.FC = () => {
+interface ImageReaderProps {
+  onAnnualKwhChange: (annualKwh: number) => void;
+}
+
+const ImageReader: React.FC<ImageReaderProps> = ({ onAnnualKwhChange }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [annualKwhData, setAnnualKwhData] = useState<AnnualKwhData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -41,7 +45,8 @@ const ImageReader: React.FC = () => {
       const result = await response.json();
       const annualKwh = result.annualKwhData.annualKwh;
       setAnnualKwhData(result.annualKwhData);
-      console.log(`Consumo anual calculado: ${Math.round(annualKwh * 1.10)} kWh`); // Guardar y mostrar en consola
+      onAnnualKwhChange(Math.round(annualKwh * 1.10)); // Pasar el valor a través de la prop
+      console.log(`Consumo anual calculado: ${Math.round(annualKwh * 1.10)} kWh`);
     } catch (error) {
       setError((error as Error).message);
     } finally {
@@ -103,13 +108,7 @@ const ImageReader: React.FC = () => {
       {loading && <p>Cargando... Esto podría tomar algunos segundos</p>}
       {error && <p>Error: {error}</p>}
       <div>
-        {annualKwhData ? (
-          <div>
-            <p>kWh: {Math.round(annualKwhData.annualKwh * 1.10)}</p>
-          </div>
-        ) : (
-          <p></p>
-        )}
+
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface MonthlyConsumptionFormData {
@@ -8,20 +8,21 @@ interface MonthlyConsumptionFormData {
 }
 
 interface MonthlyConsumptionFormProps {
-  monthlyConsumption: number | null;
-  setMonthlyConsumption: (value: number | null) => void;
+  setMonthlyConsumption: (value: number) => void;
 }
 
-const MonthlyConsumptionForm: React.FC<MonthlyConsumptionFormProps> = ({ monthlyConsumption, setMonthlyConsumption }) => {
+const MonthlyConsumptionForm: React.FC<MonthlyConsumptionFormProps> = ({ setMonthlyConsumption }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<MonthlyConsumptionFormData>({
     defaultValues: {
-      consumption: Array(12).fill(null), // Cambiado de 0 a null
+      consumption: Array(12).fill(null),
     },
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<MonthlyConsumptionFormData> = (data) => {
-    const totalConsumption = data.consumption.reduce((sum, val) => sum + val, 0);
-    setMonthlyConsumption(totalConsumption);
+    const totalConsumption = data.consumption.reduce((sum, val) => sum + (val || 0), 0);
+    setMonthlyConsumption(totalConsumption); 
+    setSubmitted(true);
     console.log(`Consumo anual basado en mensual: ${totalConsumption}`);
   };
 
@@ -44,9 +45,11 @@ const MonthlyConsumptionForm: React.FC<MonthlyConsumptionFormProps> = ({ monthly
           </div>
         ))}
       </div>
-      <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded">
-        Calcular
-      </button>
+      {!submitted && (
+        <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded">
+          Ingresar consumo
+        </button>
+      )}
     </form>
   );
 };

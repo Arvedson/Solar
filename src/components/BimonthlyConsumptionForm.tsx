@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface BimonthlyConsumptionFormData {
@@ -8,20 +8,21 @@ interface BimonthlyConsumptionFormData {
 }
 
 interface BimonthlyConsumptionFormProps {
-  bimonthlyConsumption: number | null;
-  setBimonthlyConsumption: (value: number | null) => void;
+  setBimonthlyConsumption: (value: number) => void;
 }
 
-const BimonthlyConsumptionForm: React.FC<BimonthlyConsumptionFormProps> = ({ bimonthlyConsumption, setBimonthlyConsumption }) => {
+const BimonthlyConsumptionForm: React.FC<BimonthlyConsumptionFormProps> = ({ setBimonthlyConsumption }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<BimonthlyConsumptionFormData>({
     defaultValues: {
-      bimonthlyConsumption: Array(6).fill(null), // Cambiado de 0 a null
+      bimonthlyConsumption: Array(6).fill(null),
     },
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<BimonthlyConsumptionFormData> = (data) => {
-    const totalConsumption = data.bimonthlyConsumption.reduce((sum, val) => sum + val, 0);
-    setBimonthlyConsumption(totalConsumption);
+    const totalConsumption = data.bimonthlyConsumption.reduce((sum, val) => sum + (val || 0), 0);
+    setBimonthlyConsumption(totalConsumption); 
+    setSubmitted(true);
     console.log(`Consumo anual basado en bimensual: ${totalConsumption}`);
   };
 
@@ -44,9 +45,11 @@ const BimonthlyConsumptionForm: React.FC<BimonthlyConsumptionFormProps> = ({ bim
           </div>
         ))}
       </div>
-      <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded">
-        Calcular
-      </button>
+      {!submitted && (
+        <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded">
+          Ingresar consumo
+        </button>
+      )}
     </form>
   );
 };

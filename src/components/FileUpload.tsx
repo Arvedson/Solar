@@ -35,7 +35,7 @@ const FileUpload: React.FC<FileUploadProps> = () => {
         {
           isDragActive ?
             <p className="text-blue-700">Suelta los archivos aquí...</p> :
-            <p className="text-gray-700">Envianos una foto o un PFD con tu recibo de la luz en caso de que no sepas como sacar tu consumo anual.</p>
+            <p className="text-gray-700">Envianos tu recibo de la luz en caso de que no tengas una foto de alta resolucion.</p>
         }
       </div>
       <div className="mt-2">
