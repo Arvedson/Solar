@@ -147,7 +147,7 @@ const InstallSystemPage: React.FC = () => {
           </div>
 
           {showTarifaWarning && (
-            <div className="bg-red-200 text-red-800 p-4 rounded-lg mt-4">
+            <div className="bg-red-200 text-red-800 p-4 rounded-lg mt-4 ">
               <p>No has ingresado tu tarifa, esto no afecta tu cotización pero sí afecta en poder darte una comparativa de tu antes y después.</p>
               <button
                 onClick={continueWithoutTarifa}
