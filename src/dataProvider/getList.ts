@@ -1,6 +1,6 @@
 import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
-import { GetListParams } from '../types/dataProvider';
+import { GetListParams } from '../../types/dataProvider';
 
 const apiUrl = '/api';
 const httpClient = fetchUtils.fetchJson;

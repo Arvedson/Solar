@@ -1,2 +1,3 @@
-// src/config.ts
-export const apiUrl = 'http://localhost:3000/api';
+export const apiUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://tu-api-en-produccion.com/api' 
+  : 'http://localhost:3000/api';

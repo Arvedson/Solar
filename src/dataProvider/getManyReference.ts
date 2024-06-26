@@ -1,5 +1,5 @@
 import { fetchUtils } from 'react-admin';
-import { GetManyReferenceParams } from '../types/dataProvider';  // Importa la interfaz adecuada
+import { GetManyReferenceParams } from '../../types/dataProvider';  // Importa la interfaz adecuada
 import { stringify } from 'query-string';
 
 const apiUrl = '/api';

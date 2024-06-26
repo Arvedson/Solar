@@ -8,20 +8,80 @@ generator client {
 }
 
 model Installer {
-  id          Int     @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   name        String
-  cost_per_kw Float
-  email       String  @unique
+  email       String       @unique
   phone       String
-  serviceAreas String
+  costPerKw   Float
+  serviceAreas ServiceArea[]
 }
 
-model Territorio {
+model Estado {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  ciudades   City[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model City {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  estadoId   Int
+  estado     Estado   @relation(fields: [estadoId], references: [id])
+  serviceAreas ServiceArea[]
+}
+
+model ServiceArea {
+  id          Int          @id @default(autoincrement())
+  installerId Int
+  cityId      Int
+
+  installer   Installer   @relation(fields: [installerId], references: [id])
+  city        City        @relation(fields: [cityId], references: [id])
+}
+
+
+model PanelSolar {
+  id                   Int      @id @default(autoincrement())
+  modelo               String
+  capacidadW           Int
+  fabricante           String
+  eficiencia           Float
+  dimensiones          String
+  peso                 Float
+  precio               Float
+  imageUrl             String?
+  voltajeVoc           Float   
+  corrienteIsc         Float   
+  voltajeVmp           Float   
+  corrienteImp         Float   
+  tipoCelda            String  
+  cantidadCeldas       Int     
+  tolerancia           Float   
+  maxVoltajeSistema    Float   
+  temperaturaOperacion String  
+  garantiaProducto     Int     
+  garantiaPotencia     Int    
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+
+model Microinversor {
   id              Int      @id @default(autoincrement())
-  estado          String
-  zonasCubiertas  String[]
-  costoPorKw      Float
-  indiceRadiacion Float
+  modelo          String
+  capacidadW      Int
+  fabricante      String
+  eficiencia      Float
+  dimensiones     String
+  peso            Float
+  precio          Float
+  imageUrl        String?
+  voltajeEntrada  Float
+  voltajeSalida   Float
+  fases           Int
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+

@@ -1,5 +1,5 @@
 import { fetchUtils } from 'react-admin';
-import { DeleteParams } from '../types/dataProvider';  // Importa la interfaz adecuada
+import { DeleteParams } from '../../types/dataProvider';  // Importa la interfaz adecuada
 
 const apiUrl = '/api';
 const httpClient = fetchUtils.fetchJson;

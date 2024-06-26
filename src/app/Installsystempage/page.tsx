@@ -176,7 +176,6 @@ const InstallSystemPage: React.FC = () => {
   </div>
 )}
 
-
         </div>
 
         <div className="bg-card p-4 rounded-lg shadow-lg mt-6">

@@ -1,5 +1,5 @@
 import { fetchUtils } from 'react-admin';
-import { GetOneParams } from '../types/dataProvider';  // Asegúrate de importar desde el archivo correcto
+import { GetOneParams } from '../../types/dataProvider';  // Asegúrate de importar desde el archivo correcto
 
 const apiUrl = '/api';
 const httpClient = fetchUtils.fetchJson;

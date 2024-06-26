@@ -5,7 +5,7 @@ import update from './update';
 import deleteResource from './delete';
 import getMany from './getMAny';
 import getManyReference from './getManyReference';
-import { DataProvider } from '../types/dataProvider';
+import { DataProvider } from '../../types/dataProvider';
 
 const dataProvider: DataProvider = {
   getList,

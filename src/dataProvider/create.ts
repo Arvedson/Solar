@@ -1,5 +1,5 @@
 import { fetchUtils } from 'react-admin';
-import { CreateParams } from '../types/dataProvider';  // Asegúrate de importar desde el archivo correcto
+import { CreateParams } from '../../types/dataProvider';  // Asegúrate de importar desde el archivo correcto
 
 const apiUrl = '/api';
 const httpClient = fetchUtils.fetchJson;

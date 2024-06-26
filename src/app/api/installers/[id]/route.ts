@@ -1,68 +1,31 @@
-import { PrismaClient } from '@prisma/client';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../../../../lib/prisma';
 
-const prisma = new PrismaClient();
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const { range = '[0,9]', sort = '["id","ASC"]', filter = '{}' } = req.query;
+    const [rangeStart, rangeEnd] = JSON.parse(range as string);
+    const [sortField, sortOrder] = JSON.parse(sort as string);
+    const filters = JSON.parse(filter as string);
 
-export const GET = async (req: NextRequest) => {
-    try {
-      const { pathname } = new URL(req.url);
-      const id = parseInt(pathname.split('/').pop() || '0'); // Extrae el ID desde la URL
-  
-      if (isNaN(id) || id === 0) {
-        return new NextResponse(JSON.stringify({ error: 'Invalid ID' }), { status: 400 });
-      }
-  
-      const installer = await prisma.installer.findUnique({
-        where: { id },
-      });
-  
-      if (!installer) {
-        return new NextResponse(JSON.stringify({ error: 'Installer not found' }), { status: 404 });
-      }
-  
-      return new NextResponse(JSON.stringify(installer), { status: 200 });
-    } catch (error) {
-      return new NextResponse(JSON.stringify({ error: 'Failed to fetch installer' }), { status: 500 });
-    }
-  };
+    const total = await prisma.installer.count({
+      where: filters,
+    });
 
-export const PUT = async (req: NextRequest) => {
-    try {
-      const { pathname } = new URL(req.url);
-      const id = parseInt(pathname.split('/').pop() || '0');
-      const data = await req.json();
-  
-      if (isNaN(id) || id === 0) {
-        return new NextResponse(JSON.stringify({ error: 'Invalid ID' }), { status: 400 });
-      }
-  
-      const updatedInstaller = await prisma.installer.update({
-        where: { id },
-        data,
-      });
-  
-      return new NextResponse(JSON.stringify(updatedInstaller), { status: 200 });
-    } catch (error) {
-      return new NextResponse(JSON.stringify({ error: 'Failed to update installer' }), { status: 400 });
-    }
-  };
+    const installers = await prisma.installer.findMany({
+      where: filters,
+      orderBy: {
+        [sortField]: sortOrder.toLowerCase(),
+      },
+      skip: rangeStart,
+      take: rangeEnd - rangeStart + 1,
+    });
 
-
-export const DELETE = async (req: NextRequest) => {
-    try {
-      const { pathname } = new URL(req.url);
-      const id = parseInt(pathname.split('/').pop() || '0');
-  
-      if (isNaN(id) || id === 0) {
-        return new NextResponse(JSON.stringify({ error: 'Invalid ID' }), { status: 400 });
-      }
-  
-      await prisma.installer.delete({
-        where: { id },
-      });
-  
-      return new NextResponse(null, { status: 204 });
-    } catch (error) {
-      return new NextResponse(JSON.stringify({ error: 'Failed to delete installer' }), { status: 400 });
-    }
-  };
+    res.setHeader('Content-Range', `installers ${rangeStart}-${rangeEnd}/${total}`);
+    res.setHeader('Access-Control-Expose-Headers', 'Content-Range');
+    res.status(200).json(installers);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching installers' });
+  }
+}
