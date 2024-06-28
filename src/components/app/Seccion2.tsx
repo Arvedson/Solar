@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
-import { Combobox } from '../components/ui/Combox';
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
+import { Combobox } from '../ui/Combox';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
 const solarRadiationData: { [key: string]: number } = {
     Aguascalientes: 5.5,
@@ -154,7 +154,7 @@ const solarRadiationData: { [key: string]: number } = {
   
     return (
       <div className="flex  max-w-4xl mx-auto bg-card text-card-foreground shadow-md rounded-lg mt-12 mb-12 ">
-        <section className="py-14 bg-background text-foreground ">
+        <section className="mx-6 py-14 bg-background text-foreground border border-border rounded">
           <div className="container mx-auto px-10 text-center">
             <h2 className="text-3xl font-bold text-secondary-foreground mb-8">
               ¿Cuánto pagas promedio al mes?

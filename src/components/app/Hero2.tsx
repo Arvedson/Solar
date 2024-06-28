@@ -4,16 +4,15 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 
-import FadeSeparator from './FadeSeparator'; // Asegúrate de ajustar la ruta según tu estructura de archivos
-
 const Hero2: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     const video = videoRef.current;
-    
+
     if (video) {
       video.playbackRate = 0.8; // Ralentiza el video al 80% de su velocidad original
-  
+
       const handleVideoEnded = () => {
         const reverseVideo = () => {
           if (video.currentTime > 0) {
@@ -24,21 +23,19 @@ const Hero2: React.FC = () => {
             video.play(); // Reproduce el video hacia adelante
           }
         };
-        
+
         video.pause(); // Pausa el video antes de empezar a reproducir en reversa
         video.playbackRate = -0.8; // Establece la velocidad de reproducción en reversa
         reverseVideo();
       };
-  
+
       video.addEventListener('ended', handleVideoEnded);
-  
+
       return () => {
         video.removeEventListener('ended', handleVideoEnded);
       };
     }
   }, []);
-  
-  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -68,10 +65,8 @@ const Hero2: React.FC = () => {
           muted
           playsInline
         >
-          <source src="/9875909-uhd_3840_2160_30fps.mp4" type="video/mp4" media="(min-width: 1024px)"/>
-          <source src="/9875909-uhd_3840_2160_30fps.mp4" type="video/mp4" media="(max-width: 1023px)"/>
+          <source src="/9875909-uhd_3840_2160_30fps.mp4" type="video/mp4" />
         </video>
-        <FadeSeparator endColor="#FFFFFF" /> {/* Ajusta el color de destino según tu diseño */}
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-black bg-opacity-25">
         <motion.div 
@@ -81,13 +76,13 @@ const Hero2: React.FC = () => {
           animate="visible"
         >
           <motion.div className="mb-4 mt-0 lg:mt-4 xl:mt-5" variants={itemVariants}>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary-foreground">
-              Bienvenidos a Empresa Solar
+            <h1 className="font-bold">
+              Ququlkan 
             </h1>
           </motion.div>
           <motion.div className="mb-4 mt-0 lg:mt-3" variants={itemVariants}>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-primary-foreground">
-              Soluciones solares innovadoras para un futuro sostenible.
+              Energia Solar.
             </p>
           </motion.div>
           <Link href="/Installsystempage" passHref>

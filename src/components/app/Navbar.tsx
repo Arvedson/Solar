@@ -13,7 +13,7 @@ export default function Navbar() {
 
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <a href="/" className="flex items-center">
-          <span className="text-primary font-semibold text-xl">Empresa Solar</span>
+          <span className="text-primary font-semibold text-xl">Ququlkan - Solar</span>
         </a>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>

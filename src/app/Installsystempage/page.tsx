@@ -1,14 +1,14 @@
 'use client';
 import React, { useState } from 'react';
-import AnnualConsumptionForm from '../../components/AnnualConsumptionForm';
-import BimonthlyConsumptionForm from '../../components/BimonthlyConsumptionForm';
-import MonthlyConsumptionForm from '../../components/MonthlyConsumptionForm';
-import FileUpload from '@/components/FileUpload';
-import ComboboxTarifas from '../../components/ComboboxTarifas';
-import TarifasInfo from '../../components/TarifasInfo';
-import ImageReader from '@/components/ImageReader';
-import AnnualConsumptionComponent from '../../components/AnnualConsumptionComponent ';
-import CotizarButton from '../../components/CotizarButton';
+import AnnualConsumptionForm from '../../components/app/AnnualConsumptionForm';
+import BimonthlyConsumptionForm from '../../components/app/BimonthlyConsumptionForm';
+import MonthlyConsumptionForm from '../../components/app/MonthlyConsumptionForm';
+import FileUpload from '@/components/app/FileUpload';
+import ComboboxTarifas from '../../components/app/ComboboxTarifas';
+import TarifasInfo from '../../components/app/TarifasInfo';
+import ImageReader from '@/components/app/ImageReader';
+import AnnualConsumptionComponent from '../../components/app/AnnualConsumptionComponent ';
+import CotizarButton from '../../components/app/CotizarButton';
 
 const InstallSystemPage: React.FC = () => {
   const [selectedForm, setSelectedForm] = useState<'annual' | 'bimonthly' | 'monthly' | null>(null);

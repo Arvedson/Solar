@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       colors: {
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -31,6 +32,10 @@ const config = {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))",
+          foreground: "hsl(var(--tertiary-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -63,9 +68,19 @@ const config = {
           '0%': { borderColor: 'transparent' },
           '100%': { borderColor: 'currentColor' },
         },
+        "border-draw": {
+          '0%': { strokeDasharray: '0, 100' },
+          '100%': { strokeDasharray: '100, 0' },
+        },
+        "fill-background": {
+          '0%': { backgroundSize: '0% 100%' },
+          '100%': { backgroundSize: '100% 100%' },
+        },
       },
       animation: {
         "border-fill": "border-fill 2s ease forwards",
+        "border-draw": "border-draw 2s linear forwards",
+        "fill-background": "fill-background 0.3s ease-in-out forwards",
       },
     },
   },

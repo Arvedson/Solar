@@ -4,66 +4,236 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 10% 46.1%; /* Ajustamos este valor para mayor contraste */
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
+    --background: 240 10% 10%;
+    --foreground: 0 0% 95%;
+    --card: 240 10% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 240 10% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 300 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --success: 102 75% 34%;
+    --success-foreground: 0 0% 100%;
+    --info: 195 80% 34%;
+    --info-foreground: 0 0% 100%;
+    --warning: 28 67% 35%;
+    --warning-foreground: 0 0% 100%;
+    --secondary: 210 60% 50%; /* Nuevo color secundario */
+    --secondary-foreground: 210 100% 95%; /* Foreground del secundario */
+    --border: 240 10% 25%;
+    --tertiary: 240 70% 60%; /* Nuevo color terciario */
+    --tertiary-foreground: 240 100% 95%; /* Foreground del terciario */
+    --input: 240 10% 25%;
+    --ring: 300 100% 47%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 240 10% 10%;
     --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
+    --card: 240 10% 10%;
     --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
+    --popover: 240 10% 10%;
     --popover-foreground: 0 0% 95%;
-    --primary: 142.1 70.6% 45.3%;
-    --primary-foreground: 144.9 80.4% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 142.4 71.8% 29.2%;
+    --primary: 300 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --success: 102 75% 34%;
+    --success-foreground: 0 0% 100%;
+    --info: 195 80% 34%;
+    --info-foreground: 0 0% 100%;
+    --secondary: 210 60% 50%; /* Nuevo color secundario */
+    --secondary-foreground: 210 100% 95%; /* Foreground del secundario */
+    --warning: 28 67% 35%;
+    --warning-foreground: 0 0% 100%;
+    --secondary: 210 60% 50%; /* Nuevo color secundario */
+    --secondary-foreground: 210 100% 95%; /* Foreground del secundario */
+    --border: 240 10% 25%;
+    --tertiary: 240 70% 60%; /* Nuevo color terciario */
+    --tertiary-foreground: 240 100% 95%; /* Foreground del terciario */
+    --input: 240 10% 25%;
+    --ring: 300 100% 47%;
   }
 
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-primary-foreground;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+  }
+
+  h5 {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl;
+  }
+
+  h6 {
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl;
+  }
+
   @media (max-width: 570px) {
     .chart-container {
       width: 50%;
       height: 300px; /* Ajusta la altura según tus necesidades */
     }
   }
-.spacing-after-colon::after {
-  content: ": ";
-}
 
+  .spacing-after-colon::after {
+    content: ": ";
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hover-fill-background,
+  .touch-fill-background {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hover-fill-background::before,
+  .touch-fill-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-foreground);
+    z-index: -1;
+    background-size: 0% 100%;
+    transition: background-size 0.3s ease-in-out;
+  }
+
+  .hover-fill-background:hover::before,
+  .touch-fill-background:active::before {
+    background-size: 100% 100%;
+  }
+
+  .border-draw {
+    position: relative;
+    border: none;
+  }
+
+  .border-draw::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid currentColor;
+    transform-origin: left;
+    animation: border-draw 2s linear forwards;
+  }
+
+  .animated-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border: 2px solid transparent;
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    font-weight: bold;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: color 0.3s;
+  }
   
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsl(var(--secondary-foreground));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+    z-index: 0;
+  }
   
+  .animated-button:hover::before,
+  .animated-button:active::before {
+    transform: scaleX(1);
+  }
+  
+  .animated-button:hover,
+  .animated-button:active {
+    color: hsl(var(--secondary));
+  }
+  
+  .animated-button > * {
+    position: relative;
+    z-index: 1;
+  }
+  .fixed {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .fixed.inset-0 {
+    transform: translateX(0);
+  }
+  
+  .fixed.inset-0.hidden {
+    transform: translateX(100%);
+  }
+
+  .animated-enter {
+    transform: translateX(100%);
+  }
+  
+  .animated-enter-active {
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .animated-exit {
+    transform: translateX(0);
+  }
+  
+  .animated-exit-active {
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+  }
+  .slide-enter {
+    transform: translateX(100%);
+  }
+  .slide-enter-active {
+    transform: translateX(0);
+    transition: transform 500ms ease-in-out;
+  }
+  .slide-exit {
+    transform: translateX(0);
+  }
+  .slide-exit-active {
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+  }
 }
