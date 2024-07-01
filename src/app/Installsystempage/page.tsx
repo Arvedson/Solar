@@ -105,7 +105,7 @@ const InstallSystemPage: React.FC = () => {
         <div className="mb-6">
           <label className="block text-lg font-semibold mb-4 text-center">Consumo Eléctrico</label>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
-            <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg">
+            <div className="border flex items-center space-x-2 bg-muted p-2 rounded-lg">
               <input
                 type="checkbox"
                 checked={selectedForm === 'annual'}
@@ -115,7 +115,7 @@ const InstallSystemPage: React.FC = () => {
               />
               <label>Ingresar consumo anual</label>
             </div>
-            <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg">
+            <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg border">
               <input
                 type="checkbox"
                 checked={selectedForm === 'bimonthly'}
@@ -125,7 +125,7 @@ const InstallSystemPage: React.FC = () => {
               />
               <label>Ingresar consumo bimensual</label>
             </div>
-            <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg">
+            <div className="flex border items-center space-x-2 bg-muted p-2 rounded-lg">
               <input
                 type="checkbox"
                 checked={selectedForm === 'monthly'}

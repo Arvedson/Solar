@@ -27,6 +27,8 @@ const AnimatedBackground: React.FC = () => {
           </circle>
         </g>
       </svg>
+
+    
     </div>
   );
 };
