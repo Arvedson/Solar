@@ -28,11 +28,16 @@ async function pdfToImages(buffer: Buffer): Promise<Buffer[]> {
     height: 3300,
   });
 
-  const images = [];
+  const images: Buffer[] = [];
   for (let i = 1; i <= totalPages; i++) {
     const page = await convert(i);
-    const imageBuffer = Buffer.from(page.base64, 'base64');
-    images.push(imageBuffer);
+    const pageWithBase64 = page as { base64: string };  // Aserción de tipo
+    if (pageWithBase64.base64) {
+      const imageBuffer = Buffer.from(pageWithBase64.base64, 'base64');
+      images.push(imageBuffer);
+    } else {
+      console.error(`Error: Page ${i} does not have base64 data`);
+    }
   }
 
   return images;
@@ -62,7 +67,7 @@ function extractKwhUsingDollarSign(text: string): { period: string, kwh: string,
       const parts = line.split('$');
       const kwhMatch = parts[0].match(/\d+/g);
       if (kwhMatch) {
-        const kwh = kwhMatch[kwhMatch.length - 1]; // El último número antes del $
+        const kwh = kwhMatch[kwhMatch.length - 1];
         const periodMatch = line.match(/del\s+\d+\s+[A-Z]+\s+\d+\s+al\s+\d+\s+[A-Z]+\s+\d+/);
         const period = periodMatch ? periodMatch[0] : '';
         results.push({ period, kwh, cost });
