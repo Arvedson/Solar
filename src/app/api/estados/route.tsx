@@ -1,5 +1,3 @@
-// src/app/api/estados/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma';
 
@@ -9,8 +7,10 @@ export const GET = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '1');
     const perPage = parseInt(searchParams.get('perPage') || '10');
-    const sort = searchParams.get('sort') ? JSON.parse(searchParams.get('sort')) : ['id', 'ASC'];
-    const filter = searchParams.get('filter') ? JSON.parse(searchParams.get('filter')) : {};
+    const sortParam = searchParams.get('sort');
+    const sort = sortParam ? JSON.parse(sortParam) : ['id', 'ASC'];
+    const filterParam = searchParams.get('filter');
+    const filter = filterParam ? JSON.parse(filterParam) : {};
 
     const orderBy: any = {};
     orderBy[sort[0]] = sort[1].toLowerCase() as 'asc' | 'desc';
