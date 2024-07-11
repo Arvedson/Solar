@@ -1,19 +1,22 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export const GET = async (req: NextRequest) => {
   try {
-    const { range = '[0,9]', sort = '["id","ASC"]', filter = '{}' } = req.query;
-    const [rangeStart, rangeEnd] = JSON.parse(range as string);
-    const [sortField, sortOrder] = JSON.parse(sort as string);
-    const filters = JSON.parse(filter as string);
+    const url = new URL(req.url);
+    const range = url.searchParams.get('range') ? JSON.parse(url.searchParams.get('range')!) : [0, 9];
+    const sort = url.searchParams.get('sort') ? JSON.parse(url.searchParams.get('sort')!) : ['id', 'ASC'];
+    const filter = url.searchParams.get('filter') ? JSON.parse(url.searchParams.get('filter')!) : {};
+
+    const [rangeStart, rangeEnd] = range;
+    const [sortField, sortOrder] = sort;
 
     const total = await prisma.installer.count({
-      where: filters,
+      where: filter,
     });
 
     const installers = await prisma.installer.findMany({
-      where: filters,
+      where: filter,
       orderBy: {
         [sortField]: sortOrder.toLowerCase(),
       },
@@ -21,11 +24,12 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
       take: rangeEnd - rangeStart + 1,
     });
 
-    res.setHeader('Content-Range', `installers ${rangeStart}-${rangeEnd}/${total}`);
-    res.setHeader('Access-Control-Expose-Headers', 'Content-Range');
-    res.status(200).json(installers);
+    const response = NextResponse.json(installers);
+    response.headers.set('Content-Range', `installers ${rangeStart}-${rangeEnd}/${total}`);
+    response.headers.set('Access-Control-Expose-Headers', 'Content-Range');
+    return response;
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error fetching installers' });
+    console.error('Error fetching installers:', error);
+    return new NextResponse(JSON.stringify({ error: 'Failed to fetch installers' }), { status: 500 });
   }
-}
+};
