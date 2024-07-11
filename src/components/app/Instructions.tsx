@@ -8,7 +8,7 @@ const Instructions: React.FC = () => {
       <h2 className="text-2xl font-bold mb-4">Cómo Interpretar tu Recibo de Luz</h2>
       <ol className="list-decimal list-inside space-y-2 text-left">
         <li>
-          <span className="font-semibold">Revisar el consumo:</span> Encuentra la sección de tu recibo donde se muestra el consumo de energía en kWh. Este valor suele aparecer en el apartado de "Consumo".
+          <span className="font-semibold">Revisar el consumo:</span> Encuentra la sección de tu recibo donde se muestra el consumo de energía en kWh. Este valor suele aparecer en el apartado de Consumo.
         </li>
         <li>
           <span className="font-semibold">Identificar el periodo de facturación:</span> Observa las fechas de inicio y fin del periodo de facturación. Esto te ayudará a entender si el consumo es mensual, bimensual, etc.
