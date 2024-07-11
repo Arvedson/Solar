@@ -6,8 +6,8 @@ export const GET = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '1');
     const perPage = parseInt(searchParams.get('perPage') || '10');
-    const sort = searchParams.get('sort') ? JSON.parse(searchParams.get('sort')) : ['id', 'ASC'];
-    const filter = searchParams.get('filter') ? JSON.parse(searchParams.get('filter')) : {};
+    const sort = searchParams.get('sort') ? JSON.parse(searchParams.get('sort')!) : ['id', 'ASC'];
+    const filter = searchParams.get('filter') ? JSON.parse(searchParams.get('filter')!) : {};
 
     const orderBy: any = {};
     orderBy[sort[0]] = sort[1].toLowerCase();
