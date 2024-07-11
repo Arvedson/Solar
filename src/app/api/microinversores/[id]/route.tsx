@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
-// GET handler for a single inverter
-export const GET = async (req: NextRequest, { params }) => {
+interface Params {
+  params: {
+    id: string;
+  };
+}
+
+// GET handler for a single microinverter
+export const GET = async (req: NextRequest, { params }: Params) => {
   const { id } = params;
 
   if (!id) {
@@ -10,23 +16,23 @@ export const GET = async (req: NextRequest, { params }) => {
   }
 
   try {
-    const inversor = await prisma.inversor.findUnique({
+    const microinversor = await prisma.microinversor.findUnique({
       where: { id: Number(id) },
     });
 
-    if (inversor) {
-      return new NextResponse(JSON.stringify(inversor), { status: 200 });
+    if (microinversor) {
+      return new NextResponse(JSON.stringify(microinversor), { status: 200 });
     } else {
-      return new NextResponse(JSON.stringify({ error: 'Inverter not found' }), { status: 404 });
+      return new NextResponse(JSON.stringify({ error: 'Microinverter not found' }), { status: 404 });
     }
   } catch (error) {
-    console.error('Error fetching inverter', error);
-    return new NextResponse(JSON.stringify({ error: 'Error fetching inverter' }), { status: 500 });
+    console.error('Error fetching microinverter', error);
+    return new NextResponse(JSON.stringify({ error: 'Error fetching microinverter' }), { status: 500 });
   }
 };
 
-// PUT handler for updating a single inverter
-export const PUT = async (req: NextRequest, { params }) => {
+// PUT handler for updating a single microinverter
+export const PUT = async (req: NextRequest, { params }: Params) => {
   const { id } = params;
   const data = await req.json();
 
@@ -35,7 +41,7 @@ export const PUT = async (req: NextRequest, { params }) => {
   }
 
   try {
-    const updatedInversor = await prisma.inversor.update({
+    const updatedMicroinversor = await prisma.microinversor.update({
       where: { id: Number(id) },
       data: {
         modelo: data.modelo,
@@ -48,20 +54,19 @@ export const PUT = async (req: NextRequest, { params }) => {
         imageUrl: data.imageUrl,
         voltajeEntrada: data.voltajeEntrada,
         voltajeSalida: data.voltajeSalida,
-        tipo: data.tipo,
         fases: data.fases,
       },
     });
 
-    return new NextResponse(JSON.stringify(updatedInversor), { status: 200 });
+    return new NextResponse(JSON.stringify(updatedMicroinversor), { status: 200 });
   } catch (error) {
-    console.error('Error updating inverter', error);
-    return new NextResponse(JSON.stringify({ error: 'Error updating inverter' }), { status: 500 });
+    console.error('Error updating microinverter', error);
+    return new NextResponse(JSON.stringify({ error: 'Error updating microinverter' }), { status: 500 });
   }
 };
 
-// DELETE handler for deleting a single inverter
-export const DELETE = async (req: NextRequest, { params }) => {
+// DELETE handler for deleting a single microinverter
+export const DELETE = async (req: NextRequest, { params }: Params) => {
   const { id } = params;
 
   if (!id) {
@@ -69,13 +74,13 @@ export const DELETE = async (req: NextRequest, { params }) => {
   }
 
   try {
-    await prisma.inversor.delete({
+    await prisma.microinversor.delete({
       where: { id: Number(id) },
     });
 
-    return new NextResponse(JSON.stringify({ message: 'Inverter deleted successfully' }), { status: 200 });
+    return new NextResponse(JSON.stringify({ message: 'Microinverter deleted successfully' }), { status: 200 });
   } catch (error) {
-    console.error('Error deleting inverter', error);
-    return new NextResponse(JSON.stringify({ error: 'Error deleting inverter' }), { status: 500 });
+    console.error('Error deleting microinverter', error);
+    return new NextResponse(JSON.stringify({ error: 'Error deleting microinverter' }), { status: 500 });
   }
 };
