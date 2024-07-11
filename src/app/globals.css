@@ -4,57 +4,74 @@
 
 @layer base {
   :root {
-    --background: 240 10% 10%;
-    --foreground: 0 0% 95%;
-    --card: 240 10% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 240 10% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 300 100% 47%;
-    --primary-foreground: 0 0% 100%;
-    --success: 102 75% 34%;
-    --success-foreground: 0 0% 100%;
-    --info: 195 80% 34%;
-    --info-foreground: 0 0% 100%;
-    --warning: 28 67% 35%;
-    --warning-foreground: 0 0% 100%;
-    --secondary: 210 60% 50%; /* Nuevo color secundario */
-    --secondary-foreground: 210 100% 95%; /* Foreground del secundario */
-    --border: 240 10% 25%;
-    --tertiary: 240 70% 60%; /* Nuevo color terciario */
-    --tertiary-foreground: 240 100% 95%; /* Foreground del terciario */
-    --input: 240 10% 25%;
-    --ring: 300 100% 47%;
-    --radius: 0.5rem;
-    --text-secondary: 0 0% 100%; /* Blanco puro para contraste alto */
-    --text-tertiary: 60 100% 50%; /* Amarillo para opción alternativa */
-  }
-
-  .dark {
-    --background: 240 10% 10%;
-    --foreground: 0 0% 95%;
-    --card: 240 10% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 240 10% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 300 100% 47%;
-    --primary-foreground: 0 0% 100%;
-    --success: 102 75% 34%;
-    --success-foreground: 0 0% 100%;
-    --info: 195 80% 34%;
-    --info-foreground: 0 0% 100%;
-    --secondary: 210 60% 50%; /* Nuevo color secundario */
-    --secondary-foreground: 210 100% 95%; /* Foreground del secundario */
-    --warning: 28 67% 35%;
-    --warning-foreground: 0 0% 100%;
-    --secondary: 210 60% 50%; /* Nuevo color secundario */
-    --secondary-foreground: 210 100% 95%; /* Foreground del secundario */
-    --border: 240 10% 25%;
-    --tertiary: 240 70% 60%; /* Nuevo color terciario */
-    --tertiary-foreground: 240 100% 95%; /* Foreground del terciario */
-    --input: 240 10% 25%;
-    --ring: 300 100% 47%;
-  }
+  
+      --background: 210 100% 15%; /* Azul oscuro */
+      --foreground: 0 0% 100%; /* Blanco puro */
+      --card: 0 0% 0%; /* Negro profundo */
+      --card-foreground: 0 0% 100%; /* Blanco puro */
+      --popover: 0 0% 0%; /* Negro profundo */
+      --popover-foreground: 0 0% 100%; /* Blanco puro */
+      --primary: 174 100% 47%; /* Turquesa claro */
+      --primary-foreground: 0 0% 100%; /* Blanco puro */
+      --success: 144 70% 38%; /* Verde brillante */
+      --success-foreground: 0 0% 100%; /* Blanco puro */
+      --info: 180 100% 45%; /* Azul claro */
+      --info-foreground: 0 0% 100%; /* Blanco puro */
+      --warning: 24 100% 56%; /* Naranja brillante */
+      --warning-foreground: 0 0% 100%; /* Blanco puro */
+      --secondary: 210 100% 15%; /* Azul oscuro */
+      --secondary-foreground: 180 100% 45%; /* Azul claro */
+      --border: 240 10% 20%; /* Gris intermedio */
+      --tertiary: 204 70% 40%; /* Verde azulado */
+      --tertiary-foreground: 0 0% 100%; /* Blanco puro */
+      --input: 240 10% 20%; /* Gris intermedio */
+      --ring: 24 100% 56%; /* Naranja brillante */
+      --text-secondary: 0 0% 90%; /* Blanco casi puro */
+      --text-tertiary: 24 100% 56%; /* Naranja brillante */
+      --destructive: 0 70% 40%; /* Rojo brillante */
+      --destructive-foreground: 0 0% 100%; /* Blanco puro */
+      --neutral-light: 0 0% 80%; /* Gris claro */
+      --neutral-light-foreground: 0 0% 0%; /* Negro profundo */
+      --neutral-light-surface: 0 0% 90%; /* Gris muy claro */
+      --radius: 0.5rem; /* Radio de 0.5rem para bordes redondeados */
+      --neutral-light-surface-foreground: 0 0% 0%; /* Negro profundo */
+    }
+  
+    .dark {
+      --background: 210 100% 15%; /* Azul oscuro */
+      --foreground: 0 0% 95%; /* Blanco casi puro */
+      --card: 0 0% 0%; /* Negro profundo */
+      --card-foreground: 0 0% 95%; /* Blanco casi puro */
+      --popover: 0 0% 0%; /* Negro profundo */
+      --popover-foreground: 0 0% 95%; /* Blanco casi puro */
+      --primary: 174 100% 47%; /* Turquesa claro */
+      --primary-foreground: 0 0% 100%; /* Blanco puro */
+      --success: 144 70% 38%; /* Verde brillante */
+      --success-foreground: 0 0% 100%; /* Blanco puro */
+      --info: 180 100% 45%; /* Azul claro */
+      --info-foreground: 0 0% 95%; /* Blanco casi puro */
+      --warning: 24 100% 56%; /* Naranja brillante */
+      --warning-foreground: 0 0% 100%; /* Blanco puro */
+      --secondary: 210 100% 15%; /* Azul oscuro */
+      --secondary-foreground: 180 100% 45%; /* Azul claro */
+      --border: 240 10% 20%; /* Gris intermedio */
+      --tertiary: 204 70% 40%; /* Verde azulado */
+      --tertiary-foreground: 0 0% 95%; /* Blanco casi puro */
+      --input: 240 10% 20%; /* Gris intermedio */
+      --ring: 24 100% 56%; /* Naranja brillante */
+      --radius: 0.5rem; /* Radio de 0.5rem para bordes redondeados */
+      --text-secondary: 0 0% 90%; /* Blanco casi puro */
+      --text-tertiary: 24 100% 56%; /* Naranja brillante */
+      --highlight: 240 10% 25%; /* Gris ligeramente más claro */
+      --destructive: 0 70% 40%; /* Rojo brillante */
+      --destructive-foreground: 0 0% 95%; /* Blanco casi puro */
+      --highlight-foreground: 0 0% 90%; /* Blanco casi puro */
+      --neutral-light: 0 0% 50%; /* Gris medio */
+      --neutral-light-foreground: 0 0% 95%; /* Blanco casi puro para buen contraste */
+      --neutral-light-surface: 0 0% 40%; /* Fondo ligeramente más oscuro */
+      --neutral-light-surface-foreground: 0 0% 100%; /* Blanco puro para buen contraste */
+    }
+  
 
   * {
     @apply border-border;
@@ -251,8 +268,23 @@
 
   
 
-/* styles/globals.css */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TCHART COMPONENT STYLES */
 @keyframes randomFloat {
   0%, 100% {
     transform: translate(0, 0);
@@ -278,54 +310,89 @@
 }
 
 .t-chart-container {
-  position: relative;
-  width: auto;
-  height: 120vh;
-  padding: 20px;
-  overflow: hidden;
-  background-color: hsl(var(--background));
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/DALL%C2%B7E%202024-07-10%2016.55.10%20-%20Create%20another%20abstract%2C%20minimalistic%20art%20image%20that%20is%20perfectly%20divided%20in%20half%20with%20a%20dramatic%20change%20in%20the%20middle.%20Use%20elements%20such%20as%20quetzals%2C.webp?alt=media&token=fabc4806-9320-4163-a809-13280ee65502');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: in; /* Ajusta según tu necesidad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.left-column{
+  margin-right: 12px;
+  
+}
 .item {
-  background-color: hsl(var(--primary));
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(var(--tertiary));
   color: hsl(var(--primary-foreground));
-  width: 45%;
+  width: 90%; /* Usar un ancho flexible */
+  max-width: 600px;
   margin: 10px auto;
-  padding: 20px;
+  padding: 12px;
   border-radius: var(--radius);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  width: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera para contraste */
+  
+ 
   transition: all 0.5s ease-in-out;
+ 
 }
 
 .item2 {
+  display: flex;
+  flex-direction: column;
   background-color: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));
-  width: 45%;
+  width: inline-block;
   margin: 10px auto;
-  padding: 20px;
+  padding: 12px;
   border-radius: var(--radius);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  align-items: center;
+  width: 50%;
+ 
   transition: all 0.5s ease-in-out;
 }
+.item2.organized {
+  background-color: hsl(var(--neutral-light) ); /* Gris claro */
+  color: hsl(var(--background)); /* Texto en color gris muy oscuro */
 
-.item.organized, .item2.organized {
-  width: 70%;
 }
 
-.shuffle-button {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-  border: none;
-  cursor: pointer;
-  border-radius: var(--radius);
+.item.organized  {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera para contraste */
+  margin-left: auto;
+  align-items: center;
+
 }
 
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+  .item, .item2 {
+    width: 95%; /* Aumentar el ancho en pantallas pequeñas */
+    padding: 10px; /* Ajustar el padding */
+  }
+}
 
+/* Ajustes para pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .item, .item2 {
+    width: 90%;
+    padding: 12px;
+  }
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 1025px) {
+  .item, .item2 {
+    width: 80%; /* Reducir el ancho en pantallas grandes */
+    padding: 15px; /* Aumentar el padding */
+  }
+}
 
 .flex .left-column, .flex .right-column {
   flex: 1;
@@ -338,7 +405,197 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0px;
+  padding: 6px;
 }
+
+@media (min-width: 640px) { /* Pantallas pequeñas */
+  .columns-container {
+    padding: 12px;
+  }
+}
+
+@media (min-width: 768px) { /* Pantallas medianas */
+  .columns-container {
+    padding: 16px;
+  }
+}
+
+@media (min-width: 1024px) { /* Pantallas grandes */
+  .columns-container {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1280px) { /* Pantallas extragrandes */
+  .columns-container {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1536px) { /* Pantallas 2XL */
+  .columns-container {
+    padding: 40px;
+  }
+}
+
+
+.title-container {
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.title-text {
+  font-weight: bold;
+  color: hsl(var(--foreground)); /* Color principal del texto */
+  font-size: 2.5rem; /* Tamaño base del texto, ajustable */
+  padding: 10px 20px; /* Espaciado interno del título */
+  border: 3px solid hsl(var(--primary)); /* Borde alrededor del título */
+  border-radius: 8px; /* Esquinas redondeadas del borde */
+  box-shadow: 0 0 15px hsl(var(--primary)); /* Sombra del texto */
+  background: linear-gradient(
+    45deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 50%,
+    hsl(var(--tertiary)) 100%
+  ); /* Fondo degradado */
+  color: hsl(var(--primary-foreground)); /* Color del texto */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones */
+}
+
+.title-text:hover {
+  transform: scale(1.1); /* Aumenta el tamaño del texto al pasar el ratón */
+  box-shadow: 0 0 25px hsl(var(--primary)); /* Aumenta la sombra al pasar el ratón */
+}
+
+
+.icon-check {
+  color: white; /* Color verde para el ícono de check */
+  margin: 1rem auto; /* Centrado horizontal y margen vertical */
+  font-size: 2rem; /* Tamaño base del ícono */
+}
+
+.icon-times {
+  color: black; /* Color rojo para el ícono de tachita */
+  margin: 1rem auto; /* Centrado horizontal y margen vertical */
+  font-size: 2rem; /* Tamaño base del ícono */
+}
+/* TCHART COMPONENT STYLES */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*checkbox*/
+
+.container1 {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+
+}
+
+
+.check {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #c8ccd4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: #4285f4;
+}
+
+#cbx-annual:checked + .check svg,
+#cbx-bimonthly:checked + .check svg,
+#cbx-monthly:checked + .check svg {
+  stroke: #4285f4;
+}
+
+#cbx-annual:checked + .check svg path,
+#cbx-bimonthly:checked + .check svg path,
+#cbx-monthly:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+
+#cbx-annual:checked + .check svg polyline,
+#cbx-bimonthly:checked + .check svg polyline,
+#cbx-monthly:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
+
+
+/* test */
+.highlight {
+  color: var(--primary); /* Usa el color primario para resaltar */
+  font-weight: bold; /* Hace el texto más prominente */
+  background-color: var(--primary-foreground); /* Fondo contrastante */
+  padding: 0.2rem 0.4rem; /* Añade algo de padding para un efecto de "píldora" */
+  border-radius: var(--radius); /* Bordes redondeados */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+.highlight:hover {
+  background-color: var(--primary); /* Cambia el fondo al color primario al pasar el cursor */
+  color: hsl(var(--primary)); /* Cambia el texto al color de primer plano */
+}
+
 
 }

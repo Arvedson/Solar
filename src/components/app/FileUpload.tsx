@@ -26,7 +26,7 @@ const FileUpload: React.FC<FileUploadProps> = () => {
   });
 
   return (
-    <div className="container mx-auto p-4 mt-2">
+    <div className="container mx-auto p-4 mt-2 justify-center">
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-md p-4 transition ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}

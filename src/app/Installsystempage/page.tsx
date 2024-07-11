@@ -99,50 +99,73 @@ const InstallSystemPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-background text-foreground">
+    <div className="container1 mx-auto p-6 bg-background text-foreground">
       <div className="bg-card p-6 rounded-lg shadow-lg border border-gray-300">
         <h1 className="text-3xl font-bold mb-6 text-center">Instala tu Sistema</h1>
         <div className="mb-6">
           <label className="block text-lg font-semibold mb-4 text-center">Consumo Eléctrico</label>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
-            <div className="border flex items-center space-x-2 bg-muted p-2 rounded-lg">
+            <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg border">
               <input
                 type="checkbox"
+                id="cbx-annual"
+                style={{ display: "none" }}
                 checked={selectedForm === 'annual'}
                 onChange={() => handleCheckboxChange('annual')}
-                className="mr-2"
                 disabled={calculated} // Desactivar checkbox si se ha calculado
               />
+              <label htmlFor="cbx-annual" className="check">
+                <svg width="18px" height="18px" viewBox="0 0 18 18">
+                  <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                  <polyline points="1 9 7 14 15 4"></polyline>
+                </svg>
+              </label>
               <label>Ingresar consumo anual</label>
             </div>
             <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg border">
               <input
                 type="checkbox"
+                id="cbx-bimonthly"
+                style={{ display: "none" }}
                 checked={selectedForm === 'bimonthly'}
                 onChange={() => handleCheckboxChange('bimonthly')}
-                className="mr-2"
                 disabled={calculated} // Desactivar checkbox si se ha calculado
               />
+              <label htmlFor="cbx-bimonthly" className="check">
+                <svg width="18px" height="18px" viewBox="0 0 18 18">
+                  <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                  <polyline points="1 9 7 14 15 4"></polyline>
+                </svg>
+              </label>
               <label>Ingresar consumo bimensual</label>
             </div>
-            <div className="flex border items-center space-x-2 bg-muted p-2 rounded-lg">
+            <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg border">
               <input
                 type="checkbox"
+                id="cbx-monthly"
+                style={{ display: "none" }}
                 checked={selectedForm === 'monthly'}
                 onChange={() => handleCheckboxChange('monthly')}
-                className="mr-2"
                 disabled={calculated} // Desactivar checkbox si se ha calculado
               />
+              <label htmlFor="cbx-monthly" className="check">
+                <svg width="18px" height="18px" viewBox="0 0 18 18">
+                  <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                  <polyline points="1 9 7 14 15 4"></polyline>
+                </svg>
+              </label>
               <label>Ingresar consumo mensual</label>
             </div>
           </div>
+
           <div className="flex flex-col items-center">
-            <p className="text-muted-foreground text-center mt-6">
-              Selecciona una opción para ingresar tu consumo eléctrico.
+          <p className="text-muted-foreground text-center mt-6">
+              Selecciona una opción para <span className="highlight">ingresar tu consumo eléctrico.</span>
             </p>
             <p className="text-muted-foreground text-center mt-4">
-              Ingresa tu consumo eléctrico mensual, bimensual o anual.
+              <span className="highlight">Ingresa tu consumo eléctrico</span> mensual, bimensual o anual.
             </p>
+
             <ComboboxTarifas className="mt-6" onSelectTarifa={handleSelectTarifa} />
           </div>
 
@@ -158,48 +181,50 @@ const InstallSystemPage: React.FC = () => {
             </div>
           )}
 
-{highlightAnnualInput && (
-  <div className="flex justify-center mt-4 space-x-4">
-    <button
-      onClick={resetAnnualConsumption}
-      className="bg-destructive text-destructive-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-destructive-foreground hover:text-destructive transition flex items-center justify-center"
-    >
-      Eliminar
-    </button>
+          {highlightAnnualInput && (
+            <div className="flex justify-center mt-4 space-x-4">
+              <button
+                onClick={resetAnnualConsumption}
+                className="bg-destructive text-destructive-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-destructive-foreground hover:text-destructive transition flex items-center justify-center"
+              >
+                Eliminar
+              </button>
 
-    <button
-      onClick={handleCotizar}
-      className="bg-primary text-primary-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition flex items-center justify-center"
-    >
-      Cotizar
-    </button>
-  </div>
-)}
+              <button
+                onClick={handleCotizar}
+                className="bg-primary text-primary-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition flex items-center justify-center"
+              >
+                Cotizar
+              </button>
+            </div>
+          )}
 
         </div>
 
-        <div className="bg-card p-4 rounded-lg shadow-lg mt-6">
+        <div className="bg-card p-4 rounded-lg shadow-lg mt-6 ">
           {selectedForm === 'annual' && <AnnualConsumptionForm annualConsumption={annualConsumption} setAnnualConsumption={handleAnnualSubmit} highlight={highlightAnnualInput} showCalculateButton={showCalculateButton} />}
           {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm setBimonthlyConsumption={handleBimonthlySubmit} />}
           {selectedForm === 'monthly' && <MonthlyConsumptionForm setMonthlyConsumption={handleMonthlySubmit} />}
         </div>
+  
         <ImageReader onAnnualKwhChange={handleImageReaderSubmit} />
-        <FileUpload />
+        <FileUpload/>
+
+
+
 
         <div className="mt-6 gap-6 flex flex-col sm:flex-row justify-center items-center">
-  <button onClick={toggleTarifasInfo} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-muted hover:text-muted-foreground transition">
-    {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
-  </button>
-  <button onClick={toggleAnnualConsumptionComponent} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-muted hover:text-muted-foreground transition">
-    {showAnnualConsumptionComponent ? 'Ocultar como interpretar mi recibo' : 'Como interpretar mi recibo?'}
-  </button>
-</div>
-
+          <button onClick={toggleTarifasInfo} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-muted hover:text-muted-foreground transition">
+            {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
+          </button>
+          <button onClick={toggleAnnualConsumptionComponent} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-muted hover:text-muted-foreground transition">
+            {showAnnualConsumptionComponent ? 'Ocultar como interpretar mi recibo' : 'Como interpretar mi recibo?'}
+          </button>
+        </div>
 
         {showTarifasInfo && <TarifasInfo />}
         {showAnnualConsumptionComponent && <AnnualConsumptionComponent />}
       </div>
-
     </div>
   );
 };

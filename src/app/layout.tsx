@@ -1,6 +1,8 @@
-import Navbar from "../components/app/Navbar";
+// src/app/layout.tsx
 
+import Navbar from "../components/app/Navbar";
 import "./globals.css";
+import { ThemeProvider } from "../components/theme-provider"; // Asegúrate de la ruta correcta
 
 export default function RootLayout({
   children,
@@ -9,12 +11,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
       <body>
-        <Navbar />
-        {children}
+        <ThemeProvider attribute="class">
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
-
     </html>
   );
 }
