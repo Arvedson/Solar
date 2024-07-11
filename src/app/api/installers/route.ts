@@ -4,23 +4,25 @@ import { prisma } from '../../../../lib/prisma';
 export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const perPage = parseInt(searchParams.get('perPage') || '10');
-    const sort = searchParams.get('sort') ? JSON.parse(searchParams.get('sort')) : ['id', 'ASC'];
-    const filter = searchParams.get('filter') ? JSON.parse(searchParams.get('filter')) : {};
+    const range = searchParams.get('range') ? JSON.parse(searchParams.get('range')!) : [0, 9];
+    const sort = searchParams.get('sort') ? JSON.parse(searchParams.get('sort')!) : ['id', 'ASC'];
+    const filter = searchParams.get('filter') ? JSON.parse(searchParams.get('filter')!) : {};
+
+    const [rangeStart, rangeEnd] = range;
+    const [sortField, sortOrder] = sort;
 
     const orderBy: any = {};
-    if (sort[0] === 'serviceAreas') {
-      orderBy[sort[0]] = {
-        _count: sort[1].toLowerCase() as 'asc' | 'desc'
+    if (sortField === 'serviceAreas') {
+      orderBy[sortField] = {
+        _count: sortOrder.toLowerCase() as 'asc' | 'desc',
       };
     } else {
-      orderBy[sort[0]] = sort[1].toLowerCase() as 'asc' | 'desc';
+      orderBy[sortField] = sortOrder.toLowerCase() as 'asc' | 'desc';
     }
 
     const installers = await prisma.installer.findMany({
-      skip: (page - 1) * perPage,
-      take: perPage,
+      skip: rangeStart,
+      take: rangeEnd - rangeStart + 1,
       where: filter,
       orderBy,
       include: {
@@ -33,7 +35,7 @@ export const GET = async (req: NextRequest) => {
     });
 
     const response = NextResponse.json(installers);
-    response.headers.set('Content-Range', `installers ${page * perPage - perPage}-${page * perPage}/${total}`);
+    response.headers.set('Content-Range', `installers ${rangeStart}-${rangeEnd}/${total}`);
     response.headers.set('Access-Control-Expose-Headers', 'Content-Range');
     return response;
   } catch (error) {
