@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
 // GET handler for a single inverter
-export async function GET(req: NextRequest, { params }) {
+export const GET = async (req: NextRequest, { params }) => {
   const { id } = params;
 
   if (!id) {
-    return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+    return new NextResponse(JSON.stringify({ error: 'ID is required' }), { status: 400 });
   }
 
   try {
@@ -15,23 +15,23 @@ export async function GET(req: NextRequest, { params }) {
     });
 
     if (inversor) {
-      return NextResponse.json(inversor, { status: 200 });
+      return new NextResponse(JSON.stringify(inversor), { status: 200 });
     } else {
-      return NextResponse.json({ error: 'Inverter not found' }, { status: 404 });
+      return new NextResponse(JSON.stringify({ error: 'Inverter not found' }), { status: 404 });
     }
   } catch (error) {
     console.error('Error fetching inverter', error);
-    return NextResponse.json({ error: 'Error fetching inverter' }, { status: 500 });
+    return new NextResponse(JSON.stringify({ error: 'Error fetching inverter' }), { status: 500 });
   }
-}
+};
 
 // PUT handler for updating a single inverter
-export async function PUT(req: NextRequest, { params }) {
+export const PUT = async (req: NextRequest, { params }) => {
   const { id } = params;
   const data = await req.json();
 
   if (!id) {
-    return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+    return new NextResponse(JSON.stringify({ error: 'ID is required' }), { status: 400 });
   }
 
   try {
@@ -53,19 +53,19 @@ export async function PUT(req: NextRequest, { params }) {
       },
     });
 
-    return NextResponse.json(updatedInversor, { status: 200 });
+    return new NextResponse(JSON.stringify(updatedInversor), { status: 200 });
   } catch (error) {
     console.error('Error updating inverter', error);
-    return NextResponse.json({ error: 'Error updating inverter' }, { status: 500 });
+    return new NextResponse(JSON.stringify({ error: 'Error updating inverter' }), { status: 500 });
   }
-}
+};
 
 // DELETE handler for deleting a single inverter
-export async function DELETE(req: NextRequest, { params }) {
+export const DELETE = async (req: NextRequest, { params }) => {
   const { id } = params;
 
   if (!id) {
-    return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+    return new NextResponse(JSON.stringify({ error: 'ID is required' }), { status: 400 });
   }
 
   try {
@@ -73,9 +73,9 @@ export async function DELETE(req: NextRequest, { params }) {
       where: { id: Number(id) },
     });
 
-    return NextResponse.json({ message: 'Inverter deleted successfully' }, { status: 200 });
+    return new NextResponse(JSON.stringify({ message: 'Inverter deleted successfully' }), { status: 200 });
   } catch (error) {
     console.error('Error deleting inverter', error);
-    return NextResponse.json({ error: 'Error deleting inverter' }, { status: 500 });
+    return new NextResponse(JSON.stringify({ error: 'Error deleting inverter' }), { status: 500 });
   }
-}
+};
