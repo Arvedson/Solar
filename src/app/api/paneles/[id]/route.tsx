@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
+interface Params {
+  params: {
+    id: string;
+  };
+}
+
 // GET handler for a single panel
-export const GET = async (req: NextRequest, { params }) => {
+export const GET = async (req: NextRequest, { params }: Params) => {
   const { id } = params;
 
   if (!id) {
@@ -26,7 +32,7 @@ export const GET = async (req: NextRequest, { params }) => {
 };
 
 // PUT handler for updating a single panel
-export const PUT = async (req: NextRequest, { params }) => {
+export const PUT = async (req: NextRequest, { params }: Params) => {
   const { id } = params;
   const data = await req.json();
 
@@ -68,7 +74,7 @@ export const PUT = async (req: NextRequest, { params }) => {
 };
 
 // DELETE handler for deleting a single panel
-export const DELETE = async (req: NextRequest, { params }) => {
+export const DELETE = async (req: NextRequest, { params }: Params) => {
   const { id } = params;
 
   if (!id) {
