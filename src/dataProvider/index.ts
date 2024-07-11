@@ -7,6 +7,16 @@ import getMany from './getMAny';
 import getManyReference from './getManyReference';
 import { DataProvider } from '../../types/dataProvider';
 
+const updateMany = async (resource: string, params: any) => {
+  // Implementación dummy para cumplir con la interfaz
+  return Promise.resolve({ data: [] });
+};
+
+const deleteMany = async (resource: string, params: any) => {
+  // Implementación dummy para cumplir con la interfaz
+  return Promise.resolve({ data: [] });
+};
+
 const dataProvider: DataProvider = {
   getList,
   getOne,
@@ -15,6 +25,8 @@ const dataProvider: DataProvider = {
   delete: deleteResource,
   getMany,
   getManyReference,
+  updateMany,
+  deleteMany,
 };
 
 export default dataProvider;
