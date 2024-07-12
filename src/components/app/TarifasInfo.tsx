@@ -50,7 +50,7 @@ const TarifasInfo = () => {
         </li>
         <li className="flex items-start lg:text-lg">
           <BoltIcon className="text-primary mr-2" />
-          <strong className="spacing-after-colon">Tarifa DAC</strong> Doméstica de Alto Consumo
+          <strong className="spacing-after-colon">Tarifa DAC</strong> Doméstica de Alto Consumo.
         </li>
       </ul>
       
