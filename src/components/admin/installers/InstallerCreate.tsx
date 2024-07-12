@@ -1,6 +1,7 @@
-import { Create, SimpleForm, TextInput, NumberInput, ArrayInput, SimpleFormIterator, ReferenceInput, SelectInput } from 'react-admin';
+import React from 'react';
+import { Create, SimpleForm, TextInput, NumberInput, ArrayInput, SimpleFormIterator, ReferenceInput, SelectInput, CreateProps } from 'react-admin';
 
-const InstallerCreate = (props) => (
+const InstallerCreate: React.FC<CreateProps> = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="name" />
