@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { FaSun, FaMoneyBillWave, FaLeaf, FaHome } from 'react-icons/fa';
-import { useInView } from 'react-intersection-observer';
 
+// Define el tipo para el beneficio
+interface Beneficio {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  hoverIconClass: string;
+  hoverTextClass: string;
+}
 
-const Beneficios = () => {
-  const beneficios = [
+const Beneficios: React.FC = () => {
+  const beneficios: Beneficio[] = [
     {
       icon: <FaSun />,
       title: 'Energía Renovable',
@@ -35,11 +42,39 @@ const Beneficios = () => {
     },
   ];
 
-  const inViewOptions = {
-    triggerOnce: true,
-    threshold: .2
-  };
-  const { ref, inView } = useInView(inViewOptions);
+  const [visibleIndices, setVisibleIndices] = useState<string[]>([]);
+  const [activeIndex, setActiveIndex] = useState<string | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 767;
+
+    observer.current = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = entry.target.getAttribute('data-index');
+          if (index !== null) {
+            setVisibleIndices(prevIndices => [...prevIndices, index]);
+            observer.current?.unobserve(entry.target);
+
+            // Activar la clase activa en dispositivos móviles cuando el elemento está centrado
+            if (isMobile) {
+              setActiveIndex(index);
+            }
+          }
+        }
+      });
+    }, {
+      threshold: 0.1,
+    });
+
+    const elements = document.querySelectorAll('.benefit-item');
+    elements.forEach(el => observer.current?.observe(el));
+
+    return () => {
+      observer.current?.disconnect();
+    };
+  }, []);
 
   return (
     <section className="relative py-28">
@@ -54,9 +89,9 @@ const Beneficios = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {beneficios.map((beneficio, index) => (
             <div 
-              key={index} 
-              ref={ref}
-              className={`group p-6 bg-card bg-opacity-75 rounded-lg shadow-md transition duration-300 ease-in-out transform ${inView ? 'scale-100 opacity-100' : 'scale-95 opacity-0'} hover:scale-105 hover:shadow-2xl hover:bg-secondary hover:text-secondary-foreground`}
+              key={index}
+              data-index={index.toString()}
+              className={`benefit-item group p-6 bg-card bg-opacity-75 rounded-lg shadow-md transition duration-300 ease-in-out transform ${visibleIndices.includes(index.toString()) ? 'scale-100 opacity-100' : 'scale-95 opacity-0'} ${activeIndex === index.toString() ? 'active' : ''} hover:scale-105 hover:shadow-2xl hover:bg-secondary hover:text-secondary-foreground`}
             >
               <div className={`icon transition duration-300 ease-in-out ${beneficio.hoverIconClass}`}>
                 {React.cloneElement(beneficio.icon, { className: 'text-6xl mb-4' })}
