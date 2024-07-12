@@ -23,8 +23,9 @@ interface ComboboxProps {
   items: string[];
   value: string;
   onChange: (value: string) => void;
+  className?: string;
+  placeholder?: string; // Add this line to include the placeholder prop
 }
-
 export const Combobox: React.FC<ComboboxProps> = ({ items, value, onChange }) => {
   const [open, setOpen] = React.useState(false)
 
