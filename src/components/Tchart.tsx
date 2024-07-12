@@ -85,49 +85,50 @@ const TChart: React.FC = () => {
   }, [items, isOrganized]);
 
   return (
-    <div className='flex flex-col'>
-      <div className="title-container text-center my-4">
-        <h1 className="title-text mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12 2xl:mx-24">
-          {isOrganized ? 'Con nosotros' : 'Toma el control'}
-        </h1>
-      </div>
-      <FadeSeparator endColor="#17171c" flip />
-      <div className={`t-chart-container ${isOrganized ? 'h-auto' : 'h-screen'} relative`} ref={ref}>
-        <div className={`gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 columns-container ${isOrganized ? 'flex' : ''}`}>
-          <div className="left-column">
-            {items.filter(item => item.side === 'left').map((item, index) => (
-              <div
-                ref={(el) => {
-                  itemRefs.current[index] = el;
-                }}
-                key={item.id}
-                className={`${item.className} ${isOrganized ? 'organized' : ''}`}
-              >
-                {index === 0 && <FaCheck className="icon-check" />}
-                <h5>{item.title}</h5>
-                <p>{item.content}</p>
-              </div>
-            ))}
+<div className='flex flex-col overflow-hidden'>
+  <div className="title-container text-center my-4">
+    <h1 className="title-text mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12 2xl:mx-24">
+      {isOrganized ? 'Con nosotros' : 'Toma el control'}
+    </h1>
+  </div>
+  <FadeSeparator endColor="#17171c" flip />
+  <div className={`t-chart-container ${isOrganized ? 'h-auto' : 'h-screen'} relative`} ref={ref}>
+    <div className={`gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 columns-container ${isOrganized ? 'flex' : ''}`}>
+      <div className="left-column">
+        {items.filter(item => item.side === 'left').map((item, index) => (
+          <div
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
+            key={item.id}
+            className={`${item.className} ${isOrganized ? 'organized' : ''}`}
+          >
+            {index === 0 && <FaCheck className="icon-check" />}
+            <h5>{item.title}</h5>
+            <p>{item.content}</p>
           </div>
-          <div className="right-column">
-            {items.filter(item => item.side === 'right').map((item, index) => (
-              <div
-                ref={(el) => {
-                  itemRefs.current[index + items.filter(it => it.side === 'left').length] = el;
-                }}
-                key={item.id}
-                className={`${item.className} ${isOrganized ? 'organized' : ''}`}
-              >
-                {index === 0 && <FaTimes className="icon-times" />}
-                <h5 className='text-background'>{item.title}</h5>
-                <p>{item.content}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
-      <FadeSeparator endColor="#17171c" />
+      <div className="right-column">
+        {items.filter(item => item.side === 'right').map((item, index) => (
+          <div
+            ref={(el) => {
+              itemRefs.current[index + items.filter(it => it.side === 'left').length] = el;
+            }}
+            key={item.id}
+            className={`${item.className} ${isOrganized ? 'organized' : ''}`}
+          >
+            {index === 0 && <FaTimes className="icon-times" />}
+            <h5 className='text-background'>{item.title}</h5>
+            <p>{item.content}</p>
+          </div>
+        ))}
+      </div>
     </div>
+  </div>
+  <FadeSeparator endColor="#17171c" />
+</div>
+
   );
 };
 
