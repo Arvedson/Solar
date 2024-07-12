@@ -586,7 +586,7 @@
 .highlight {
   color: var(--primary); /* Usa el color primario para resaltar */
   font-weight: bold; /* Hace el texto más prominente */
-  background-color: var(--primary-foreground); /* Fondo contrastante */
+  background-color: var(--primary-foreground); /* Fondo contrastante ok */
   padding: 0.2rem 0.4rem; /* Añade algo de padding para un efecto de "píldora" */
   border-radius: var(--radius); /* Bordes redondeados */
   transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
