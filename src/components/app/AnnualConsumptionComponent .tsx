@@ -3,20 +3,20 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Separator } from '@radix-ui/react-separator';
 
-const AnnualConsumptionComponent = () => {
+const AnnualConsumptionComponent: React.FC = () => {
   const [zoomedKw, setZoomedKw] = useState(false);
   const [zoomedTarifa, setZoomedTarifa] = useState(false);
   const [cursorPosKw, setCursorPosKw] = useState({ x: 0, y: 0 });
   const [cursorPosTarifa, setCursorPosTarifa] = useState({ x: 0, y: 0 });
 
-  const handleMouseMoveKw = (e) => {
+  const handleMouseMoveKw = (e: React.MouseEvent<HTMLDivElement>) => {
     const { left, top } = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - left;
     const y = e.clientY - top;
     setCursorPosKw({ x, y });
   };
 
-  const handleMouseMoveTarifa = (e) => {
+  const handleMouseMoveTarifa = (e: React.MouseEvent<HTMLDivElement>) => {
     const { left, top } = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - left;
     const y = e.clientY - top;
@@ -66,7 +66,7 @@ const AnnualConsumptionComponent = () => {
           </div>
           <li>Registra cada uno de los valores bimestrales (o mensuales si es el caso).</li>
           <li>Suma todos los valores registrados para obtener tu consumo anual total en kWh.</li>
-          <li>Recuerda que es muy comun que los periodos sean cada dos meses, asi que sumando 7 consumos es mas que suficiente!</li>
+          <li>Recuerda que es muy común que los periodos sean cada dos meses, así que sumando 7 consumos es más que suficiente!</li>
         </ol>
       </div>
 
