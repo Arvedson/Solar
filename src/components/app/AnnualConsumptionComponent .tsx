@@ -66,7 +66,7 @@ const AnnualConsumptionComponent: React.FC = () => {
           </div>
           <li>Registra cada uno de los valores bimestrales (o mensuales si es el caso).</li>
           <li>Suma todos los valores registrados para obtener tu consumo anual total en kWh.</li>
-          <li>Recuerda que es muy común que los periodos sean cada dos meses, así que sumando 7 consumos es más que suficiente!</li>
+          <li>Recuerda que es muy común que los periodos sean cada dos meses, así que sumando 7 consumos es más que suficiente!.</li>
         </ol>
       </div>
 
