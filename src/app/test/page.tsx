@@ -1,12 +1,26 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 
+interface PanelSolar {
+  id: number;
+  modelo: string;
+  capacidadW: number;
+  // Agrega más campos si es necesario
+}
+
+interface Cotizacion {
+  modelo: string;
+  capacidad: number;
+  cantidadPaneles: number;
+  costo: number;
+}
+
 function TestPage() {
-  const [consumoAnual, setConsumoAnual] = useState('');
-  const [panelesSolares, setPanelesSolares] = useState([]);
-  const [cotizacion, setCotizacion] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [consumoAnual, setConsumoAnual] = useState<string>('');
+  const [panelesSolares, setPanelesSolares] = useState<PanelSolar[]>([]);
+  const [cotizacion, setCotizacion] = useState<Cotizacion[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -15,10 +29,10 @@ function TestPage() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
+        const data: PanelSolar[] = await response.json();
         setPanelesSolares(data);
         console.log(data);  // Console log para ver los datos obtenidos
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message); // Manejo de errores
         console.error("Error fetching data: ", error);
       }
@@ -45,9 +59,9 @@ function TestPage() {
         throw new Error('Network response was not ok');
       }
 
-      const data = await response.json();
+      const data: Cotizacion[] = await response.json();
       setCotizacion(data);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setIsLoading(false);
