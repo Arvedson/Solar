@@ -1,5 +1,5 @@
 "use client";
-import { Admin, Resource } from 'react-admin';
+import dynamic from 'next/dynamic';
 import dataProvider from '../../dataProvider';
 import InstallerList from '../../components/admin/installers/InstallerList';
 import InstallerCreate from '../../components/admin/installers/InstallerCreate';
@@ -10,6 +10,9 @@ import EstadoCreate from '../../components/admin/estados/EstadoCreate';
 import ServiceAreaList from '../../components/admin/serviceAreas/ServiceAreaList';
 import ServiceAreaCreate from '../../components/admin/serviceAreas/ServiceAreaCreate';
 import CustomLayout from '../../components/admin/CustomLayout';
+
+const Admin = dynamic(() => import('react-admin').then(mod => mod.Admin), { ssr: false });
+const Resource = dynamic(() => import('react-admin').then(mod => mod.Resource), { ssr: false });
 
 const AdminPage = () => (
   <Admin dataProvider={dataProvider} layout={CustomLayout}>
