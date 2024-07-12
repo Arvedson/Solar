@@ -1,3 +1,4 @@
+// src/dataProvider/index.ts
 import getList from './getList';
 import getOne from './getOne';
 import create from './create';
