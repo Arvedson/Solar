@@ -1,6 +1,6 @@
-import { List, Datagrid, TextField, ReferenceField } from 'react-admin';
+import { List, Datagrid, TextField, ReferenceField, ListProps } from 'react-admin';
 
-const CityList = (props) => (
+const CityList: React.FC<ListProps> = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />

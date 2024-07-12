@@ -1,6 +1,6 @@
-import { Create, SimpleForm, TextInput, ReferenceInput, SelectInput } from 'react-admin';
+import { Create, SimpleForm, TextInput, ReferenceInput, SelectInput, CreateProps } from 'react-admin';
 
-const CityCreate = (props) => (
+const CityCreate: React.FC<CreateProps> = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="nombre" label="Ciudad" />

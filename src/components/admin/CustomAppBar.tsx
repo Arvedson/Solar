@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { AppBar, TitlePortal, useGetIdentity } from 'react-admin';
+import { AppBar, TitlePortal, useGetIdentity, AppBarProps } from 'react-admin';
 import { Typography } from '@mui/material';
 
-const CustomAppBar = (props) => {
+const CustomAppBar: React.FC<AppBarProps> = (props) => {
     const { identity } = useGetIdentity();
     return (
         <AppBar {...props}>

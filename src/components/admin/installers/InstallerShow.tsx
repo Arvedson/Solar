@@ -1,7 +1,7 @@
 import React from 'react';
-import { Show, SimpleShowLayout, TextField, NumberField, EmailField } from 'react-admin';
+import { Show, SimpleShowLayout, TextField, NumberField, EmailField, ShowProps } from 'react-admin';
 
-const InstallerShow = (props) => (
+const InstallerShow: React.FC<ShowProps> = (props) => (
     <Show {...props}>
         <SimpleShowLayout>
             <TextField source="name" />

@@ -1,6 +1,7 @@
-import { Create, SimpleForm, ReferenceInput, SelectInput } from 'react-admin';
+import React from 'react';
+import { Create, SimpleForm, ReferenceInput, SelectInput, CreateProps } from 'react-admin';
 
-const ServiceAreaCreate = (props) => (
+const ServiceAreaCreate: React.FC<CreateProps> = (props) => (
   <Create {...props}>
     <SimpleForm>
       <ReferenceInput source="installerId" reference="installers">
