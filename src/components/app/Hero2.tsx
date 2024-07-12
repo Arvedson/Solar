@@ -12,21 +12,21 @@ const Hero2: React.FC = () => {
     const video = videoRef.current;
 
     if (video) {
-      video.playbackRate = 0.8; // Ralentiza el video al 80% de su velocidad original
+      video.playbackRate = 0.8; // Slow down the video to 80% of its original speed
 
       const handleVideoEnded = () => {
         const reverseVideo = () => {
           if (video.currentTime > 0) {
-            video.currentTime -= 0.033; // Retrocede el video a una tasa de 30 frames por segundo
+            video.currentTime -= 0.033; // Rewind the video at a rate of 30 frames per second
             requestAnimationFrame(reverseVideo);
           } else {
-            video.playbackRate = 0.8; // Restaurar la velocidad de reproducción original
-            video.play(); // Reproduce el video hacia adelante
+            video.playbackRate = 0.8; // Restore the original playback speed
+            video.play(); // Play the video forward
           }
         };
 
-        video.pause(); // Pausa el video antes de empezar a reproducir en reversa
-        video.playbackRate = -0.8; // Establece la velocidad de reproducción en reversa
+        video.pause(); // Pause the video before starting to play in reverse
+        video.playbackRate = -0.8; // Set the playback speed in reverse
         reverseVideo();
       };
 
@@ -89,15 +89,13 @@ const Hero2: React.FC = () => {
                 QUQULCÁN
               </h1>
               <h2 className="absolute top-[87%] left-1/2 transform -translate-x-1/2 mt-2 font-montserrat font-bold text-[hsl(var(--text-tertiary))]">Solar</h2>
-
-
             </div>
           </motion.div>
           <Link href="/Installsystempage" passHref>
             <motion.div variants={itemVariants}>
               <Button
-                as="a"
-                variant="primary"
+                
+                variant="default"  // Change this to an accepted value like "default"
                 className="mt-5 bg-primary text-primary-foreground px-6 py-3 text-lg sm:text-xl lg:text-2xl lg:px-8 lg:py-8 rounded hover:bg-primary-foreground hover:text-primary transition"
               >
                 Instala tu sistema
