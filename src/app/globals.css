@@ -681,13 +681,8 @@
   background-color: hsl(var(--tertiary));
   color: hsl(var(--primary-foreground));
   font-weight: bold;
-<<<<<<< HEAD
   
   border-radius: 0.5rem;
-=======
-  font-size: 1.25rem;
-  border-radius: 0.3rem;
->>>>>>> 8cd153a (video hero)
   overflow: hidden;
   transition: all 0.3s;
   border: 2px solid hsl(var(--tertiary-foreground));
