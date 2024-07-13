@@ -681,8 +681,13 @@
   background-color: hsl(var(--tertiary));
   color: hsl(var(--primary-foreground));
   font-weight: bold;
+<<<<<<< HEAD
   
   border-radius: 0.5rem;
+=======
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+>>>>>>> 8cd153a (video hero)
   overflow: hidden;
   transition: all 0.3s;
   border: 2px solid hsl(var(--tertiary-foreground));
@@ -714,6 +719,7 @@
 
   .animated-button2 {
     position: relative;
+<<<<<<< HEAD
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -732,6 +738,10 @@
     max-width: 50px;
     min-width: 150px;
     top: 170px;
+=======
+    padding: 7px;
+   top: 160px;
+>>>>>>> 8cd153a (video hero)
   }
 
 
@@ -776,6 +786,27 @@
     min-width: 150px;
     top: 80px;
   }
+
+}
+@media (min-width: 1279px){
+  .hero-content{
+    position: absolute; /* o absolute */
+    bottom: -315px; /* Mueve el elemento 30 píxeles hacia abajo */
+    
+  }
+
+  .hero-title{
+    position: relative; /* o absolute */
+    bottom: 70px; /* Mueve el elemento 30 píxeles hacia abajo */
+  }
+  .hero-subtitle{
+    position: relative; /* o absolute */
+    bottom: 60px; /* Mueve el elemento 30 píxeles hacia abajo */
+  }
+  .animated-button2{
+ 
+  }
+
 
 }
 

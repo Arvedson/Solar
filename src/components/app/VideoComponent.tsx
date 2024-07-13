@@ -11,10 +11,17 @@ const VideoComponent: React.FC = () => {
   const [playbackRate, setPlaybackRate] = useState(1.0);
 
   const videos = {
+<<<<<<< HEAD
     low: "https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/480.mp4?alt=media&token=0020293c-47a3-4e1b-8ff7-c096b32a5bf6",
     medium: "https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/720.mp4?alt=media&token=97080f10-93f6-41e2-9158-1331e7788a71",
     high: "https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/Fullvidhd1080.mp4?alt=media&token=87e9d904-cab4-444a-b251-6ad5cd212014",
     highest: "https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/fullvidhd.mp4?alt=media&token=108ead75-d97a-476d-b576-feae1dd84563",
+=======
+    low: "Fullvidhd480.mp4",
+    medium: "Fullvidhd720.mp4",
+    high: "Fullvidhd1080.mp4",
+    highest: "https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/9875909-uhd_3840_2160_30fps.mp4?alt=media&token=6163dd97-abe8-442d-9cb1-57a9b638d287",
+>>>>>>> 8cd153a (video hero)
   };
 
   const determineInitialVideoQuality = useCallback(() => {
