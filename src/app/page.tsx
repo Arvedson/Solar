@@ -8,11 +8,12 @@ import Beneficios from "@/components/app/Beneficios";
 import FadeSeparator from "@/components/app/FadeSeparator";
 import TChart from "@/components/Tchart";
 import Contacto from "@/components/app/Contacto";
+import VideoComponent from "@/components/app/VideoComponent";
 
 export default function Home() {
   return (
     <main className="flex flex-col relative">
-      <Hero2 />
+      <VideoComponent />
       <FadeSeparator endColor="hsl(var(--background))" />
       <div id="beneficios">
         <FadeSeparator endColor="hsl(var(--background))" flip />
@@ -27,11 +28,6 @@ export default function Home() {
 
 
       <TChart />
-
-
-
-
-      
       <div id="contacto">
       <Contacto/>
 
