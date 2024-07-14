@@ -714,29 +714,8 @@
 
   .animated-button2 {
     position: relative;
-<<<<<<< HEAD
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    background-color: hsl(var(--tertiary));
-    color: hsl(var(--primary-foreground));
-   
-    
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: all 0.3s;
-    border: 2px solid hsl(var(--tertiary-foreground));
-    
-    min-width: 250px; /* Tamaño mínimo para pantallas pequeñas */
-    flex: 1;
-    max-width: 50px;
-    min-width: 150px;
-    top: 170px;
-=======
     padding: 7px;
    top: 160px;
->>>>>>> 8cd153a (video hero)
   }
 
 
