@@ -10,7 +10,11 @@ interface Beneficio {
   hoverTextClass: string;
 }
 
-const Beneficios: React.FC = () => {
+interface BeneficiosProps {
+  safariImage: string;
+}
+
+const Beneficios: React.FC<BeneficiosProps> = ({ safariImage }) => {
   const beneficios: Beneficio[] = [
     {
       icon: <FaSun />,
@@ -44,10 +48,31 @@ const Beneficios: React.FC = () => {
 
   const [visibleIndices, setVisibleIndices] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState<string | null>(null);
+  const [isSafari, setIsSafari] = useState<boolean>(false);
   const observer = useRef<IntersectionObserver | null>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  const desktopImage = 'https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/DALL%C2%B7E%202024-07-08%2022.31.38%20-%20A%20subtle%2C%20simple%20mural%20background%20inspired%20by%20ancient%20Mexican%20cultures%2C%20incorporating%20elements%20like%20jaguars%2C%20quetzals%2C%20pyramids%2C%20and%20jungles.%20The%20mura.webp?alt=media&token=aba0aa6a-5773-475b-9bc1-1e07d3da35f8';
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 767;
+    const checkSafari = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const isSafariBrowser = userAgent.includes('safari') && !userAgent.includes('chrome') && !userAgent.includes('android');
+      setIsSafari(isSafariBrowser);
+    };
+
+    checkSafari();
+
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrollPosition = window.scrollY;
+        parallaxRef.current.style.backgroundPositionY = `${scrollPosition * -0.2}px`;
+      }
+    };
+
+    if (isSafari) {
+      window.addEventListener('scroll', handleScroll);
+    }
 
     observer.current = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -58,7 +83,7 @@ const Beneficios: React.FC = () => {
             observer.current?.unobserve(entry.target);
 
             // Activar la clase activa en dispositivos móviles cuando el elemento está centrado
-            if (isMobile) {
+            if (window.innerWidth <= 767) {
               setActiveIndex(index);
             }
           }
@@ -72,17 +97,25 @@ const Beneficios: React.FC = () => {
     elements.forEach(el => observer.current?.observe(el));
 
     return () => {
+      if (isSafari) {
+        window.removeEventListener('scroll', handleScroll);
+      }
       observer.current?.disconnect();
     };
-  }, []);
+  }, [isSafari]);
 
   return (
     <section className="relative py-28">
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/DALL%C2%B7E%202024-07-08%2022.31.38%20-%20A%20subtle%2C%20simple%20mural%20background%20inspired%20by%20ancient%20Mexican%20cultures%2C%20incorporating%20elements%20like%20jaguars%2C%20quetzals%2C%20pyramids%2C%20and%20jungles.%20The%20mura.webp?alt=media&token=aba0aa6a-5773-475b-9bc1-1e07d3da35f8)', backgroundAttachment: 'fixed' }}
+        ref={parallaxRef}
+        className="parallax-background absolute inset-0 bg-cover bg-center z-0"
+        style={{ 
+          backgroundImage: `url(${isSafari ? safariImage : desktopImage})`,
+          backgroundAttachment: isSafari ? 'scroll' : 'fixed',
+          backgroundSize: 'cover'
+        }}
       />
-      <div className="relative container mx-auto px-6 text-center">
+      <div className="relative container mx-auto px-6 text-center z-10">
         <h2 className="pb-3 relative inline-block text-4xl font-bold mb-12 text-primary-foreground bg-opacity-75 bg-black px-4 py-2 rounded-md shadow-md">
           Beneficios de la Energía Solar
         </h2>

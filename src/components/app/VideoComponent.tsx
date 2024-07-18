@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from 'next/link';
 import { FaTools } from "react-icons/fa"; // Importar el icono FaTools
 
-
 const VideoComponent: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentVideo, setCurrentVideo] = useState("");
   const [playbackRate, setPlaybackRate] = useState(1.0);
+  const [isSafari, setIsSafari] = useState<boolean>(false);
 
   const videos = {
     low: "https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/480.mp4?alt=media&token=0020293c-47a3-4e1b-8ff7-c096b32a5bf6",
@@ -18,6 +18,14 @@ const VideoComponent: React.FC = () => {
   };
 
   const determineInitialVideoQuality = useCallback(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isSafariBrowser = userAgent.includes('safari') && !userAgent.includes('chrome') && !userAgent.includes('android');
+    setIsSafari(isSafariBrowser);
+
+    if (isSafariBrowser) {
+      return videos.high; // 1080p for Safari
+    }
+
     if (navigator && "connection" in navigator) {
       const { effectiveType } = (navigator as any).connection;
       if (effectiveType.includes("2g") || effectiveType === "slow-2g") {
@@ -34,6 +42,26 @@ const VideoComponent: React.FC = () => {
   }, [videos.low, videos.medium, videos.high, videos.highest]);
 
   const updateVideoQuality = useCallback(async () => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isSafariBrowser = userAgent.includes('safari') && !userAgent.includes('chrome') && !userAgent.includes('android');
+    setIsSafari(isSafariBrowser);
+
+    if (isSafariBrowser) {
+      const selectedVideo = videos.high; // 1080p for Safari
+      setPlaybackRate(1.0);
+
+      const videoElement = videoRef.current;
+      if (videoElement) {
+        videoElement.playbackRate = 1.0;
+        videoElement.style.opacity = "1.0";
+      }
+
+      if (currentVideo !== selectedVideo) {
+        setCurrentVideo(selectedVideo);
+      }
+      return;
+    }
+
     if (navigator && "connection" in navigator) {
       const { effectiveType } = (navigator as any).connection;
       let selectedVideo = videos.highest; // Default to highest quality
@@ -42,15 +70,15 @@ const VideoComponent: React.FC = () => {
 
       if (effectiveType.includes("2g") || effectiveType === "slow-2g") {
         selectedVideo = videos.low;
-        newPlaybackRate = 0.4; // Slow down to 20%
+        newPlaybackRate = 0.4; // Slow down to 40%
         opacity = 0.6; // Higher opacity for lower quality
       } else if (effectiveType.includes("3g")) {
         selectedVideo = videos.medium;
-        newPlaybackRate = 0.75; // Slow down to 50%
+        newPlaybackRate = 0.75; // Slow down to 75%
         opacity = 0.7; // Medium opacity for medium quality
       } else if (effectiveType === "4g") {
         selectedVideo = videos.high;
-        newPlaybackRate = 0.8; // Slow down to 75%
+        newPlaybackRate = 0.8; // Slow down to 80%
         opacity = 0.75; // Lower opacity for higher quality
       }
 
@@ -107,7 +135,6 @@ const VideoComponent: React.FC = () => {
         playsInline
         poster="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/lownet.png?alt=media&token=ade8161c-d33c-466e-a165-af9ec3e40099"
         preload="auto"
-        
       >
         Your browser does not support the video tag.
       </video>
@@ -118,14 +145,13 @@ const VideoComponent: React.FC = () => {
           width={600}
           height={600}
           className={"hero-logo"}
-          
         />
-        <h1 className={"hero-title"}>QUQULCÁN</h1>
+        <h1 className={"hero-title"}>QUQULKÁN</h1>
         <h2 className={"hero-subtitle"}>Solar</h2>
-        <Link href="/Installsystempage" legacyBehavior>
+        <Link href="/cotizar" legacyBehavior>
           <a className={"animated-button2 gap-4"}>
             <FaTools className="text-2xl sm:text-3xl" />
-            <h5>Cotiza!</h5>
+            <h5>Instala tu sistema</h5>
           </a>
         </Link>
       </div>

@@ -70,19 +70,29 @@ model PanelSolar {
 
 
 model Microinversor {
-  id              Int      @id @default(autoincrement())
-  modelo          String
-  capacidadW      Int
-  fabricante      String
-  eficiencia      Float
-  dimensiones     String
-  peso            Float
-  precio          Float
-  imageUrl        String?
-  voltajeEntrada  Float
-  voltajeSalida   Float
-  fases           Int
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id                    Int      @id @default(autoincrement())
+  modelo                String
+  capacidadW            Int
+  fabricante            String
+  eficiencia            Float
+  dimensiones           String
+  peso                  Float
+  precio                Float
+  imageUrl              String?
+  DangerMppzone         Float?   
+  SafeMppzone           Float?   
+  MppTrackers           Float?   
+  voltajeMinstart       Float?  
+  voltajeEntrada        Float
+  voltajeNomina         Float?   
+  corrienteEntrada      Float
+  corrienteSalida       Float
+  voltajeSalida         Float
+  capacidadWsalida      Float?   
+  fases                 Int
+  temperaturaOperacion  String
+  garantiaProducto      Float
+  garantiaPotencia      Float
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
-

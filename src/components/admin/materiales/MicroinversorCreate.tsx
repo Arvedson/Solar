@@ -12,9 +12,20 @@ const MicroinversorCreate: React.FC<CreateProps> = (props) => (
       <NumberInput source="peso" />
       <NumberInput source="precio" />
       <TextInput source="imageUrl" label="URL de la Imagen" />
+      <NumberInput source="DangerMppzone" />
+      <NumberInput source="SafeMppzone" />
+      <NumberInput source="MppTrackers" />
+      <NumberInput source="voltajeMinstart" />
       <NumberInput source="voltajeEntrada" />
+      <NumberInput source="voltajeNomina" />
+      <NumberInput source="corrienteEntrada" />
+      <NumberInput source="corrienteSalida" />
       <NumberInput source="voltajeSalida" />
+      <NumberInput source="capacidadWsalida" />
       <NumberInput source="fases" />
+      <TextInput source="temperaturaOperacion" label="Temperatura de Operación" />
+      <NumberInput source="garantiaProducto" label="Garantía del Producto" />
+      <NumberInput source="garantiaPotencia" label="Garantía de Potencia" />
     </SimpleForm>
   </Create>
 );
