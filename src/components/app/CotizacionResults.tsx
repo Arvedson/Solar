@@ -33,10 +33,8 @@ interface PanelSolar {
 }
 
 const CotizacionResults: React.FC = () => {
-  const { annualConsumption, selectedTarifa } = useCotizacion();
+  const { annualConsumption, setPanelCount, setPanelCost, panelCount, panelCost, totalPrice } = useCotizacion();
   const [panel, setPanel] = useState<PanelSolar | null>(null);
-  const [panelCount, setPanelCount] = useState<number>(0);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
     const getPanelData = async () => {
@@ -52,26 +50,16 @@ const CotizacionResults: React.FC = () => {
       const hoursOfSunlightPerDay = 5.5; // Promedio de horas de luz solar efectiva por día
       const systemLossFactor = 1.2; // 20% de pérdida por calor y el inversor
 
-      // Consumo anual dividido por los días del año para obtener el consumo diario
       const dailyConsumption = annualConsumption / 365;
-      console.log(`Consumo diario: ${dailyConsumption} kWh`);
-
-      // Ajuste del consumo diario para tener en cuenta las pérdidas del sistema
       const adjustedDailyConsumption = dailyConsumption * systemLossFactor;
-      console.log(`Consumo diario ajustado: ${adjustedDailyConsumption} kWh`);
-
-      // Tamaño del sistema necesario en kW
       const requiredSystemSizeKW = adjustedDailyConsumption / hoursOfSunlightPerDay;
-      console.log(`Tamaño del sistema requerido: ${requiredSystemSizeKW} kW`);
-
-      // Número de paneles necesarios, redondeado hacia arriba
       const neededPanels = Math.ceil(requiredSystemSizeKW / (panel.capacidadW / 1000));
-      console.log(`Número de paneles necesarios: ${neededPanels}`);
 
       setPanelCount(neededPanels);
-      setTotalPrice(neededPanels * panel.precio);
+      const panelTotalCost = neededPanels * panel.precio;
+      setPanelCost(panelTotalCost);
     }
-  }, [panel, annualConsumption]);
+  }, [panel, annualConsumption, setPanelCount, setPanelCost]);
 
   return (
     <motion.div
@@ -81,7 +69,6 @@ const CotizacionResults: React.FC = () => {
       className="container mx-auto p-6 bg-background text-foreground"
     >
       <h2 className="text-2xl font-bold mb-6 text-center">Resultados de la Cotización</h2>
-
       <div className="gridyflex">
         <div className="flip-card">
           <div className="flip-card-inner">
@@ -92,15 +79,14 @@ const CotizacionResults: React.FC = () => {
                 exit={{ opacity: 0, x: -50 }}
                 className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
               >
-                
                 <div className="grid">
-                <h3 className="text-2xl font-bold mb-4">Paneles Solares</h3>
+                  <h3 className="text-2xl font-bold mb-4">Paneles Solares</h3>
                   <p><strong>Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</p>
                   {panel && (
                     <>
                       <p className="textoo"><strong>Modelo del Panel: </strong> SOLAREVER {panel.modelo}</p>
                       <p className="textoo"><strong>Cantidad de Paneles Necesarios:</strong> {panelCount}</p>
-                      <p className="textoo"><strong>Precio Total:</strong> ${totalPrice.toFixed(2)}</p>
+                      <p className="textoo"><strong>Precio Total:</strong> ${panelCost.toFixed(2)}</p>
                     </>
                   )}
                 </div>
@@ -134,6 +120,10 @@ const CotizacionResults: React.FC = () => {
         <ProteccionAproximada panelCount={panelCount} />
         <SistemaTierras panelCount={panelCount} />
         <ManoDeObra panelCount={panelCount} />
+      </div>
+      <div className="mt-6 text-center">
+        <h3 className="text-2xl font-bold">Costo Total</h3>
+        <p>${totalPrice.toFixed(2)}</p>
       </div>
     </motion.div>
   );

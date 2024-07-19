@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useCotizacion } from '@/context/CotizacionContext';
 
 interface ProteccionAproximadaProps {
   panelCount: number;
@@ -28,11 +29,19 @@ const calcularCostoProteccion = (panelCount: number): number => {
 };
 
 const ProteccionAproximada: React.FC<ProteccionAproximadaProps> = ({ panelCount }) => {
+  const { setProteccionCost, calculateTotalPrice } = useCotizacion();
+
+  useEffect(() => {
+    const costoProteccionMXN = calcularCostoProteccion(panelCount);
+    const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
+    const costoProteccionUSD = costoProteccionMXN / TIPO_DE_CAMBIO;
+    setProteccionCost(costoProteccionUSD);
+    calculateTotalPrice();
+  }, [panelCount, setProteccionCost, calculateTotalPrice]);
+
   const costoProteccionMXN = calcularCostoProteccion(panelCount);
   const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
   const costoProteccionUSD = costoProteccionMXN / TIPO_DE_CAMBIO;
-
-
 
   return (
     <div className="flip-card">
@@ -54,7 +63,6 @@ const ProteccionAproximada: React.FC<ProteccionAproximadaProps> = ({ panelCount 
             src="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/componentes%2FProteccionesElectricasSelladas%2Fproteccion.png?alt=media&token=3e9d9f0d-8ef3-4a2f-ae0f-ed50a4ea7031"
             alt="Imagen de la protección"
             layout="fill"
-
             className="maskimage w-full h-full object-contain image-rounded"
           />
           <a

@@ -1,6 +1,7 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useCotizacion } from '@/context/CotizacionContext';
 
 interface ManoDeObraProps {
   panelCount: number;
@@ -19,6 +20,16 @@ const calcularCostoManoDeObra = (panelCount: number): number => {
 };
 
 const ManoDeObra: React.FC<ManoDeObraProps> = ({ panelCount }) => {
+  const { setManoDeObraCost, calculateTotalPrice } = useCotizacion();
+
+  useEffect(() => {
+    const costoManoDeObraMXN = calcularCostoManoDeObra(panelCount);
+    const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
+    const costoManoDeObraUSD = costoManoDeObraMXN / TIPO_DE_CAMBIO;
+    setManoDeObraCost(costoManoDeObraUSD);
+    calculateTotalPrice();
+  }, [panelCount, setManoDeObraCost, calculateTotalPrice]);
+
   const costoManoDeObraMXN = calcularCostoManoDeObra(panelCount);
   const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
   const costoManoDeObraUSD = costoManoDeObraMXN / TIPO_DE_CAMBIO;

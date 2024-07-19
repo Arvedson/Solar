@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useCotizacion } from '@/context/CotizacionContext';
 
 interface EstructuraAproximadaProps {
   panelCount: number;
@@ -23,10 +24,17 @@ const calcularCostoEstructura = (panelCount: number): number => {
 };
 
 const EstructuraAproximada: React.FC<EstructuraAproximadaProps> = ({ panelCount }) => {
+  const { setEstructuraCost, calculateTotalPrice } = useCotizacion();
+
+  useEffect(() => {
+    const costoEstructuraMXN = calcularCostoEstructura(panelCount);
+    const costoEstructuraUSD = costoEstructuraMXN / TIPO_DE_CAMBIO;
+    setEstructuraCost(costoEstructuraUSD);
+    calculateTotalPrice();
+  }, [panelCount, setEstructuraCost, calculateTotalPrice]);
+
   const costoEstructuraMXN = calcularCostoEstructura(panelCount);
   const costoEstructuraUSD = costoEstructuraMXN / TIPO_DE_CAMBIO;
-
-
 
   return (
     <div className="flip-card">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useCotizacion } from '@/context/CotizacionContext';
 
 interface PanelSolar {
   id: number;
@@ -53,14 +54,9 @@ interface InversorCalculatorProps {
 }
 
 const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCount }) => {
-
-
-
+  const { setMicroinversorCost, calculateTotalPrice } = useCotizacion();
   const [selectedInversor, setSelectedInversor] = useState<Microinversor | null>(null);
   const dataSheetUrl = 'https://support.huawei.com/enterprise/en/doc/EDOC1100136173/b1978087/technical-specifications';
-
-  
-
 
   useEffect(() => {
     const findCompatibleInversor = () => {
@@ -74,17 +70,19 @@ const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCou
         for (let inversor of inversores) {
           if (inversor.capacidadW >= totalWattage) {
             setSelectedInversor(inversor);
+            setMicroinversorCost(inversor.precio); // Actualizar el costo del inversor en el contexto
+            calculateTotalPrice(); // Calcular el precio total
             return;
           }
         }
       }
       setSelectedInversor(null);
+      setMicroinversorCost(0); // Si no se encuentra un inversor compatible, el costo es 0
+      calculateTotalPrice(); // Calcular el precio total
     };
 
     findCompatibleInversor();
-  }, [panel, panelCount]);
-
-  
+  }, [panel, panelCount, setMicroinversorCost, calculateTotalPrice]);
 
   return (
     <div className="flip-card ">
@@ -133,6 +131,5 @@ const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCou
     </div>
   );
 };
-
 
 export default InversorCalculator;
