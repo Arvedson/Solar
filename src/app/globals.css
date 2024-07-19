@@ -823,12 +823,21 @@
 /*image cards*/
 
 
-/* global.css */
+@media (min-width: 650px) {
+  .flip-card{
+   height: 250px;
+  }
+
+}
+@media (max-width: 650px) {
+  .flip-card{
+   height: 230px;
+  }
+
+}
+
 .flip-card {
-  display: flex;
-  background-color: transparent;
-  width: 100%;
-  height: 100%;
+  margin-top: 23px;
   perspective: 1000px;
 }
 
@@ -852,11 +861,10 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 0.5rem; /* Para bordes redondeados */
+  border: 1px solid #c8ccd4; /* Definición del borde con color */
 }
 
 .flip-card-front {
-  background-color: #fff;
-  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -864,20 +872,76 @@
 }
 
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: #000000;
   color: white;
   transform: rotateY(180deg);
-  display: flex;
+  padding:  40px;
   align-items: center;
   justify-content: center;
 }
 
+.maskimage {
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
+}
+
+
+.flip-card-back::before {
+  
+  z-index: 1;
+}
+
+.bg-card1{
+  background-color: hsl(var(--card));
+  width: 100%;
+  height: 100%;
+}
+
+.textoo{
+  color: hsl(var(--card-foreground));
+}
+
+.botoncards {
+  margin-top: 1rem; /* mt-4 */
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  background-color: hsl(var(--background));
+  color: hsl(var(--primary-foreground));
+  border-radius: var(--radius);
+  transition: background-color 0.3s ease; /* Para la transición del color al hacer hover */
+}
+
+.botoncards:hover {
+  background-color: hsl(var(--primary));
+}
+
+.gridyflex {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem; /* 6 * 0.25rem = 1.5rem */
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+
+  }
+
+  @media (max-width: 650px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* Styles for hover effect on panel cost card */
+
+
+
+
 
 /* image cards */
 
-
-
-
+/* global.css */
 
 
 

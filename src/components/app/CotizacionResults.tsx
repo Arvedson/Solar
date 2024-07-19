@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useCotizacion } from '@/context/CotizacionContext';
 import { fetchPanelData } from '@/services/panelService';
 import InversorCalculator from '../../components/app/InversorCalculator';
@@ -79,26 +80,55 @@ const CotizacionResults: React.FC = () => {
       exit={{ opacity: 0, x: -50 }}
       className="container mx-auto p-6 bg-background text-foreground"
     >
-            <h2 className="text-2xl font-bold mb-6 text-center">Resultados de la Cotización</h2>
-      
+      <h2 className="text-2xl font-bold mb-6 text-center">Resultados de la Cotización</h2>
 
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div className="bg-card p-6 rounded-lg shadow-lg border border-gray-300 mt-6">
-
-        <h3 className="text-2xl mb-4">Costo de Paneles</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <p><strong>Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</p>
-       
-          {panel && (
-            <>
-              <p><strong>Modelo del Panel: </strong> SOLAREVER {panel.modelo}</p>
-              <p><strong>Cantidad de Paneles Necesarios:</strong> {panelCount}</p>
-              <p><strong>Precio Total:</strong> ${totalPrice.toFixed(2)}</p>
-            </>
-          )}
+      <div className="gridyflex">
+        <div className="flip-card">
+          <div className="flip-card-inner">
+            <div className="flip-card-front flex flex-col items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
+              >
+                
+                <div className="grid">
+                <h3 className="text-2xl font-bold mb-4">Paneles Solares</h3>
+                  <p><strong>Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</p>
+                  {panel && (
+                    <>
+                      <p className="textoo"><strong>Modelo del Panel: </strong> SOLAREVER {panel.modelo}</p>
+                      <p className="textoo"><strong>Cantidad de Paneles Necesarios:</strong> {panelCount}</p>
+                      <p className="textoo"><strong>Precio Total:</strong> ${totalPrice.toFixed(2)}</p>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+            <div className="flip-card-back flex flex-col items-center justify-center">
+              {panel && panel.imageUrl ? (
+                <Image
+                  src={panel.imageUrl}
+                  alt={`Imagen del panel ${panel.modelo}`}
+                  width={500}
+                  height={500}
+                  className="maskimage w-full h-full object-contain image-rounded"
+                />
+              ) : (
+                <p>Imagen no disponible</p>
+              )}
+              <a
+                href="https://solarever.com.mx/wp-content/uploads/2021/03/SOLAREVER-MONO-182-545560W-2278x1134x35-2022-light.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="botoncards"
+              >
+                Ver Ficha Técnica
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
         <InversorCalculator panel={panel} panelCount={panelCount} />
         <EstructuraAproximada panelCount={panelCount} />
         <ProteccionAproximada panelCount={panelCount} />

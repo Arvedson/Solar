@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface PanelSolar {
   id: number;
@@ -52,7 +53,14 @@ interface InversorCalculatorProps {
 }
 
 const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCount }) => {
+
+
+
   const [selectedInversor, setSelectedInversor] = useState<Microinversor | null>(null);
+  const dataSheetUrl = 'https://support.huawei.com/enterprise/en/doc/EDOC1100136173/b1978087/technical-specifications';
+
+  
+
 
   useEffect(() => {
     const findCompatibleInversor = () => {
@@ -76,38 +84,55 @@ const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCou
     findCompatibleInversor();
   }, [panel, panelCount]);
 
+  
+
   return (
-    <div className="flip-card">
-      <div className="flip-card-inner ">
-        <div className="flip-card-front">
+    <div className="flip-card ">
+      <div className="flip-card-inner">
+        <div className="flip-card-front flex flex-col items-center justify-center">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
-            className="bg-card p-6 rounded-lg shadow-lg border border-gray-300 mt-6"
+            className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
           >
             <h2 className="text-2xl font-bold mb-4">Inversor Minimo</h2>
             {selectedInversor ? (
               <>
-                <p><strong>Modelo del Inversor:</strong> {selectedInversor.modelo}</p>
-                <p><strong>Capacidad del Inversor:</strong> {selectedInversor.capacidadW} W</p>
-                <p><strong>Precio del Inversor:</strong> ${selectedInversor.precio.toFixed(2)}</p>
+                <p className="textoo"><strong>Modelo del Inversor:</strong> {selectedInversor.modelo}</p>
+                <p className="textoo"><strong>Capacidad del Inversor:</strong> {selectedInversor.capacidadW} W</p>
+                <p className="textoo"><strong>Precio del Inversor:</strong> ${selectedInversor.precio.toFixed(2)}</p>
               </>
             ) : (
               <p>No se encontró un inversor compatible.</p>
             )}
           </motion.div>
         </div>
-        <div className="flip-card-back">
+        <div className=" flip-card-back flex flex-col items-center justify-center">
           {selectedInversor && selectedInversor.imageUrl ? (
-            <img src={selectedInversor.imageUrl} alt={`Imagen del inversor ${selectedInversor.modelo}`} className="w-full h-full object-cover rounded-lg" />
+            <Image
+              src={selectedInversor.imageUrl}
+              alt={`Imagen del inversor ${selectedInversor.modelo}`}
+              width={500}
+              height={500}
+              className=" maskimage w-full h-full object-contain image-rounded"
+            />
           ) : (
             <p>Imagen no disponible</p>
           )}
+          <a
+            href={dataSheetUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="botoncards "
+          >
+            Ver Ficha Técnica
+          </a>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default InversorCalculator;

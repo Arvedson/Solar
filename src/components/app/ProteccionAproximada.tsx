@@ -1,6 +1,7 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface ProteccionAproximadaProps {
   panelCount: number;
@@ -31,17 +32,42 @@ const ProteccionAproximada: React.FC<ProteccionAproximadaProps> = ({ panelCount 
   const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
   const costoProteccionUSD = costoProteccionMXN / TIPO_DE_CAMBIO;
 
+
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -50 }}
-      className="bg-card p-6 rounded-lg shadow-lg border border-gray-300 mt-6 "
-    >
-      <h2 className="text-2xl font-bold mb-4">Costo de Protecciones</h2>
-      <p><strong>Para un sistema de</strong> {panelCount} paneles</p>
-      <p><strong>Costo de las Protecciones:</strong> ${costoProteccionUSD.toFixed(2)} USD</p>
-    </motion.div>
+    <div className="flip-card">
+      <div className="flip-card-inner">
+        <div className="flip-card-front flex flex-col items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
+          >
+            <h2 className="text-2xl font-bold mb-4">Protecciones</h2>
+            <p><strong>Para un sistema de</strong> {panelCount} paneles</p>
+            <p><strong>Costo de las Protecciones:</strong> ${costoProteccionUSD.toFixed(2)} USD</p>
+          </motion.div>
+        </div>
+        <div className="flip-card-back flex flex-col items-center justify-center">
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/componentes%2FProteccionesElectricasSelladas%2Fproteccion.png?alt=media&token=3e9d9f0d-8ef3-4a2f-ae0f-ed50a4ea7031"
+            alt="Imagen de la protección"
+            layout="fill"
+
+            className="maskimage w-full h-full object-contain image-rounded"
+          />
+          <a
+            href="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/componentes%2FProteccionesElectricasSelladas%2FProtecciones.png?alt=media&token=2871e5b4-aaf8-43ae-b587-7d31e71e320a"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="botoncards"
+          >
+            Ver Más
+          </a>
+        </div>
+      </div>
+    </div>
   );
 };
 
