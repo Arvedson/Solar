@@ -7,7 +7,7 @@ import { Slider } from '@mui/material';
 import EChartsBarRace from './EChartsBarRace';
 
 
-// Definición de las funciones de mapeo
+// Definición de las funciones de mapeo para categorizar los años en funcion p
 const mapSliderToYears = (sliderValue: number) => {
   if (sliderValue <= 60) {
     return (sliderValue / 60) * 10;
@@ -70,7 +70,7 @@ const Graficos: React.FC = () => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="bg-background text-foreground p-6 rounded-lg shadow-lg border border-gray-300 mt-6 mx-auto max-w-3xl"
+      className="contenedor-graficos bg-background text-foreground p-6 rounded-lg shadow-lg border border-gray-300  mx-auto max-w-3xl flex flex-col gap-3"
     >
       <h2 className="text-2xl font-bold mb-4">Gráficos y Análisis</h2>
       <p><strong>Tarifa Seleccionada:</strong> {selectedTarifa}</p>

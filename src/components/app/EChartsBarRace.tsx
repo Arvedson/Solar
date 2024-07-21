@@ -22,7 +22,7 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
         for (let i = 1; i <= years; i++) {
           totalCost += annualConsumption * costPerKWh * Math.pow((1 + inflationRate), i);
         }
-        return totalCost;
+        return Math.round(totalCost); // Redondear el resultado
       };
 
       const calculateIndirectCost = (years: number, totalPrice: number) => {
@@ -31,33 +31,33 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
         let remainingValue = totalPrice;
 
         for (let i = 1; i <= years; i++) {
-          const yearlyIndirectCost = remainingValue * inflationRate;
+          const yearlyIndirectCost = Math.round(remainingValue * inflationRate);
           indirectCost += yearlyIndirectCost;
           // Deducir el valor del sistema año con año
-          remainingValue -= remainingValue * inflationRate;
+          remainingValue = Math.round(remainingValue - remainingValue * 0.05);
         }
-        return indirectCost;
+        return Math.round(indirectCost); // Redondear el resultado
       };
 
       const updateChart = () => {
         const years = sliderValue;
         const cfeCost = calculateTotalCost(years, costPerKWh, annualConsumption);
-        const systemCost = totalPrice * 18;
+        const systemCost = Math.round(totalPrice * 18); // Redondear el resultado
         const indirectCost = calculateIndirectCost(years, totalPrice);
         console.log('precio del sistema', totalPrice * 18);
         console.log("CFE", cfeCost)
         console.log("perdida por inflacion / costo del sistema",indirectCost * 18);
-        const noActionCost = cfeCost + indirectCost * 18;
+        const noActionCost = Math.round(cfeCost + indirectCost * 18); // Redondear el resultado
         console.log("no hacer nada", noActionCost)
 
         const option = {
           title: {
-            text: 'Cost Over Time',
+            text: 'El costo de no cambiar',
           },
           tooltip: {},
           xAxis: {
             type: 'category',
-            data: ['No hacer nada', 'System Cost'],
+            data: ['No Hacer Nada', 'Ququlkan'],
           },
           yAxis: {
             type: 'value',
@@ -67,13 +67,14 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
               name: 'Cost',
               type: 'bar',
               data: [
-                { value: noActionCost, itemStyle: { color: noActionCost > systemCost ? 'hsl(0, 70%, 40%)' : 'hsl(144, 70%, 38%)' } }, // Rojo brillante o Verde brillante
-                { value: systemCost, itemStyle: { color: 'hsl(174, 100%, 47%)' } }, // Turquesa claro
+                { value: noActionCost, itemStyle: { color: noActionCost > systemCost ? 'hsl(0, 70%, 40%)' : 'hsl(0 0% 80%)' } }, // Rojo brillante o Verde brillante
+                { value: systemCost, itemStyle: { color: systemCost < noActionCost? 'hsl(144, 100%, 70%)' : "hsl(174, 100%, 47%)"} }, // Turquesa claro
               ],
               label: {
                 show: true,
                 position: 'top',
-                color: 'hsl(0, 0%, 100%)' // Blanco puro
+                color: 'hsl(0, 0%, 100%)', // Blanco puro
+                formatter: '{c}' // Mostrar valores enteros sin decimales
               },
             },
           ],
@@ -84,12 +85,7 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
 
       updateChart();
 
-      // Si es necesario actualizar constantemente, puedes mantener el intervalo
-      // Si no, comenta o elimina estas líneas
-      // const intervalId = setInterval(updateChart, updateFrequency);
-
       return () => {
-        // clearInterval(intervalId);
         chart.dispose();
       };
     }
