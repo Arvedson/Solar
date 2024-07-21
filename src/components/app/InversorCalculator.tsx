@@ -87,7 +87,7 @@ const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCou
   return (
     <div className="flip-card ">
       <div className="flip-card-inner">
-        <div className="flip-card-front flex flex-col items-center justify-center">
+        <div className="flip-card-front flex flex-col items-center ">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
