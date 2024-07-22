@@ -98,7 +98,7 @@ const InstallSystemPage: React.FC = () => {
   };
 
   const resetAnnualConsumption = () => {
-    setAnnualConsumption(null);
+    setAnnualConsumption(0); // Establece a 0 en lugar de null
     setHighlightAnnualInput(false);
     setSelectedForm(null);
     setCalculated(false);
