@@ -39,8 +39,6 @@ const CotizacionResults: React.FC = () => {
   const [panel, setPanel] = useState<PanelSolar | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  
-
   useEffect(() => {
     const getPanelData = async () => {
       const panelData = await fetchPanelData();
@@ -124,7 +122,7 @@ const CotizacionResults: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <InversorCalculator panel={panel} panelCount={panelCount} />
+              {panel && <InversorCalculator panel={panel} panelCount={panelCount} />}
               <EstructuraAproximada panelCount={panelCount} />
               <ProteccionAproximada panelCount={panelCount} />
               <SistemaTierras panelCount={panelCount} />
@@ -155,13 +153,14 @@ const CotizacionResults: React.FC = () => {
       setCurrentIndex(currentIndex - 1);
     }
   };
+
   useEffect(() => {
     // Scroll to top when component changes
     window.scrollTo(0, 0);
   }, [currentIndex]);
 
   return (
-    <div className=" holaa  bg-background text-foreground">
+    <div className="holaa bg-background text-foreground">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -173,7 +172,6 @@ const CotizacionResults: React.FC = () => {
           {components[currentIndex].component}
         </motion.div>
       </AnimatePresence>
-
     </div>
   );
 };
