@@ -23,6 +23,10 @@ const InstallSystemPage: React.FC = () => {
   const [showTarifaWarning, setShowTarifaWarning] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
+
+  //navegacion
+  
+
   const handleCheckboxChange = (formType: 'annual' | 'bimonthly' | 'monthly') => {
     setSelectedForm((prevForm) => (prevForm === formType ? null : formType));
   };
@@ -103,7 +107,7 @@ const InstallSystemPage: React.FC = () => {
   };
 
   return (
-    <div className="container1 mx-auto p-6 bg-background text-foreground">
+    <div className="container1  p-6 bg-background text-foreground">
       {showResults ? (
         <CotizacionResults />
       ) : (

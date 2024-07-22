@@ -132,7 +132,7 @@ const CotizacionResults: React.FC = () => {
         </div>
         <div className="text-center mt-12">
           <h3 className="text-2xl font-bold">Costo Total</h3>
-          <p>${totalPrice.toFixed(2)}</p>
+          <p>${(18 * totalPrice * 1.8).toFixed(2)}</p>
           <button className="text-2xl text-blue-500" onClick={() => setShowGraficos(true)}>
             <FaArrowRight />
           </button>

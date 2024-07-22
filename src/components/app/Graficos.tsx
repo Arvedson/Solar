@@ -5,9 +5,14 @@ import { useCotizacion } from '../../context/CotizacionContext';
 import CheckBoxForm from '../../components/app/InputForm';
 import { Slider } from '@mui/material';
 import EChartsBarRace from './EChartsBarRace';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDollarSign, faTools, faLightbulb, faUser, faChevronDown  } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 
-// Definición de las funciones de mapeo para categorizar los años en funcion p
+
+
+// Definición de las funciones de mapeo para categorizar los años
 const mapSliderToYears = (sliderValue: number) => {
   if (sliderValue <= 60) {
     return (sliderValue / 60) * 10;
@@ -66,30 +71,66 @@ const Graficos: React.FC = () => {
   const totalCost = calculateTotalCost(years);
 
   return (
-    <motion.div
+    
+       
+      <motion.div
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="contenedor-graficos bg-background text-foreground p-6 rounded-lg shadow-lg border border-gray-300  mx-auto max-w-3xl flex flex-col gap-3"
+      className="contenedor-graficos  text-foreground   "
     >
-      <h2 className="text-2xl font-bold mb-4">Gráficos y Análisis</h2>
-      <p><strong>Tarifa Seleccionada:</strong> {selectedTarifa}</p>
-      <p><strong>Costo Total de la Instalación:</strong> ${totalPrice.toFixed(2)}</p>
-      <p><strong>Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</p>
-      <p><strong>Tipo de Usuario:</strong> {isBusiness ? 'Negocio' : 'Residencial'}</p>
+      <div className='info'>
+
+
+        <h2 className="titulo text-3xl ">Gráficos y Análisis</h2>
+        <ul className='lista'>
+          <li><FontAwesomeIcon icon={faDollarSign} className="icon-padding" /><strong> Tarifa Seleccionada:</strong> {selectedTarifa}</li>
+          <li><FontAwesomeIcon icon={faTools} className="icon-padding" /><strong> Costo Total de la Instalación:</strong> ${(18 * totalPrice * 1.8).toFixed(0)} pesos</li>
+          <li><FontAwesomeIcon icon={faLightbulb} className="icon-padding" /><strong> Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</li>
+          <li><FontAwesomeIcon icon={faUser} className="icon-padding" /><strong> Tipo de Usuario:</strong> {isBusiness ? 'Negocio' : 'Residencial'}</li>
+        </ul>
+
+        <div className='flex flex-row gap-3'>
+        <button className=" bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3">
+        <FontAwesomeIcon icon={faWhatsapp} className="icon-contact" /> Contáctanos
+      </button>
+        <div className="dropdown">
+        </div>
+
+
+
+          <button className="btn-dropdown">
+            <FontAwesomeIcon icon={faChevronDown} className="icon-padding" /> Más Información
+          </button>
+          <div className="dropdown-content">
+            <p>Información detallada adicional aquí.</p>
+          </div>
+
+      </div>
+      
+      </div>
+
+
+      <div className='barras'>
       <CheckBoxForm />
       <Slider
         value={sliderValue}
         max={100}
         onChange={handleSliderChange}
       />
-      <div className="mt-4">
-        <strong>Año seleccionado:</strong> {mapSliderToYears(sliderValue).toFixed(2)}
+        <div className="mt-4 p-2">
+          <strong>Año actual:</strong> {2024 + Math.floor(mapSliderToYears(sliderValue))}
+        </div>
+
+      <EChartsBarRace  sliderValue={years} costPerKWh={costPerKWh} totalPrice={totalPrice} annualConsumption={annualConsumption} />
+
       </div>
 
-      <EChartsBarRace sliderValue={years} costPerKWh={costPerKWh} totalPrice={totalPrice} annualConsumption={annualConsumption} />
      
     </motion.div>
+
+   
+
   );
 };
 

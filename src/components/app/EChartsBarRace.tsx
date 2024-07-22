@@ -42,13 +42,13 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
       const updateChart = () => {
         const years = sliderValue;
         const cfeCost = calculateTotalCost(years, costPerKWh, annualConsumption);
-        const systemCost = Math.round(totalPrice * 18); // Redondear el resultado
+        const systemCost = Math.round(totalPrice * 18 *1.8); // Redondear el resultado
         const indirectCost = calculateIndirectCost(years, totalPrice);
         console.log('precio del sistema', totalPrice * 18);
-        console.log("CFE", cfeCost)
-        console.log("perdida por inflacion / costo del sistema",indirectCost * 18);
+        console.log("CFE", cfeCost);
+        console.log("perdida por inflacion / costo del sistema", indirectCost * 18);
         const noActionCost = Math.round(cfeCost + indirectCost * 18); // Redondear el resultado
-        console.log("no hacer nada", noActionCost)
+        console.log("no hacer nada", noActionCost);
 
         const option = {
           title: {
@@ -57,10 +57,13 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
           tooltip: {},
           xAxis: {
             type: 'category',
-            data: ['No Hacer Nada', 'Ququlkan'],
+            data: ['Sin paneles', 'Con paneles'],
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              show: false, // Oculta las etiquetas del eje Y
+            },
           },
           series: [
             {
@@ -68,13 +71,13 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
               type: 'bar',
               data: [
                 { value: noActionCost, itemStyle: { color: noActionCost > systemCost ? 'hsl(0, 70%, 40%)' : 'hsl(0 0% 80%)' } }, // Rojo brillante o Verde brillante
-                { value: systemCost, itemStyle: { color: systemCost < noActionCost? 'hsl(144, 100%, 70%)' : "hsl(174, 100%, 47%)"} }, // Turquesa claro
+                { value: systemCost, itemStyle: { color: systemCost < noActionCost ? 'hsl(144, 100%, 70%)' : 'hsl(174, 100%, 47%)' } }, // Turquesa claro
               ],
               label: {
                 show: true,
                 position: 'top',
                 color: 'hsl(0, 0%, 100%)', // Blanco puro
-                formatter: '{c}' // Mostrar valores enteros sin decimales
+                formatter: (params: any) => `$${params.value}`, // Mostrar valores enteros con el signo de pesos
               },
             },
           ],
@@ -91,7 +94,7 @@ const EChartsBarRace: React.FC<EChartsBarRaceProps> = ({ sliderValue, costPerKWh
     }
   }, [sliderValue, costPerKWh, totalPrice, annualConsumption]);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '400px' }} />;
+  return <div className='graficobarra' ref={chartRef}  />;
 };
 
 export default EChartsBarRace;

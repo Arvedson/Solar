@@ -12,10 +12,12 @@ const CheckBoxForm: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-row bg-slate-600 p-2 m-2'>
-            <label htmlFor="cbx-business" className="ml-2">
+    <div className='pt-6'>
+          <div className='flex flex-row bg-slate-600 p-2 m-2 border-r rounded-md gap-3'>
+      <label htmlFor="cbx-business" className="ml-2">
         Soy un negocio
       </label>
+      
       <input
         type="checkbox"
         id="cbx-business"
@@ -29,8 +31,11 @@ const CheckBoxForm: React.FC = () => {
           <polyline points="1 9 7 14 15 4"></polyline>
         </svg>
       </label>
+    </div>
+    <p className='p-2'>Simula el paso de los años</p>
 
     </div>
+
   );
 };
 
