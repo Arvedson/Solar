@@ -1,6 +1,6 @@
-// src/components/app/InstallSystemPage.tsx
 'use client';
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useCotizacion } from '@/context/CotizacionContext';
 import AnnualConsumptionForm from './AnnualConsumptionForm';
 import BimonthlyConsumptionForm from './BimonthlyConsumptionForm';
@@ -11,6 +11,10 @@ import TarifasInfo from './TarifasInfo';
 import ImageReader from './ImageReader';
 import AnnualConsumptionComponent from './AnnualConsumptionComponent ';
 import CotizacionResults from './CotizacionResults';
+import Graficos from './Graficos';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const InstallSystemPage: React.FC = () => {
   const { annualConsumption, setAnnualConsumption, selectedTarifa, setSelectedTarifa } = useCotizacion();
@@ -21,11 +25,7 @@ const InstallSystemPage: React.FC = () => {
   const [calculated, setCalculated] = useState(false);
   const [showCalculateButton, setShowCalculateButton] = useState(true);
   const [showTarifaWarning, setShowTarifaWarning] = useState(false);
-  const [showResults, setShowResults] = useState(false);
-
-
-  //navegacion
-  
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleCheckboxChange = (formType: 'annual' | 'bimonthly' | 'monthly') => {
     setSelectedForm((prevForm) => (prevForm === formType ? null : formType));
@@ -52,7 +52,7 @@ const InstallSystemPage: React.FC = () => {
       console.log("Cotizar clicked");
       console.log("Consumo anual:", annualConsumption);
       console.log("Tarifa seleccionada:", selectedTarifa);
-      setShowResults(true);
+      nextComponent();
     }
   };
 
@@ -61,7 +61,7 @@ const InstallSystemPage: React.FC = () => {
     console.log("Cotizar clicked");
     console.log("Consumo anual:", annualConsumption);
     console.log("Tarifa no seleccionada");
-    setShowResults(true);
+    nextComponent();
   };
 
   const handleBimonthlySubmit = (consumption: number) => {
@@ -106,11 +106,10 @@ const InstallSystemPage: React.FC = () => {
     setShowTarifaWarning(false);
   };
 
-  return (
-    <div className="container1  p-6 bg-background text-foreground">
-      {showResults ? (
-        <CotizacionResults />
-      ) : (
+  const components = [
+    {
+      id: 'initial',
+      component: (
         <div className="bg-card p-6 rounded-lg shadow-lg border border-gray-300">
           <h1 className="text-3xl font-bold mb-6 text-center">Instala tu Sistema</h1>
           <div className="mb-6">
@@ -123,7 +122,7 @@ const InstallSystemPage: React.FC = () => {
                   style={{ display: "none" }}
                   checked={selectedForm === 'annual'}
                   onChange={() => handleCheckboxChange('annual')}
-                  disabled={calculated} // Desactivar checkbox si se ha calculado
+                  disabled={calculated}
                 />
                 <label htmlFor="cbx-annual" className="check">
                   <svg width="18px" height="18px" viewBox="0 0 18 18">
@@ -140,7 +139,7 @@ const InstallSystemPage: React.FC = () => {
                   style={{ display: "none" }}
                   checked={selectedForm === 'bimonthly'}
                   onChange={() => handleCheckboxChange('bimonthly')}
-                  disabled={calculated} // Desactivar checkbox si se ha calculado
+                  disabled={calculated}
                 />
                 <label htmlFor="cbx-bimonthly" className="check">
                   <svg width="18px" height="18px" viewBox="0 0 18 18">
@@ -157,7 +156,7 @@ const InstallSystemPage: React.FC = () => {
                   style={{ display: "none" }}
                   checked={selectedForm === 'monthly'}
                   onChange={() => handleCheckboxChange('monthly')}
-                  disabled={calculated} // Desactivar checkbox si se ha calculado
+                  disabled={calculated}
                 />
                 <label htmlFor="cbx-monthly" className="check">
                   <svg width="18px" height="18px" viewBox="0 0 18 18">
@@ -232,7 +231,45 @@ const InstallSystemPage: React.FC = () => {
           {showTarifasInfo && <TarifasInfo />}
           {showAnnualConsumptionComponent && <AnnualConsumptionComponent />}
         </div>
-      )}
+      )
+    },
+    { id: 'cotizationResults', component: <CotizacionResults /> },
+    { id: 'graficos', component: <Graficos /> },
+  ];
+
+  const nextComponent = () => {
+    if (currentIndex < components.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const prevComponent = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  return (
+    <div className="max-w-[1400px] mx-auto p-6 bg-background text-foreground flex flex-col">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.5 }}
+        >
+          {components[currentIndex].component}
+        </motion.div>
+      </AnimatePresence>
+      <div className="flex flex-row justify-between navigation-buttons gap-10 mt-6">
+        <button onClick={prevComponent} disabled={currentIndex === 0}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
+        <button onClick={nextComponent} disabled={currentIndex === components.length - 1}>
+          <FontAwesomeIcon icon={faArrowRight} />
+        </button>
+      </div>
     </div>
   );
 };
