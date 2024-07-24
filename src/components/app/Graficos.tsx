@@ -80,7 +80,7 @@ const Graficos: React.FC = () => {
           exit={{ opacity: 0, x: -50 }}
           className="contenedor-graficos text-foreground "
         >
-          <div className='info'>
+          <div className='info '>
             <h2 className=" text-3xl">Gráficos y Análisis</h2>
             <ul className='lista'>
               <li><FontAwesomeIcon icon={faDollarSign} className="icon-padding" /><strong> Tarifa Seleccionada:</strong> {selectedTarifa}</li>
@@ -89,8 +89,8 @@ const Graficos: React.FC = () => {
               <li><FontAwesomeIcon icon={faUser} className="icon-padding" /><strong> Tipo de Usuario:</strong> {isBusiness ? 'Negocio' : 'Residencial'}</li>
             </ul>
 
-            <div className='botones'>
-            <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3 flex items-center">
+            <div className='botones '>
+            <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="wa bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3 flex items-center">
             <FontAwesomeIcon icon={faWhatsapp} className="icon-contact" /> Contáctanos
             </a>
               <div className="dropdown">
@@ -104,7 +104,7 @@ const Graficos: React.FC = () => {
               </div>
             </div>
 
-            <Separator className='  mt-8 mb-1 p-1 lg:hidden rounded'/>
+            <Separator className='mt-8 mb-1 p-1 lg:hidden rounded max-w-auto'/>
 
             
           </div>
