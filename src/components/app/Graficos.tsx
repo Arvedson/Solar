@@ -89,7 +89,7 @@ const Graficos: React.FC = () => {
               <li><FontAwesomeIcon icon={faUser} className="icon-padding" /><strong> Tipo de Usuario:</strong> {isBusiness ? 'Negocio' : 'Residencial'}</li>
             </ul>
 
-            <div className='botones flex flex-row gap-3 w-auto'>
+            <div className='botones'>
             <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3 flex items-center">
             <FontAwesomeIcon icon={faWhatsapp} className="icon-contact" /> Contáctanos
             </a>
@@ -104,7 +104,7 @@ const Graficos: React.FC = () => {
               </div>
             </div>
 
-            <Separator className=' flex flex-col mt-8 p-1 lg:hidden rounded'/>
+            <Separator className='  mt-8 mb-1 p-1 lg:hidden rounded'/>
 
             
           </div>

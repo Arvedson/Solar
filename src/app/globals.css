@@ -953,7 +953,9 @@ margin-right: auto;
   justify-content: center;
   align-items: center;
 }
-
+.botones{
+  
+}
 .graficobarra{
   display: flex;
   flex-direction: column;
