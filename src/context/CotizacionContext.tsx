@@ -124,8 +124,8 @@ const calculateCostPerKWh = (consumoAnual: number) => {
       costoTotal = consumoMensual * 4.5; // Tarifa PDBT, por ejemplo
       console.log(`Consumo Bajo (Negocio): ${consumoMensual} kWh/mes, Costo: $4.5/kWh`);
     } else {
-      costoTotal = consumoMensual * 6; // Tarifa GDBT, por ejemplo
-      console.log(`Consumo Alto (Negocio): ${consumoMensual} kWh/mes, Costo: $6/kWh`);
+      costoTotal = consumoMensual * 5.5; // Tarifa GDBT, por ejemplo
+      console.log(`Consumo Alto (Negocio): ${consumoMensual} kWh/mes, Costo: $5.5/kWh`);
     }
   } else {
     if (consumoMensual <= 175) {
