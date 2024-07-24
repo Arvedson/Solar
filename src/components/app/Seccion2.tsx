@@ -70,7 +70,7 @@ const solarRadiationData: { [key: string]: number } = {
   
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const annualInflationRate = 0.06;
+      const annualInflationRate = 0.055;
       const years = 25;
       const costPerKWh = calculateCostPerKWh(monthlyCost);
       const costPerWattSolar = 11.50; // Costo por watt en MXN
@@ -154,7 +154,7 @@ const solarRadiationData: { [key: string]: number } = {
   
     return (
       <div className="flex  max-w-4xl mx-auto bg-card text-card-foreground shadow-md rounded-lg mt-12 mb-12 ">
-        <section className="mx-6 py-14 bg-background text-foreground border border-border rounded">
+        <section className="my-6 mx-6 py-14 bg-background text-foreground border border-border rounded">
           <div className="container mx-auto px-10 text-center">
             <h2 className="text-3xl font-bold text-secondary-foreground mb-8">
               ¿Cuánto pagas promedio al mes?
