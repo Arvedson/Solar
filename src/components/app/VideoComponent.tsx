@@ -138,23 +138,28 @@ const VideoComponent: React.FC = () => {
       >
         Your browser does not support the video tag.
       </video>
-      <div className={"hero-content"}>
-        <Image
-          src="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/Black%20%26%20Blue%20Monoline%20Technology%20Logo%20(Espa%C3%B1ol)%20(2).png?alt=media&token=ef394569-4e9e-443d-9702-03781f29d94b"
-          alt="Ququlkan Energia Solar"
-          width={500}
-          height={500}
-          className={"hero-logo"}
-        />
-        <h1 className={"hero-title"}>QUQULKÁN</h1>
-        <h2 className={"hero-subtitle"}>Solar</h2>
-        <Link href="/cotizar" legacyBehavior>
-          <a className={"animated-button2 gap-4"}>
-            <FaTools className="iconhero text-2xl sm:text-3xl" />
-            <h5>Instala tu sistema</h5>
-          </a>
-        </Link>
+
+      <div className="fix">
+        <div className={"hero-content"}>
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/Black%20%26%20Blue%20Monoline%20Technology%20Logo%20(Espa%C3%B1ol)%20(2).png?alt=media&token=ef394569-4e9e-443d-9702-03781f29d94b"
+            alt="Ququlkan Energia Solar"
+            width={500}
+            height={500}
+            className={"hero-logo"}
+          />
+          <h1 className={"hero-title"}>QUQULKÁN</h1>
+          <h2 className={"hero-subtitle"}>Solar</h2>
+          <Link href="/cotizar" legacyBehavior>
+            <a className={"animated-button2 gap-4"}>
+              <FaTools className="iconhero text-2xl sm:text-3xl" />
+              <h5>Instala tu sistema</h5>
+            </a>
+          </Link>
+        </div>
+
       </div>
+
     </div>
   );
 };

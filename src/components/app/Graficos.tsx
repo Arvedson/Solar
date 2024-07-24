@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign, faTools, faLightbulb, faUser, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
+import { Separator } from '../ui/separator';
+
 // Definición de las funciones de mapeo para categorizar los años
 const mapSliderToYears = (sliderValue: number) => {
   if (sliderValue <= 60) {
@@ -79,7 +81,7 @@ const Graficos: React.FC = () => {
           className="contenedor-graficos text-foreground "
         >
           <div className='info'>
-            <h2 className="titulo text-3xl">Gráficos y Análisis</h2>
+            <h2 className=" text-3xl">Gráficos y Análisis</h2>
             <ul className='lista'>
               <li><FontAwesomeIcon icon={faDollarSign} className="icon-padding" /><strong> Tarifa Seleccionada:</strong> {selectedTarifa}</li>
               <li><FontAwesomeIcon icon={faTools} className="icon-padding" /><strong> Costo Total de la Instalación:</strong> ${(18 * totalPrice * 1.8).toFixed(0)} pesos</li>
@@ -87,10 +89,10 @@ const Graficos: React.FC = () => {
               <li><FontAwesomeIcon icon={faUser} className="icon-padding" /><strong> Tipo de Usuario:</strong> {isBusiness ? 'Negocio' : 'Residencial'}</li>
             </ul>
 
-            <div className='botones flex flex-row gap-3'>
+            <div className='botones flex flex-row gap-3 w-auto'>
             <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3 flex items-center">
-  <FontAwesomeIcon icon={faWhatsapp} className="icon-contact" /> Contáctanos
-</a>
+            <FontAwesomeIcon icon={faWhatsapp} className="icon-contact" /> Contáctanos
+            </a>
               <div className="dropdown">
               </div>
 
@@ -101,7 +103,14 @@ const Graficos: React.FC = () => {
                 <p>Información detallada adicional aquí.</p>
               </div>
             </div>
+
+            <Separator className=' flex flex-col mt-8 p-1 lg:hidden rounded'/>
+
+            
           </div>
+
+          
+          
 
           <div className='barras'>
             <CheckBoxForm />

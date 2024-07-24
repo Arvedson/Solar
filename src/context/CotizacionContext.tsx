@@ -121,11 +121,11 @@ const calculateCostPerKWh = (consumoAnual: number) => {
 
   if (isBusiness) {
     if (consumoMensual <= 25000) {
-      costoTotal = consumoMensual * 1.1; // Tarifa PDBT, por ejemplo
-      console.log(`Consumo Bajo (Negocio): ${consumoMensual} kWh/mes, Costo: $1.1/kWh`);
+      costoTotal = consumoMensual * 4.5; // Tarifa PDBT, por ejemplo
+      console.log(`Consumo Bajo (Negocio): ${consumoMensual} kWh/mes, Costo: $4.5/kWh`);
     } else {
-      costoTotal = consumoMensual * 1.5; // Tarifa GDBT, por ejemplo
-      console.log(`Consumo Alto (Negocio): ${consumoMensual} kWh/mes, Costo: $1.5/kWh`);
+      costoTotal = consumoMensual * 6; // Tarifa GDBT, por ejemplo
+      console.log(`Consumo Alto (Negocio): ${consumoMensual} kWh/mes, Costo: $6/kWh`);
     }
   } else {
     if (consumoMensual <= 175) {

@@ -14,14 +14,14 @@
     "prisma:migrate:prod": "cross-env DATABASE_URL=$DATABASE_URL_PRODUCTION npx prisma migrate deploy"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@hookform/resolvers": "^3.6.0",
     "@mui/icons-material": "^5.15.19",
-    "@mui/material": "^5.15.20",
+    "@mui/material": "^5.16.4",
     "@neondatabase/serverless": "^0.9.3",
     "@prisma/client": "^5.15.1",
     "@radix-ui/react-accordion": "^1.1.2",

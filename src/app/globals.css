@@ -599,6 +599,14 @@
 
 
 /*video*/
+
+.fix{
+width: 100%;
+height: 80%;
+position: inherit;
+top: -60px;
+  
+}
 .hero-container {
   display: flex;
   flex-direction: column;
@@ -615,7 +623,7 @@
   top: 50%;
   left: 50%;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   transform: translate(-50%, -50%);
   z-index: -1;
@@ -719,6 +727,7 @@
     padding: 1rem 2rem;
     min-width: 250px;
   }
+
 }
 
 
@@ -935,6 +944,8 @@
   align-content: center;
 }
 .info{
+margin-left: auto;
+margin-right: auto;
   margin-top: 12px;
   gap: 6px;
   display: flex;
@@ -1076,14 +1087,12 @@
   .botones{
     margin-top: 20;
   }
+
+  
+
+}
+
 }
 
 
-
-
-
-
-
-
-}
 
