@@ -26,9 +26,8 @@ const Contacto: React.FC = () => {
         </div>
         <div className="w-full lg:w-1/2">
           <h3 className="text-2xl font-bold mb-4">Información de Contacto</h3>
-          <p className="text-lg mb-2"><strong>Teléfono:</strong> 571 468 68426</p>
-          <p className="text-lg mb-2"><strong>Correo Electrónico:</strong> contacto@ququlcan.com.mx</p>
-          <p className="text-lg mb-6"><strong>Dirección:</strong> Tu corazon</p>
+          <p className="text-lg mb-2"><strong>Teléfono:</strong>+52 870 566 8027</p>
+          <p className="text-lg mb-2"><strong>Correo Electrónico:</strong> contacto@ququlkan-solar.com</p>
           <div className="w-full h-64 bg-gray-300 rounded-lg overflow-hidden">
             {/* Aquí puedes integrar un mapa, como Google Maps */}
             <iframe
