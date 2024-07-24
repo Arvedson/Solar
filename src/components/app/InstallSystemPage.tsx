@@ -112,7 +112,7 @@ const InstallSystemPage: React.FC = () => {
       component: (
         <div className="bg-card p-6 rounded-lg shadow-lg border border-gray-300">
           <h1 className="text-3xl font-bold mb-6 text-center">Instala tu Sistema</h1>
-          <div className="mb-6">
+          <div className="">
             <label className="block text-lg font-semibold mb-4 text-center">Consumo Eléctrico</label>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
               <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg border">
@@ -210,14 +210,14 @@ const InstallSystemPage: React.FC = () => {
             )}
           </div>
 
-          <div className="bg-card p-4 rounded-lg shadow-lg mt-6 ">
+          <div className="bg-card p-6 rounded-lg shadow-lg ">
             {selectedForm === 'annual' && <AnnualConsumptionForm annualConsumption={annualConsumption} setAnnualConsumption={handleAnnualSubmit} highlight={highlightAnnualInput} showCalculateButton={showCalculateButton} />}
             {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm setBimonthlyConsumption={handleBimonthlySubmit} />}
             {selectedForm === 'monthly' && <MonthlyConsumptionForm setMonthlyConsumption={handleMonthlySubmit} />}
           </div>
 
           <ImageReader onAnnualKwhChange={handleImageReaderSubmit} />
-          <FileUpload />
+         
 
           <div className="mt-6 gap-6 flex flex-col sm:flex-row justify-center items-center">
             <button onClick={toggleTarifasInfo} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-muted hover:text-muted-foreground transition">

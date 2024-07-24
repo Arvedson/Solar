@@ -65,7 +65,7 @@ const ImageReader: React.FC<ImageReaderProps> = ({ onAnnualKwhChange }) => {
 
   return (
     <div className="p-0">
-      <div className="container mx-auto p-4 mt-2">
+      <div className="container mx-auto px-4 pb-4 ">
         <div
           {...getRootProps()}
           className={`border-2 border-dashed rounded-md p-4 transition ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}

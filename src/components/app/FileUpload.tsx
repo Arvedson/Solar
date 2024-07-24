@@ -1,20 +1,29 @@
-
-//tarea pendiente:
-// FileUpload pasa los archivos al componente padre Installsystempage a través de onFilesAccepted, Componente padre almacena los archivos en su estado
-// Componente padre maneja la lógica de envío a la API (por ejemplo, al hacer clic en un botón de "Enviar").
-
 import React, { useCallback } from 'react';
 import { useDropzone, FileRejection, DropEvent } from 'react-dropzone';
 
-interface FileUploadProps {}
+interface FileUploadProps {
+  onFilesAccepted: (acceptedFiles: { name: string, content: string }[]) => void;
+}
 
-const FileUpload: React.FC<FileUploadProps> = () => {
-  const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => {
-    // Aquí puedes manejar los archivos recibidos.
-    
-    console.log('Accepted Files:', acceptedFiles);
+const FileUpload: React.FC<FileUploadProps> = ({ onFilesAccepted }) => {
+  const onDrop = useCallback(async (acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => {
+    const filesWithContent = await Promise.all(acceptedFiles.map(async (file) => {
+      const content = await fileToBase64(file);
+      return { name: file.name, content };
+    }));
+    onFilesAccepted(filesWithContent);
+    console.log('Accepted Files:', filesWithContent);
     console.log('File Rejections:', fileRejections);
-  }, []);
+  }, [onFilesAccepted]);
+
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+  };
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles, fileRejections } = useDropzone({
     onDrop,
@@ -35,11 +44,10 @@ const FileUpload: React.FC<FileUploadProps> = () => {
         {
           isDragActive ?
             <p className="text-blue-700">Suelta los archivos aquí...</p> :
-            <p className="text-gray-700">Envianos tu recibo de la luz en caso de que no tengas una foto de alta resolucion.</p>
+            <p className="text-gray-700">Selecciona tu recibo de la luz.</p>
         }
       </div>
       <div className="mt-2">
-     
         <ul>
           {acceptedFiles.map((file: File) => (
             <li key={file.name}>{file.name} - {file.size} bytes</li>
@@ -47,7 +55,6 @@ const FileUpload: React.FC<FileUploadProps> = () => {
         </ul>
       </div>
       <div className="mt-2">
-    
         <ul>
           {fileRejections.map(({ file, errors }) => (
             <li key={file.name}>
