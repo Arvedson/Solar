@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 bg-background border-b border-border px-4 py-2.5 z-20 bg-opacity-50 hover:bg-opacity-100 focus:bg-opacity-100 transition-opacity duration-300">
-      <div className="container flex flex-wrap items-center justify-between mx-auto">
+      <div className="container flex flex-row items-center justify-between mx-auto">
         <a href="/" className="flex items-center">
           <span className="text-primary font-semibold text-xl">Ququlkan - Solar</span>
         </a>
