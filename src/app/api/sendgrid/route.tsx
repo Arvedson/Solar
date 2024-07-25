@@ -22,20 +22,56 @@ async function getFileType(filePath: string): Promise<string> {
   return type?.mime || 'application/octet-stream';
 }
 
+class MockResponse {
+  headers: { [key: string]: string } = {};
+  statusCode?: number;
+  body?: any;
+
+  setHeader(name: string, value: string) {
+    this.headers[name] = value;
+  }
+
+  getHeader(name: string) {
+    return this.headers[name];
+  }
+
+  status(code: number) {
+    this.statusCode = code;
+    return this;
+  }
+
+  send(body: any) {
+    this.body = body;
+    return this;
+  }
+
+  json(body: any) {
+    this.body = JSON.stringify(body);
+    return this;
+  }
+}
+
 export async function POST(req: NextRequest) {
   const ip = getClientIpWrapper(req);
   console.log("IP obtenida en POST:", ip);
 
-  // Aplica el middleware de limitación de velocidad
+  const res = new MockResponse();
+
   const response = await new Promise((resolve, reject) => {
-    limiter({ ...req, ip }, {} as any, (result: any) => {
+    console.log('Antes de llamar al limiter');
+    console.log(ip);
+    limiter(req as any, res as any, (result: any) => {
+      console.log('Dentro del callback del limiter');
       if (result instanceof Error) {
+        console.log('Error en limiter:', result);
         reject(result);
       } else {
+        console.log('Limiter exitoso');
         resolve(result);
       }
     });
   }).catch((error) => {
+    console.log('Catch en limiter:', error);
     return NextResponse.json({ error: error.message }, { status: 429 });
   });
 
