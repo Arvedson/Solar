@@ -79,7 +79,7 @@ const VideoComponent: React.FC = () => {
       } else if (effectiveType === "4g") {
         selectedVideo = videos.high;
         newPlaybackRate = 0.8; // Slow down to 80%
-        opacity = 0.75; // Lower opacity for higher quality
+        opacity = 0.8; // Lower opacity for higher quality
       }
 
       setPlaybackRate(newPlaybackRate);
@@ -152,8 +152,8 @@ const VideoComponent: React.FC = () => {
           <h2 className={"hero-subtitle"}>Solar</h2>
           <Link href="/cotizar" legacyBehavior>
             <a className={"animated-button2 gap-4"}>
-              <FaTools className="iconhero text-2xl sm:text-3xl" />
-              <h5>Instala tu sistema</h5>
+              <FaTools className=" text-2xl sm:text-3xl" />
+              <h5 className="texthover">Instala tu sistema</h5>
             </a>
           </Link>
         </div>

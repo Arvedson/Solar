@@ -683,6 +683,12 @@ top: -60px;
   background-color: hsl(var(--primary-foreground));
   color: hsl(var(--tertiary));
   border-color: hsl(var(--primary));
+
+}
+
+.animated-button2:hover .iconhero, 
+.animated-button2:hover .texthover {
+  color: hsl(var(--tertiary)); /* Cambia el color del texto y el icono en el hover */
 }
 
 @media (max-width: 550px) {
