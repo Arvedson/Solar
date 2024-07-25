@@ -27,8 +27,8 @@ const TChart: React.FC = () => {
     { title: '', content: '', side: 'right', className: 'item2' },
     { title: 'Misma calidad', content: 'La calidad no es negociable, solo te damos los precios mas justos', side: 'left', className: 'item' },
     { title: 'Precios altos', content: 'Ineficiencia en la distribucion del trabajo', side: 'right', className: 'item2' },
-    { title: 'Actuamos rapido', content: 'No dejamos que pasen mas de 18 dias para que tengas tu sistema instalado', side: 'left', className: 'item' },
-    { title: 'Lentitud', content: 'Falta en el uso de tecnologias para acelerar los procesos de entrega', side: 'right', className: 'item2' },
+    { title: 'Independencia', content: 'Dejar de pagar por luz', side: 'left', className: 'item' },
+    { title: 'Pagos infinitos', content: 'Un gasto constante para toda la vida es no cambiarte a solar', side: 'right', className: 'item2' },
     { title: 'Somos diferentes', content: 'Nuestro enfoque se centra en ayudarte a ti y a tu familia', side: 'left', className: 'item' },
     { title: 'Modelos de lucro', content: 'La mayoria de las empresas en el mundo, piensan en el margen; no en ti', side: 'right', className: 'item2' },
   ]);

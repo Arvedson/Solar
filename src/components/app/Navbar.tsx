@@ -45,8 +45,13 @@ export default function Navbar() {
               </SheetHeader>
               <ul className="flex flex-col mt-4 space-y-8">
                 <li>
-                  <ScrollToSection id="inicio">
+                  <a href="/">
                     Inicio
+                  </a>
+                </li>
+                <li>
+                  <ScrollToSection id="contacto">
+                    Contacto
                   </ScrollToSection>
                 </li>
                 <li>
@@ -65,12 +70,7 @@ export default function Navbar() {
                   </ScrollToSection>
                 </li>
                 <li>
-                  <ScrollToSection id="contacto">
-                    Contacto
-                  </ScrollToSection>
-                </li>
-                <li>
-                  <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition ">
+                  <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition">
                     <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
                     <span>Estamos para ti</span>
                   </a>
@@ -82,8 +82,13 @@ export default function Navbar() {
         <div className="hidden w-full md:block md:w-auto">
           <ul className="flex flex-col mt-4 md:flex-row md:items-center md:justify-center md:space-x-8 md:mt-0 md:text-sm md:font-medium">
             <li>
-              <ScrollToSection id="inicio">
+              <a href="/">
                 Inicio
+              </a>
+            </li>
+            <li>
+              <ScrollToSection id="contacto">
+                Contacto
               </ScrollToSection>
             </li>
             <li>
@@ -99,11 +104,6 @@ export default function Navbar() {
             <li>
               <ScrollToSection id="proyectos">
                 Proyectos
-              </ScrollToSection>
-            </li>
-            <li>
-              <ScrollToSection id="contacto">
-                Contacto
               </ScrollToSection>
             </li>
             <li>
