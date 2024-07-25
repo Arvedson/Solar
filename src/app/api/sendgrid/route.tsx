@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sendgrid from '@sendgrid/mail';
-import { limiter } from '@/middleware/rateLimit';
+import { minuteLimiter, hourlyLimiter, dailyLimiter } from '@/middleware/rateLimit';
 import { getClientIpWrapper } from '@/middleware/getIp';
 import { promisify } from 'util';
 import fs from 'fs';
@@ -51,32 +51,31 @@ class MockResponse {
   }
 }
 
+async function applyLimiter(req: NextRequest, res: MockResponse, limiter: any) {
+  return new Promise((resolve, reject) => {
+    limiter(req as any, res as any, (result: any) => {
+      if (result instanceof Error) {
+        reject(result);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
+
 export async function POST(req: NextRequest) {
   const ip = getClientIpWrapper(req);
   console.log("IP obtenida en POST:", ip);
 
   const res = new MockResponse();
 
-  const response = await new Promise((resolve, reject) => {
-    console.log('Antes de llamar al limiter');
-    console.log(ip);
-    limiter(req as any, res as any, (result: any) => {
-      console.log('Dentro del callback del limiter');
-      if (result instanceof Error) {
-        console.log('Error en limiter:', result);
-        reject(result);
-      } else {
-        console.log('Limiter exitoso');
-        resolve(result);
-      }
-    });
-  }).catch((error) => {
+  try {
+    await applyLimiter(req, res, minuteLimiter);
+    await applyLimiter(req, res, hourlyLimiter);
+    await applyLimiter(req, res, dailyLimiter);
+  } catch (error: any) {
     console.log('Catch en limiter:', error);
     return NextResponse.json({ error: error.message }, { status: 429 });
-  });
-
-  if (response instanceof NextResponse) {
-    return response;
   }
 
   console.log("Request received:", req.method);
@@ -113,7 +112,7 @@ export async function POST(req: NextRequest) {
     await sendgrid.send(msg);
     console.log("Email sent successfully with SendGrid");
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error sending email with SendGrid:", error);
     return NextResponse.json({ error: 'Error enviando el correo' }, { status: 500 });
   }
