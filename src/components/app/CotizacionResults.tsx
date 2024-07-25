@@ -128,13 +128,18 @@ const CotizacionResults: React.FC = () => {
               <SistemaTierras panelCount={panelCount} />
               <ManoDeObra panelCount={panelCount} />
             </div>
-            <div className="flex flex-col text-center mt-12 bg-primary p-4 border border-gray-300 rounded items-center gap-2 text-black max-w-[200px] mx-auto">
-              <h3 className="text-black text-2xl font-bold">Costo Total</h3>
-              <p className='font-bold'>${(18 * totalPrice * 1.8).toFixed(2)}</p>
-              <button className=" text-2xl text-blue-500" onClick={() => nextComponent()}>
-                <FaArrowRight />
-              </button>
-            </div>
+
+            
+            <div className="flex flex-col text-center mt-12 bg-primary p-4 border border-gray-300 rounded items-center gap-4 text-black max-w-[200px] mx-auto">
+      <h3 className="text-black text-2xl font-bold">Costo Total</h3>
+      <p className='font-bold'>${(18 * totalPrice * 1.8).toFixed(2)}</p>
+      <button
+        className="flex items-center justify-center text-xl text-white bg-blue-500 p-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
+        onClick={() => nextComponent()}
+      >
+        Continuar <FaArrowRight className="ml-2" />
+      </button>
+    </div>
           </div>
         </motion.div>
       )

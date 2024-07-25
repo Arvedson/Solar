@@ -32,14 +32,14 @@ const SistemaTierras: React.FC<SistemaTierrasProps> = ({ panelCount }) => {
 
   useEffect(() => {
     const costoSistemaTierrasMXN = calcularCostoSistemaTierras(panelCount);
-    const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
+    const TIPO_DE_CAMBIO = 18; // 1 USD = 17 MXN
     const costoSistemaTierrasUSD = costoSistemaTierrasMXN / TIPO_DE_CAMBIO;
     setSistemaTierrasCost(costoSistemaTierrasUSD);
     calculateTotalPrice();
   }, [panelCount, setSistemaTierrasCost, calculateTotalPrice]);
 
   const costoSistemaTierrasMXN = calcularCostoSistemaTierras(panelCount);
-  const TIPO_DE_CAMBIO = 17; // 1 USD = 17 MXN
+  const TIPO_DE_CAMBIO = 18; // 1 USD = 17 MXN
   const costoSistemaTierrasUSD = costoSistemaTierrasMXN / TIPO_DE_CAMBIO;
 
   return (
@@ -47,7 +47,7 @@ const SistemaTierras: React.FC<SistemaTierrasProps> = ({ panelCount }) => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="bg-card p-6 rounded-lg shadow-lg border border-gray-300 mt-6"
+      className="flex flex-col bg-card p-6 rounded-lg shadow-lg border border-gray-300 mt-6 justify-center items-center"
     >
       <h2 className="text-2xl font-bold mb-4">Sistema de Tierras</h2>
       <p><strong>Tierras para</strong> {panelCount} paneles</p>

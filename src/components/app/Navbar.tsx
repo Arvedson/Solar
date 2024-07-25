@@ -1,5 +1,6 @@
 "use client";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -16,7 +17,6 @@ export default function Navbar() {
           <span className="text-primary font-semibold text-xl">Ququlkan - Solar</span>
         </a>
         <div className="flex items-center space-x-4">
-       
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button
@@ -70,18 +70,17 @@ export default function Navbar() {
                   </ScrollToSection>
                 </li>
                 <li>
-                  <ScrollToSection id="subir-recibo">
-                    <span className="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary-foreground hover:text-primary transition">
-                      Instala tu sistema
-                    </span>
-                  </ScrollToSection>
+                  <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition ">
+                    <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
+                    <span>Estamos para ti</span>
+                  </a>
                 </li>
               </ul>
             </SheetContent>
           </Sheet>
         </div>
         <div className="hidden w-full md:block md:w-auto">
-          <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+          <ul className="flex flex-col mt-4 md:flex-row md:items-center md:justify-center md:space-x-8 md:mt-0 md:text-sm md:font-medium">
             <li>
               <ScrollToSection id="inicio">
                 Inicio
@@ -94,7 +93,7 @@ export default function Navbar() {
             </li>
             <li>
               <ScrollToSection id="costo">
-               Cuanto gastas?
+                Cuanto gastas?
               </ScrollToSection>
             </li>
             <li>
@@ -108,11 +107,10 @@ export default function Navbar() {
               </ScrollToSection>
             </li>
             <li>
-              <ScrollToSection id="subir-recibo">
-                <span className="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary-foreground hover:text-primary transition">
-                  Subir Recibo
-                </span>
-              </ScrollToSection>
+              <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition">
+                <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
+                <span>Estamos para ti</span>
+              </a>
             </li>
           </ul>
         </div>
