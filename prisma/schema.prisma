@@ -7,6 +7,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
 model Installer {
   id          Int          @id @default(autoincrement())
   name        String
@@ -96,3 +102,4 @@ model Microinversor {
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 }
+

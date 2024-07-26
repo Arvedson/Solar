@@ -1,5 +1,7 @@
+"use client"
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import SubscribeForm from '../app/SubscribeForm';
 
 const Footer = () => {
   return (
@@ -19,17 +21,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 p-4">
           <div className="flex flex-col md:flex-row md:items-center mb-4 md:mb-0 gap-6">
             <h4 className="text-md font-semibold text-gray-700">Mantente Conectado</h4>
-            <form className="flex flex-col md:flex-row md:items-center gap-2">
-              <input 
-                type="email" 
-                placeholder="Tu correo electrónico" 
-                className="p-2 border border-gray-300 rounded-md" 
-              />
-              <button className="p-2 bg-gray-700 text-white rounded-md hover:bg-black">
-                Suscribirse
-              </button>
-            </form>
-            <p className="text-sm text-gray-700 mt-2 md:mt-0">Si te suscribes, recibirás ofertas y noticias.</p>
+            <SubscribeForm />
           </div>
           <div className="flex space-x-4">
             <a href="#" className="text-gray-700 hover:text-black"><FaFacebook size="1.5em" className="md:size-2em lg:size-2.5em" /></a>

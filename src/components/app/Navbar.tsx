@@ -14,7 +14,7 @@ export default function Navbar() {
     <nav className="sticky top-0 bg-background border-b border-border px-4 py-2.5 z-20 bg-opacity-50 hover:bg-opacity-100 focus:bg-opacity-100 transition-opacity duration-300">
       <div className="container flex flex-row items-center justify-between mx-auto">
         <a href="/" className="flex items-center">
-          <span className="text-primary font-semibold text-xl">Ququlkan - Solar</span>
+          <span className="text-primary font-semibold text-xl">Ququlkan - Energia Ancestral</span>
         </a>
         <div className="flex items-center space-x-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>

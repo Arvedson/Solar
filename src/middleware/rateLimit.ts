@@ -1,55 +1,48 @@
-import rateLimit from 'express-rate-limit';
-import { getClientIpWrapper } from './getIp'; // Ensure this path is correct
+import { NextRequest, NextResponse } from 'next/server';
+import { getClientIp } from 'request-ip';
 
-const minuteLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 2, // Limit each IP to x requests per minute
-  message: 'Has excedido el límite de 5 solicitudes en 1 minuto.',
-  standardHeaders: true, // Return rate limit info in the RateLimit-* headers
-  legacyHeaders: false, // Disable the X-RateLimit-* headers
-  keyGenerator: (req) => {
-    const ip = getClientIpWrapper(req);
-    console.log(`IP utilizada para limitación: ${ip}`);
-    return ip; // Use the client IP for rate limiting
-  },
-  handler: (req, res, next, options) => {
-    console.log('Minute limit reached for IP:', getClientIpWrapper(req));
-    res.status(options.statusCode).send(options.message);
+export function getClientIpWrapper(req: NextRequest | any): string {
+  let clientIp: string | null = null;
+  try {
+    clientIp = getClientIp(req); // Casting here because request-ip doesn't have types for NextRequest
+  } catch (error) {
+    console.log("Error obtaining IP with request-ip:", error);
   }
-});
 
-const hourlyLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5, // Limit each IP to x requests per hour
-  message: 'Has excedido el límite de 30 solicitudes en 1 hora.',
-  standardHeaders: true, // Return rate limit info in the RateLimit-* headers
-  legacyHeaders: false, // Disable the X-RateLimit-* headers
-  keyGenerator: (req) => {
-    const ip = getClientIpWrapper(req);
-    console.log(`IP utilizada para limitación: ${ip}`);
-    return ip; // Use the client IP for rate limiting
-  },
-  handler: (req, res, next, options) => {
-    console.log('Hourly limit reached for IP:', getClientIpWrapper(req));
-    res.status(options.statusCode).send(options.message);
+  if (!clientIp) {
+    clientIp = req.headers['x-forwarded-for'] || req.headers['remote-addr'] || '127.0.0.1';
   }
-});
+  console.log("IP obtained:", clientIp);
+  return clientIp as string;
+}
 
-const dailyLimiter = rateLimit({
-  windowMs: 24 * 60 * 60 * 1000, // 1 day
-  max: 10, // Limit each IP to x requests per day
-  message: 'Has excedido el límite de 100 solicitudes en 1 día.',
-  standardHeaders: true, // Return rate limit info in the RateLimit-* headers
-  legacyHeaders: false, // Disable the X-RateLimit-* headers
-  keyGenerator: (req) => {
+function rateLimit(windowMs: number, max: number, message: string) {
+  const hits = new Map<string, number[]>();
+
+  return async (req: NextRequest | any, res: any, next: () => void) => {
     const ip = getClientIpWrapper(req);
-    console.log(`IP utilizada para limitación: ${ip}`);
-    return ip; // Use the client IP for rate limiting
-  },
-  handler: (req, res, next, options) => {
-    console.log('Daily limit reached for IP:', getClientIpWrapper(req));
-    res.status(options.statusCode).send(options.message);
-  }
-});
+    const currentTime = Date.now();
+
+    if (!hits.has(ip)) {
+      hits.set(ip, []);
+    }
+
+    const timestamps = hits.get(ip) || [];
+    hits.set(ip, timestamps.filter(timestamp => currentTime - timestamp < windowMs));
+
+    if (hits.get(ip)!.length >= max) {
+      console.log(`Limit reached for IP: ${ip}`);
+      return { status: 429, message };
+    } else {
+      hits.get(ip)!.push(currentTime);
+      if (next) next();
+      return { status: 200 };
+    }
+  };
+}
+
+const minuteLimiter = rateLimit(60 * 1000, 2, 'You have exceeded the limit of 2 requests per minute.');
+const hourlyLimiter = rateLimit(60 * 60 * 1000, 5, 'You have exceeded the limit of 5 requests per hour.');
+const dailyLimiter = rateLimit(24 * 60 * 60 * 1000, 10, 'You have exceeded the limit of 10 requests per day.');
 
 export { minuteLimiter, hourlyLimiter, dailyLimiter };
