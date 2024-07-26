@@ -46,7 +46,7 @@ const MonthlyConsumptionForm: React.FC<MonthlyConsumptionFormProps> = ({ setMont
         ))}
       </div>
       {!submitted && (
-        <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded">
+        <button type="submit" className="px-4 py-2 bg-primary text-black rounded">
           Ingresar consumo
         </button>
       )}

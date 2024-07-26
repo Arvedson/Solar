@@ -9,6 +9,7 @@ import FadeSeparator from "@/components/app/FadeSeparator";
 import TChart from "@/components/Tchart";
 import Contacto from "@/components/app/Contacto";
 import VideoComponent from "@/components/app/VideoComponent";
+import DoubleWaveFooter from "@/components/test/DoubleWaveFooter";
 
 export default function Home() {
 
@@ -35,6 +36,7 @@ export default function Home() {
       <div id="three-buttons">
         <ThreeButtons />
       </div>
+      
       
     </main>
   );

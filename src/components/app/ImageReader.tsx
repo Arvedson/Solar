@@ -100,7 +100,7 @@ const ImageReader: React.FC<ImageReaderProps> = ({ onAnnualKwhChange }) => {
       <div className="flex justify-center">
         <button
           onClick={handleSubmit}
-          className="px-4 py-2 bg-primary text-white rounded mb-4 hover:bg-primary-foreground hover:text-primary transition"
+          className="px-4 py-2 bg-primary text-black text-bold rounded mb-4 hover:bg-primary-foreground hover:text-primary transition"
         >
           Leer imagen de tu recibo
         </button>

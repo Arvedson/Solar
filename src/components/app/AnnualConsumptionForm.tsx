@@ -43,7 +43,7 @@ const AnnualConsumptionForm: React.FC<AnnualConsumptionFormProps> = ({ annualCon
         {errors.annualConsumption && <p className="text-destructive-foreground">{errors.annualConsumption.message}</p>}
       </div>
       {showCalculateButton && !calculated && (
-        <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded">
+        <button type="submit" className="px-4 py-2 bg-primary text-black rounded">
           Calcular
         </button>
       )}

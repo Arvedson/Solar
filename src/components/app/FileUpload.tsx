@@ -35,7 +35,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesAccepted }) => {
   });
 
   return (
-    <div className="container mx-auto p-4 mt-2 justify-center">
+    <div className=" w-full justify-center">
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-md p-4 transition ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
@@ -44,7 +44,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesAccepted }) => {
         {
           isDragActive ?
             <p className="text-blue-700">Suelta los archivos aquí...</p> :
-            <p className="text-gray-700">Selecciona tu recibo de la luz.</p>
+            <p className="text-gray-700 text-center">Selecciona tu recibo de la luz.</p>
         }
       </div>
       <div className="mt-2">

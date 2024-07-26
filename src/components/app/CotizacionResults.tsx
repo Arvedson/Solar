@@ -130,14 +130,14 @@ const CotizacionResults: React.FC = () => {
             </div>
 
             
-            <div className="flex flex-col text-center mt-12 bg-primary p-4 border border-gray-300 rounded items-center gap-4 text-black max-w-[200px] mx-auto">
-      <h3 className="text-black text-2xl font-bold">Costo Total</h3>
-      <p className='font-bold'>${(18 * totalPrice * 1.8).toFixed(2)}</p>
+            <div className="flex flex-col text-center mt-12 bg-card p-4 border border-gray-300 rounded items-center gap-4 text-black max-w-[200px] mx-auto">
+      <h3 className="text-white text-2xl font-bold">Costo Total</h3>
+      <p className='text-white font-bold'>${(18 * totalPrice * 1.8).toFixed(2)}</p>
       <button
-        className="flex items-center justify-center text-xl text-white bg-blue-500 p-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
+        className="flex items-center justify-center text-xl text-white bg-gray-500 p-3  hover:bg-green-600 transition duration-300 ease-in-out"
         onClick={() => nextComponent()}
       >
-        Continuar <FaArrowRight className="ml-2" />
+        Ver más <FaArrowRight className="ml-2" />
       </button>
     </div>
           </div>
@@ -165,7 +165,7 @@ const CotizacionResults: React.FC = () => {
   }, [currentIndex]);
 
   return (
-    <div className="holaa bg-background text-foreground">
+    <div className=" bg-background text-foreground">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

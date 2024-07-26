@@ -19,7 +19,7 @@ const CotizarButton: React.FC<CotizarButtonProps> = ({
     <div className="flex justify-center mt-6">
       <button
         onClick={onCotizar}
-        className="bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition"
+        className="bg-primary text-black px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition"
       >
         Cotizar
       </button>

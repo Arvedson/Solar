@@ -24,13 +24,16 @@ const createItems = (items: { title: string; content: string; side: 'left' | 'ri
 const TChart: React.FC = () => {
   const initialItems = createItems([
     { title: '', content: '', side: 'left', className: 'item' },
+    { title: 'Genera Impacto', content: 'Tu proyecto ayudará a pagar el proyecto de alguien más', side: 'left', className: 'item' },
     { title: '', content: '', side: 'right', className: 'item2' },
-    { title: 'Misma calidad', content: 'La calidad no es negociable, solo te damos los precios mas justos', side: 'left', className: 'item' },
-    { title: 'Precios altos', content: 'Ineficiencia en la distribucion del trabajo', side: 'right', className: 'item2' },
+    { title: 'Cero ayuda', content: 'No ven por la comunidad', side: 'right', className: 'item2' },
+    { title: 'Misma Calidad', content: 'La calidad no es negociable, solo te damos los precios mas justos', side: 'left', className: 'item' },
+    { title: 'Precios Altos', content: 'Ineficiencia en la distribucion del trabajo', side: 'right', className: 'item2' },
     { title: 'Independencia', content: 'Dejar de pagar por luz', side: 'left', className: 'item' },
-    { title: 'Pagos infinitos', content: 'Un gasto constante para toda la vida es no cambiarte a solar', side: 'right', className: 'item2' },
-    { title: 'Somos diferentes', content: 'Nuestro enfoque se centra en ayudarte a ti y a tu familia', side: 'left', className: 'item' },
-    { title: 'Modelos de lucro', content: 'La mayoria de las empresas en el mundo, piensan en el margen; no en ti', side: 'right', className: 'item2' },
+    { title: 'Pagos Infinitos', content: 'Un gasto constante para toda la vida es no cambiarte a solar', side: 'right', className: 'item2' },
+    { title: 'Somos Diferentes', content: 'Nuestro enfoque se centra en ayudarte a ti y a tu familia', side: 'left', className: 'item' },
+    { title: 'Modelos de Lucro', content: 'La mayoria de las empresas en el mundo, piensan en el margen; no en ti', side: 'right', className: 'item2' },
+
   ]);
 
   const [items, setItems] = useState<Item[]>(initialItems);

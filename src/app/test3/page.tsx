@@ -1,11 +1,11 @@
 import React from 'react';
-import TChart from "../../components/Tchart";
-
+import DoubleWaveFooter from '@/components/test/DoubleWaveFooter'; 
 
 const TestPage: React.FC = () => {
     return (
       <div>
-        <TChart/>
+        <DoubleWaveFooter/>
+      
       </div>
      
 

@@ -202,7 +202,7 @@ const InstallSystemPage: React.FC = () => {
 
                 <button
                   onClick={handleCotizar}
-                  className="bg-primary text-primary-foreground px-6 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition flex items-center justify-center"
+                  className="bg-primary text-black px-6 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition flex items-center justify-center"
                 >
                   Cotizar
                 </button>
