@@ -7,13 +7,11 @@ import { sendEmail } from '@/utils/sendEmail';
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
-  // Obtener la IP del cliente y loguearla para depuración
   const clientIp = getClientIpWrapper(req);
   console.log('Client IP:', clientIp);
 
-  const next = () => {}; // Función vacía para satisfacer el tipo esperado
+  const next = () => {};
 
-  // Aplicar limitadores de tasa
   const minuteLimit = await minuteLimiter(req, new NextResponse(), next);
   if (minuteLimit.status !== 200) {
     return NextResponse.json({ error: minuteLimit.message }, { status: minuteLimit.status });
@@ -29,7 +27,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: dailyLimit.message }, { status: dailyLimit.status });
   }
 
-  // Continuar con el manejo de la solicitud si no se alcanzan los límites
   const { email } = await req.json();
 
   if (!email) {
@@ -37,13 +34,21 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    // Verificar si el correo ya está registrado
+    const existingSubscription = await prisma.subscription.findUnique({
+      where: { email },
+    });
+
+    if (existingSubscription) {
+      return NextResponse.json({ error: 'Email is already subscribed' }, { status: 409 });
+    }
+
     const subscription = await prisma.subscription.create({
       data: {
         email,
       },
     });
 
-    // Enviar correo de bienvenida
     await sendEmail({
       to: email,
       subject: 'Bienvenido a Ququlkan Solar',

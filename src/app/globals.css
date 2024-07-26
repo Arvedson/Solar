@@ -566,11 +566,35 @@
 
 
 /* Estilos para el componente Beneficios */
+
+/* styles.css */
+
+.no-hover{
+  background-color: hsl(var(--ring));
+  color: black;
+  border: 2px solid hsl(var(--popover));
+  opacity: 0.8;
+  
+  
+
+}
+.hover-background {
+  background-color: hsl(var(--tertiary));
+  
+  text-shadow: 
+  -1px -1px 0 hsl(var(--background)),  
+   1px -1px 0 hsl(var(--background)),
+  -1px  1px 0 hsl(var(--background)),
+   1px  1px 0 hsl(var(--background));
+}
+
 .benefit-item {
+  
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .benefit-item.active {
+  
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }

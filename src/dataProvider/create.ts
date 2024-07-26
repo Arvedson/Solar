@@ -1,7 +1,7 @@
 import { fetchUtils } from 'react-admin';
-import { CreateParams } from '../../types/dataProvider';  // Asegúrate de importar desde el archivo correcto
+import { CreateParams } from '../../types/dataProvider';
 
-const apiUrl = '/api';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 const httpClient = fetchUtils.fetchJson;
 
 const create = (resource: string, params: CreateParams) => {

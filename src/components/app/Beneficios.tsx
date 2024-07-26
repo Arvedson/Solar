@@ -48,6 +48,7 @@ const Beneficios: React.FC<BeneficiosProps> = ({ safariImage }) => {
 
   const [visibleIndices, setVisibleIndices] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState<string | null>(null);
+  const [hoverIndex, setHoverIndex] = useState<string | null>(null);
   const [isSafari, setIsSafari] = useState<boolean>(false);
   const observer = useRef<IntersectionObserver | null>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -116,15 +117,17 @@ const Beneficios: React.FC<BeneficiosProps> = ({ safariImage }) => {
         }}
       />
       <div className="relative container mx-auto px-6 text-center z-10">
-        <h2 className="pb-3 relative inline-block text-4xl font-bold mb-12 text-primary-foreground bg-opacity-75 bg-black px-4 py-2 rounded-md shadow-md">
-          Beneficios de la Energía Solar
-        </h2>
+        <h1 className={`pb-3 relative inline-block text-4xl font-bold mb-12 bg-opacity-75 px-4 py-2 rounded-md shadow-md transition duration-300 ${hoverIndex !== null ? 'hover-background' : 'no-hover'}`}>
+          Energia Ancestral para un Mexico moderno.
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {beneficios.map((beneficio, index) => (
             <div 
               key={index}
               data-index={index.toString()}
               className={`benefit-item group p-6 bg-card bg-opacity-75 rounded-lg shadow-md transition duration-300 ease-in-out transform ${visibleIndices.includes(index.toString()) ? 'scale-100 opacity-100' : 'scale-95 opacity-0'} ${activeIndex === index.toString() ? 'active' : ''} hover:scale-105 hover:shadow-2xl hover:bg-secondary hover:text-secondary-foreground`}
+              onMouseEnter={() => setHoverIndex(index.toString())}
+              onMouseLeave={() => setHoverIndex(null)}
             >
               <div className={`icon transition duration-300 ease-in-out ${beneficio.hoverIconClass}`}>
                 {React.cloneElement(beneficio.icon, { className: 'text-6xl mb-4' })}
