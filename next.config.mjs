@@ -1,4 +1,6 @@
-// next.config.mjs
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -15,6 +17,11 @@ const nextConfig = {
   devIndicators: {
     autoPrerender: false,
   },
+  webpack: (config) => {
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    return config;
+  }
 };
 
 export default nextConfig;
