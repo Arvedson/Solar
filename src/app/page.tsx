@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Section2 from "@/components/app/Seccion2";
+import Section2 from "../components/app/Seccion2";
 
 import ThreeButtons from "../components/ThreeButtons ";
 import Beneficios from "../components/app/Beneficios";

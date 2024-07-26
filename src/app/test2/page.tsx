@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 
-import SolarReturnDashboard from '@/components/app/SolarReturnDashboard';
+import SolarReturnDashboard from '../../components/app/SolarReturnDashboard';
 
 
 const TestPage: React.FC = () => {

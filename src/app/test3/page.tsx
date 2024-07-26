@@ -1,5 +1,5 @@
 import React from 'react';
-import DoubleWaveFooter from '@/components/test/DoubleWaveFooter'; 
+import DoubleWaveFooter from '../../components/test/DoubleWaveFooter'; 
 
 const TestPage: React.FC = () => {
     return (
