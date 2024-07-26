@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo -H 0.0.0.0 -p 3000 ",
+    "prebuild": "rm -rf node_modules .next && npm install",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
