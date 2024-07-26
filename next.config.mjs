@@ -1,4 +1,5 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 /**
  * @type {import('next').NextConfig}
@@ -17,6 +18,7 @@ const nextConfig = {
     autoPrerender: false,
   },
   webpack: (config, { isServer }) => {
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
   }
