@@ -3,13 +3,13 @@
 import React from "react";
 import Section2 from "@/components/app/Seccion2";
 
-import ThreeButtons from "@/components/ThreeButtons ";
-import Beneficios from "@/components/app/Beneficios";
-import FadeSeparator from "@/components/app/FadeSeparator";
-import TChart from "@/components/Tchart";
-import Contacto from "@/components/app/Contacto";
-import VideoComponent from "@/components/app/VideoComponent";
-import DoubleWaveFooter from "@/components/test/DoubleWaveFooter";
+import ThreeButtons from "../components/ThreeButtons ";
+import Beneficios from "../components/app/Beneficios";
+import FadeSeparator from "../components/app/FadeSeparator";
+import TChart from "../components/Tchart";
+import Contacto from "../components/app/Contacto";
+import VideoComponent from "../components/app/VideoComponent";
+
 
 export default function Home() {
 

@@ -2,7 +2,7 @@
 "use client"
 import React from 'react';
 import ClientRouterLayout from '../client-router-layout';
-import InstallSystemPage from '@/components/app/InstallSystemPage';
+import InstallSystemPage from '../../components/app/InstallSystemPage';
 import { CotizacionProvider } from '../../context/CotizacionContext';
 
 const CotizarPage = () => {
