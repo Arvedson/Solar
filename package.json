@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo -H 0.0.0.0 -p 3000 ",
+    "preinstall": "rm -rf node_modules .next",
+    "postinstall": "prisma generate",
     "build": "next build",
+    "dev": "next dev --turbo -H 0.0.0.0 -p 3000",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
     "studio": "prisma studio",
-    "postinstall": "prisma generate",
     "prisma:migrate:dev": "cross-env DATABASE_URL=$DATABASE_URL_DEVELOPMENT npx prisma migrate dev",
     "prisma:migrate:prod": "cross-env DATABASE_URL=$DATABASE_URL_PRODUCTION npx prisma migrate deploy"
   },
