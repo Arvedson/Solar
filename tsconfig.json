@@ -20,7 +20,7 @@
         "name": "next"
       }
     ],
-    "typeRoots": ["./node_modules/@types", "./types", "../types/next"],
+    "typeRoots": ["./node_modules/@types", "./types"], // Removed "../types/next"
     "types": ["@types/node", "@types/react", "@types/react-dom", "@prisma/client"]
   },
   "include": [
