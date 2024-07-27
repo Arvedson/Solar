@@ -1,9 +1,10 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { prisma } from '../../../../lib/prisma';
-
+import { PrismaClient } from '@prisma/client';
 import { minuteLimiter, hourlyLimiter, dailyLimiter } from '../../../middleware/rateLimit';
 import { getClientIpWrapper } from '@/middleware/getIp';
 import { sendEmail } from '@/utils/sendEmail';
+
+const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   const clientIp = getClientIpWrapper(req);
