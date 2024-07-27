@@ -34,15 +34,6 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Verificar si el correo ya está registrado
-    const existingSubscription = await prisma.subscription.findUnique({
-      where: { email },
-    });
-
-    if (existingSubscription) {
-      return NextResponse.json({ error: 'Email is already subscribed' }, { status: 409 });
-    }
-
     const subscription = await prisma.subscription.create({
       data: {
         email,
@@ -58,6 +49,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(subscription, { status: 201 });
   } catch (error) {
+    if (error.code === 'P2002') {
+      return NextResponse.json({ error: 'Email is already subscribed' }, { status: 409 });
+    }
     console.error(error);
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
