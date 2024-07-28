@@ -1,11 +1,11 @@
 // src/app/layout.tsx
-
 import Navbar from "../components/app/Navbar";
 import "./globals.css";
-import { ThemeProvider } from "../components/theme-provider"; 
-import ClerkWrapper from "@/clerk"; 
+import { ThemeProvider } from "../components/theme-provider";
 import DoubleWaveFooter from "@/components/test/DoubleWaveFooter";
-import Footer from "../components/app/Footer"
+import Footer from "../components/app/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
+import { clerkConfig } from "@/lib/clerkConfig";
 
 export default function RootLayout({
   children,
@@ -15,14 +15,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClerkWrapper>
+        <ClerkProvider publishableKey={clerkConfig.publishableKey}>
           <ThemeProvider attribute="class">
             <Navbar />
             {children}
-            <DoubleWaveFooter/>
-            <Footer/>
+            <DoubleWaveFooter />
+            <Footer />
           </ThemeProvider>
-        </ClerkWrapper>
+        </ClerkProvider>
       </body>
     </html>
   );

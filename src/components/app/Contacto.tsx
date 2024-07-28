@@ -1,3 +1,5 @@
+// src/app/Contacto.tsx
+
 import React, { useState } from 'react';
 import FileUpload from './FileUpload';
 
@@ -90,19 +92,17 @@ const Contacto: React.FC = () => {
           </form>
         </div>
         <div className="w-full lg:w-1/2">
-
           <div className="w-full h-64 bg-gray-300 rounded-lg overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.485451501998!2d-103.3767416!3d25.573315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdadc7e25883b%3A0x72375708d061f4cb!2sTabachines%2C%20Quintas%20Campestres%20los%20Laureles%2C%2027053%20Torre%C3%B3n%2C%20Coah.!5e0!3m2!1ses!2smx!4v1580397282368!5m2!1ses!2smx"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            aria-hidden="false"
-            tabIndex={0}
-          ></iframe>
-
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.485451501998!2d-103.3767416!3d25.573315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdadc7e25883b%3A0x72375708d061f4cb!2sTabachines%2C%20Quintas%20Campestres%20los%20Laureles%2C%2027053%20Torre%C3%B3n%2C%20Coah.!5e0!3m2!1ses!2smx!4v1580397282368!5m2!1ses!2smx"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              aria-hidden="false"
+              tabIndex={0}
+            ></iframe>
           </div>
         </div>
       </div>

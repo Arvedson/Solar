@@ -14,7 +14,8 @@
     "prisma:migrate:prod": "cross-env DATABASE_URL=$DATABASE_URL_PRODUCTION npx prisma migrate deploy"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.2.6",
+    "@clerk/clerk-sdk-node": "^5.0.20",
+    "@clerk/nextjs": "^5.2.8",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",

@@ -1,7 +1,10 @@
-"use client"
+// src/components/Footer.tsx
+
+"use client";
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import SubscribeForm from '../app/SubscribeForm';
+import ScrollToSection from '../../components/ScrollToSection'; // Asegúrate de importar el componente ScrollToSection
 
 const Footer = () => {
   return (
@@ -13,9 +16,9 @@ const Footer = () => {
             <p className="text-sm text-gray-700">&copy; 2024 Ququlkan Solar. Todos los derechos reservados.</p>
           </div>
           <div className="flex space-x-4 mb-4">
-            <a href="#" className="hover:text-black">Política de Privacidad</a>
-            <a href="#" className="hover:text-black">Términos de Servicio</a>
-            <a href="#" className="hover:text-black">Contáctanos</a>
+            <a href="/privacidad" className="hover:text-black">Política de Privacidad</a>
+            <a href="/terminos-servicio" className="hover:text-black">Términos de Servicio</a>
+            <a href="/contacto" className="text-gray-700 hover:text-black">Contáctanos</a>
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 p-4">

@@ -1,12 +1,11 @@
 // src/app/admin2/page.tsx
-"use client"
-
-import withAdminProtection from "../../hoc/withAdminProtection";
+"use client";
+import withAdminAuth from "@/lib/withAuth";
 import dynamic from 'next/dynamic';
 
 const AdminApp = dynamic(() => import('../../components/admin/AdminApp'), { ssr: false });
 
-const AdminPage: React.FC = () => {
+const Admin2Page: React.FC = () => {
   return (
     <div>
       <AdminApp />
@@ -14,4 +13,4 @@ const AdminPage: React.FC = () => {
   );
 };
 
-export default withAdminProtection(AdminPage);
+export default withAdminAuth(Admin2Page);

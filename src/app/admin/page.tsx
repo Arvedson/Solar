@@ -1,3 +1,4 @@
+// src/app/admin/page.tsx
 "use client";
 import dynamic from 'next/dynamic';
 import dataProvider from '../../dataProvider';
@@ -10,6 +11,7 @@ import EstadoCreate from '../../components/admin/estados/EstadoCreate';
 import ServiceAreaList from '../../components/admin/serviceAreas/ServiceAreaList';
 import ServiceAreaCreate from '../../components/admin/serviceAreas/ServiceAreaCreate';
 import CustomLayout from '../../components/admin/CustomLayout';
+import withAdminAuth from '@/lib/withAuth';
 
 const Admin = dynamic(() => import('react-admin').then(mod => mod.Admin), { ssr: false });
 const Resource = dynamic(() => import('react-admin').then(mod => mod.Resource), { ssr: false });
@@ -23,4 +25,4 @@ const AdminPage = () => (
   </Admin>
 );
 
-export default AdminPage;
+export default withAdminAuth(AdminPage);
