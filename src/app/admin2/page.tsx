@@ -1,16 +1,17 @@
 // src/app/admin2/page.tsx
-"use client";
-import withAdminAuth from "@/lib/withAuth";
 import dynamic from 'next/dynamic';
+import ProtectedComponent from '../../components/app/ProtectedComponent';
 
-const AdminApp = dynamic(() => import('../../components/admin/AdminApp'), { ssr: false });
+const AdminApp = dynamic(() => import('@/components/admin/AdminApp'), { ssr: false });
 
-const Admin2Page: React.FC = () => {
+const Admin2Page = () => {
   return (
-    <div>
-      <AdminApp />
-    </div>
+    <ProtectedComponent>
+      <div>
+        <AdminApp />
+      </div>
+    </ProtectedComponent>
   );
 };
 
-export default withAdminAuth(Admin2Page);
+export default Admin2Page;

@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     "src/server/ocr/ocrProcessor.js",
     "types/**/*.d.ts"
-  ],
+, "src/app/login/[[...rest]].js"  ],
   "exclude": ["node_modules"]
 }

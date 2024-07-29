@@ -5,7 +5,7 @@ export interface Pagination {
 
 export interface Sort {
   field: string;
-  order: 'ASC' | 'DESC';
+  order: "ASC" | "DESC";
 }
 
 export interface Filter {
@@ -63,7 +63,10 @@ export interface DataProvider {
   update: (resource: string, params: UpdateParams) => Promise<any>;
   delete: (resource: string, params: DeleteParams) => Promise<any>;
   getMany: (resource: string, params: GetManyParams) => Promise<any>;
-  getManyReference: (resource: string, params: GetManyReferenceParams) => Promise<any>;
+  getManyReference: (
+    resource: string,
+    params: GetManyReferenceParams
+  ) => Promise<any>;
   updateMany: (resource: string, params: UpdateManyParams) => Promise<any>;
   deleteMany: (resource: string, params: DeleteManyParams) => Promise<any>;
 }

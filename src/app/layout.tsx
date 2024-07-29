@@ -1,7 +1,6 @@
-// src/app/layout.tsx
 import Navbar from "../components/app/Navbar";
 import "./globals.css";
-import { ThemeProvider } from "../components/theme-provider";
+
 import DoubleWaveFooter from "@/components/test/DoubleWaveFooter";
 import Footer from "../components/app/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -16,12 +15,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ClerkProvider publishableKey={clerkConfig.publishableKey}>
-          <ThemeProvider attribute="class">
-            <Navbar />
-            {children}
-            <DoubleWaveFooter />
-            <Footer />
-          </ThemeProvider>
+          <Navbar />
+          {children}
+          <DoubleWaveFooter />
+          <Footer />
         </ClerkProvider>
       </body>
     </html>
