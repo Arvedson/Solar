@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
-import { FaFlask, FaSolarPanel, FaMoneyBillWave } from 'react-icons/fa';
+import React from "react";
+import Link from "next/link";
+import { FaFlask, FaSolarPanel, FaMoneyBillWave } from "react-icons/fa";
 
 const ThreeButtons: React.FC = () => {
   return (

@@ -1,5 +1,6 @@
 import Navbar from "../components/app/Navbar";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import DoubleWaveFooter from "@/components/test/DoubleWaveFooter";
 import Footer from "../components/app/Footer";
@@ -17,6 +18,7 @@ export default function RootLayout({
         <ClerkProvider publishableKey={clerkConfig.publishableKey}>
           <Navbar />
           {children}
+          <Analytics />
           <DoubleWaveFooter />
           <Footer />
         </ClerkProvider>
