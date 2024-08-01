@@ -65,7 +65,7 @@ const EstructuraAproximada: React.FC<EstructuraAproximadaProps> = ({ panelCount 
             rel="noopener noreferrer"
             className="botoncards"
           >
-            Ver Detalles
+            Ver más
           </a>
         </div>
       </div>

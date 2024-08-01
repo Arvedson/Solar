@@ -69,7 +69,7 @@ const ProteccionAproximada: React.FC<ProteccionAproximadaProps> = ({ panelCount 
             href="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/componentes%2FProteccionesElectricasSelladas%2FProtecciones.png?alt=media&token=2871e5b4-aaf8-43ae-b587-7d31e71e320a"
             target="_blank"
             rel="noopener noreferrer"
-            className="botoncards"
+            className="botoncardsproteccion z-10 "
           >
             Ver Más
           </a>

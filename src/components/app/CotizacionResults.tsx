@@ -196,7 +196,7 @@ const CotizacionResults: React.FC = () => {
   }, [currentIndex]);
 
   return (
-    <div className=" bg-background text-foreground">
+    <div className=" text-foreground">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

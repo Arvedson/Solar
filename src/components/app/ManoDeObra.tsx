@@ -39,11 +39,11 @@ const ManoDeObra: React.FC<ManoDeObraProps> = ({ panelCount }) => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="flex flex-col bg-card p-6 rounded-lg shadow-lg border border-gray-300 mt-6 mx-auto max-w-3xl justify-center items-center "
+      className="bg-card1t   rounded-lg shadow-lg border border-gray-300   "
     >
-      <h2 className="flex flex-col text-2xl font-bold mb-4">Costo Mano de Obra y Permisos</h2>
+      <h2 className=" text-2xl font-bold mb-4 self-center">Obra y Permisos</h2>
       <p><strong>Cantidad de Paneles:</strong> {panelCount}</p>
-      <p><strong>Costo de la Mano de Obra y permisos:</strong> ${costoManoDeObraUSD.toFixed(2)} USD</p>
+      <p className='flex flex-col items-center'><strong>Costo de la Mano de Obra y permisos:</strong> ${costoManoDeObraUSD.toFixed(2)} USD</p>
     </motion.div>
   );
 };
