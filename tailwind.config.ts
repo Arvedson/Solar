@@ -1,12 +1,12 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -56,7 +56,6 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,16 +64,16 @@ const config = {
       },
       keyframes: {
         "border-fill": {
-          '0%': { borderColor: 'transparent' },
-          '100%': { borderColor: 'currentColor' },
+          "0%": { borderColor: "transparent" },
+          "100%": { borderColor: "currentColor" },
         },
         "border-draw": {
-          '0%': { strokeDasharray: '0, 100' },
-          '100%': { strokeDasharray: '100, 0' },
+          "0%": { strokeDasharray: "0, 100" },
+          "100%": { strokeDasharray: "100, 0" },
         },
         "fill-background": {
-          '0%': { backgroundSize: '0% 100%' },
-          '100%': { backgroundSize: '100% 100%' },
+          "0%": { backgroundSize: "0% 100%" },
+          "100%": { backgroundSize: "100% 100%" },
         },
       },
       animation: {
@@ -82,9 +81,24 @@ const config = {
         "border-draw": "border-draw 2s linear forwards",
         "fill-background": "fill-background 0.3s ease-in-out forwards",
       },
+      backgroundImage: {
+        'magic-pattern': 'radial-gradient(#ffffff 1.7px, transparent 1.7px), radial-gradient(#ffffff 1.7px, #00264D 1.7px)',
+      },
+      backgroundColor: {
+        'magic-pattern': '#001a33',
+      },
+      backgroundSize: {
+        'magic-pattern': '132px 132px',
+      },
+      backgroundPosition: {
+        'magic-pattern': '0 0, 68px 68px',
+      },
+      opacity: {
+        '0': '0',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

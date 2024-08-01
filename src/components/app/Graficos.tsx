@@ -90,7 +90,7 @@ const Graficos: React.FC = () => {
             </ul>
 
             <div className='botones '>
-            <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="wa bg-primary text-white px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3 flex items-center">
+            <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="wa bg-primary text-secondary px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition gap-3 flex items-center">
             <FontAwesomeIcon icon={faWhatsapp} className="icon-contact" /> Contáctanos
             </a>
               <div className="dropdown">

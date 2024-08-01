@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
-import { useCotizacion } from '@/context/CotizacionContext';
-import { fetchPanelData } from '@/services/panelService';
-import InversorCalculator from '../../components/app/InversorCalculator';
-import EstructuraAproximada from './EstructuraAproximada';
-import ProteccionAproximada from './ProteccionAproximada';
-import SistemaTierras from './SistemaTierras';
-import ManoDeObra from './ManoDeObra';
-import { FaArrowRight } from 'react-icons/fa';
-import Graficos from './Graficos';
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { useCotizacion } from "@/context/CotizacionContext";
+import { fetchPanelData } from "@/services/panelService";
+import InversorCalculator from "../../components/app/InversorCalculator";
+import EstructuraAproximada from "./EstructuraAproximada";
+import ProteccionAproximada from "./ProteccionAproximada";
+import SistemaTierras from "./SistemaTierras";
+import ManoDeObra from "./ManoDeObra";
+import { FaArrowRight } from "react-icons/fa";
+import Graficos from "./Graficos";
 
 interface PanelSolar {
   id: number;
@@ -35,7 +35,14 @@ interface PanelSolar {
 }
 
 const CotizacionResults: React.FC = () => {
-  const { annualConsumption, setPanelCount, setPanelCost, panelCount, panelCost, totalPrice } = useCotizacion();
+  const {
+    annualConsumption,
+    setPanelCount,
+    setPanelCost,
+    panelCount,
+    panelCost,
+    totalPrice,
+  } = useCotizacion();
   const [panel, setPanel] = useState<PanelSolar | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -55,8 +62,11 @@ const CotizacionResults: React.FC = () => {
 
       const dailyConsumption = annualConsumption / 365;
       const adjustedDailyConsumption = dailyConsumption * systemLossFactor;
-      const requiredSystemSizeKW = adjustedDailyConsumption / hoursOfSunlightPerDay;
-      const neededPanels = Math.ceil(requiredSystemSizeKW / (panel.capacidadW / 1000));
+      const requiredSystemSizeKW =
+        adjustedDailyConsumption / hoursOfSunlightPerDay;
+      const neededPanels = Math.ceil(
+        requiredSystemSizeKW / (panel.capacidadW / 1000)
+      );
 
       setPanelCount(neededPanels);
       const panelTotalCost = neededPanels * panel.precio;
@@ -66,16 +76,18 @@ const CotizacionResults: React.FC = () => {
 
   const components = [
     {
-      id: 'cotizationResults',
+      id: "cotizationResults",
       component: (
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
-          className="bg-background text-foreground"
+          className="bg-magic-pattern text-foreground"
         >
           <div>
-            <h2 className="text-2xl font-bold mb-6 text-center">Resultados de la Cotización</h2>
+            <h1 className=" flex text-2xl font-bold mb-6 text-center bg-card1 p-6 rounded-lg shadow-lg border border-gray-300  flex-col items-center justify-center ">
+              Resultados de tu Cotización
+            </h1>
             <div className="gridyflex">
               <div className="flip-card">
                 <div className="flip-card-inner">
@@ -87,13 +99,29 @@ const CotizacionResults: React.FC = () => {
                       className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
                     >
                       <div className="flex flex-col">
-                        <h3 className="text-2xl font-bold mb-4">Paneles Solares</h3>
-                        <p><strong>Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</p>
+                        <h3 className="text-2xl font-bold mb-4">
+                          Paneles Solares
+                        </h3>
+                        <p>
+                          <strong>Consumo Anual:</strong>{" "}
+                          {annualConsumption
+                            ? `${annualConsumption} kWh`
+                            : "No ingresado"}
+                        </p>
                         {panel && (
                           <>
-                            <p className="textoo"><strong>Modelo del Panel: </strong> SOLAREVER {panel.modelo}</p>
-                            <p className="textoo"><strong>Cantidad de Paneles Necesarios:</strong> {panelCount}</p>
-                            <p className="textoo"><strong>Precio Total:</strong> ${panelCost.toFixed(2)}</p>
+                            <p className="textoo">
+                              <strong>Modelo del Panel: </strong> SOLAREVER{" "}
+                              {panel.modelo}
+                            </p>
+                            <p className="textoo">
+                              <strong>Cantidad de Paneles Necesarios:</strong>{" "}
+                              {panelCount}
+                            </p>
+                            <p className="textoo">
+                              <strong>Precio Total:</strong> $
+                              {panelCost.toFixed(2)}
+                            </p>
                           </>
                         )}
                       </div>
@@ -122,29 +150,32 @@ const CotizacionResults: React.FC = () => {
                   </div>
                 </div>
               </div>
-              {panel && <InversorCalculator panel={panel} panelCount={panelCount} />}
+              {panel && (
+                <InversorCalculator panel={panel} panelCount={panelCount} />
+              )}
               <EstructuraAproximada panelCount={panelCount} />
               <ProteccionAproximada panelCount={panelCount} />
               <SistemaTierras panelCount={panelCount} />
               <ManoDeObra panelCount={panelCount} />
             </div>
 
-            
             <div className="flex flex-col text-center mt-12 bg-card p-4 border border-gray-300 rounded items-center gap-4 text-black max-w-[200px] mx-auto">
-      <h3 className="text-white text-2xl font-bold">Costo Total</h3>
-      <p className='text-white font-bold'>${(18 * totalPrice * 1.8).toFixed(2)}</p>
-      <button
-        className="flex items-center justify-center text-xl text-white bg-gray-500 p-3  hover:bg-green-600 transition duration-300 ease-in-out"
-        onClick={() => nextComponent()}
-      >
-        Ver más <FaArrowRight className="ml-2" />
-      </button>
-    </div>
+              <h3 className="text-white text-2xl font-bold">Costo Total</h3>
+              <p className="text-white font-bold">
+                ${(18 * totalPrice * 1.8).toFixed(2)}
+              </p>
+              <button
+                className="flex items-center  justify-center text-xl text-white bg-gray-500 p-3  hover:bg-primary transition duration-300 ease-in-out rounded hover:text-black"
+                onClick={() => nextComponent()}
+              >
+                Ver más <FaArrowRight className="ml-2" />
+              </button>
+            </div>
           </div>
         </motion.div>
-      )
+      ),
     },
-    { id: 'graficos', component: <Graficos /> },
+    { id: "graficos", component: <Graficos /> },
   ];
 
   const nextComponent = () => {

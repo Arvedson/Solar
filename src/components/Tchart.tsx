@@ -94,7 +94,7 @@ const TChart: React.FC = () => {
       {isOrganized ? 'Con nosotros' : 'Toma el control'}
     </h1>
   </div>
-  <FadeSeparator endColor="#17171c" flip />
+  <FadeSeparator endColor="hsl(var(--secondary))" flip />
   <div className={`t-chart-container ${isOrganized ? 'h-auto' : 'h-screen'} relative`} ref={ref}>
     <div className={`gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 columns-container ${isOrganized ? 'flex' : ''}`}>
       <div className="left-column">

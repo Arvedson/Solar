@@ -1,33 +1,43 @@
-'use client';
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useCotizacion } from '@/context/CotizacionContext';
-import AnnualConsumptionForm from './AnnualConsumptionForm';
-import BimonthlyConsumptionForm from './BimonthlyConsumptionForm';
-import MonthlyConsumptionForm from './MonthlyConsumptionForm';
-import FileUpload from './FileUpload';
-import ComboboxTarifas from './ComboboxTarifas';
-import TarifasInfo from './TarifasInfo';
-import ImageReader from './ImageReader';
-import AnnualConsumptionComponent from './AnnualConsumptionComponent ';
-import CotizacionResults from './CotizacionResults';
-import Graficos from './Graficos';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-
+"use client";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useCotizacion } from "@/context/CotizacionContext";
+import AnnualConsumptionForm from "./AnnualConsumptionForm";
+import BimonthlyConsumptionForm from "./BimonthlyConsumptionForm";
+import MonthlyConsumptionForm from "./MonthlyConsumptionForm";
+import FileUpload from "./FileUpload";
+import ComboboxTarifas from "./ComboboxTarifas";
+import TarifasInfo from "./TarifasInfo";
+import ImageReader from "./ImageReader";
+import AnnualConsumptionComponent from "./AnnualConsumptionComponent ";
+import CotizacionResults from "./CotizacionResults";
+import Graficos from "./Graficos";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const InstallSystemPage: React.FC = () => {
-  const { annualConsumption, setAnnualConsumption, selectedTarifa, setSelectedTarifa } = useCotizacion();
-  const [selectedForm, setSelectedForm] = useState<'annual' | 'bimonthly' | 'monthly' | null>(null);
+  const {
+    annualConsumption,
+    setAnnualConsumption,
+    selectedTarifa,
+    setSelectedTarifa,
+  } = useCotizacion();
+  const [selectedForm, setSelectedForm] = useState<
+    "annual" | "bimonthly" | "monthly" | null
+  >(null);
   const [showTarifasInfo, setShowTarifasInfo] = useState<boolean>(false);
-  const [showAnnualConsumptionComponent, setShowAnnualConsumptionComponent] = useState<boolean>(false);
-  const [highlightAnnualInput, setHighlightAnnualInput] = useState<boolean>(false);
+  const [showAnnualConsumptionComponent, setShowAnnualConsumptionComponent] =
+    useState<boolean>(false);
+  const [highlightAnnualInput, setHighlightAnnualInput] =
+    useState<boolean>(false);
   const [calculated, setCalculated] = useState(false);
   const [showCalculateButton, setShowCalculateButton] = useState(true);
   const [showTarifaWarning, setShowTarifaWarning] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleCheckboxChange = (formType: 'annual' | 'bimonthly' | 'monthly') => {
+  const handleCheckboxChange = (
+    formType: "annual" | "bimonthly" | "monthly"
+  ) => {
     setSelectedForm((prevForm) => (prevForm === formType ? null : formType));
   };
 
@@ -68,7 +78,7 @@ const InstallSystemPage: React.FC = () => {
     const totalAnnual = consumption;
     setAnnualConsumption(totalAnnual);
     setHighlightAnnualInput(true);
-    setSelectedForm('annual');
+    setSelectedForm("annual");
     setCalculated(true);
     setShowCalculateButton(false);
   };
@@ -77,7 +87,7 @@ const InstallSystemPage: React.FC = () => {
     const totalAnnual = consumption;
     setAnnualConsumption(totalAnnual);
     setHighlightAnnualInput(true);
-    setSelectedForm('annual');
+    setSelectedForm("annual");
     setCalculated(true);
     setShowCalculateButton(false);
   };
@@ -85,7 +95,7 @@ const InstallSystemPage: React.FC = () => {
   const handleImageReaderSubmit = (annualKwh: number) => {
     setAnnualConsumption(annualKwh);
     setHighlightAnnualInput(true);
-    setSelectedForm('annual');
+    setSelectedForm("annual");
     setCalculated(true);
     setShowCalculateButton(false);
   };
@@ -108,20 +118,24 @@ const InstallSystemPage: React.FC = () => {
 
   const components = [
     {
-      id: 'initial',
+      id: "initial",
       component: (
         <div className="bg-card p-6 rounded-lg shadow-lg border border-gray-300">
-          <h1 className="text-3xl font-bold mb-6 text-center">Instala tu Sistema</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">
+            Instala tu Sistema
+          </h1>
           <div className="">
-            <label className="block text-lg font-semibold mb-4 text-center">Consumo Eléctrico</label>
+            <label className="block text-lg font-semibold mb-4 text-center">
+              Consumo Eléctrico
+            </label>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
               <div className="flex items-center space-x-2 bg-muted p-2 rounded-lg border">
                 <input
                   type="checkbox"
                   id="cbx-annual"
                   style={{ display: "none" }}
-                  checked={selectedForm === 'annual'}
-                  onChange={() => handleCheckboxChange('annual')}
+                  checked={selectedForm === "annual"}
+                  onChange={() => handleCheckboxChange("annual")}
                   disabled={calculated}
                 />
                 <label htmlFor="cbx-annual" className="check">
@@ -137,8 +151,8 @@ const InstallSystemPage: React.FC = () => {
                   type="checkbox"
                   id="cbx-bimonthly"
                   style={{ display: "none" }}
-                  checked={selectedForm === 'bimonthly'}
-                  onChange={() => handleCheckboxChange('bimonthly')}
+                  checked={selectedForm === "bimonthly"}
+                  onChange={() => handleCheckboxChange("bimonthly")}
                   disabled={calculated}
                 />
                 <label htmlFor="cbx-bimonthly" className="check">
@@ -154,8 +168,8 @@ const InstallSystemPage: React.FC = () => {
                   type="checkbox"
                   id="cbx-monthly"
                   style={{ display: "none" }}
-                  checked={selectedForm === 'monthly'}
-                  onChange={() => handleCheckboxChange('monthly')}
+                  checked={selectedForm === "monthly"}
+                  onChange={() => handleCheckboxChange("monthly")}
                   disabled={calculated}
                 />
                 <label htmlFor="cbx-monthly" className="check">
@@ -170,18 +184,29 @@ const InstallSystemPage: React.FC = () => {
 
             <div className="flex flex-col items-center">
               <p className="text-muted-foreground text-center mt-6">
-                Selecciona una opción para <span className="highlight">ingresar tu consumo eléctrico.</span>
+                Selecciona una opción para{" "}
+                <span className="highlight">
+                  ingresar tu consumo eléctrico.
+                </span>
               </p>
               <p className="text-muted-foreground text-center mt-4">
-                <span className="highlight">Ingresa tu consumo eléctrico</span> mensual, bimensual o anual.
+                <span className="highlight">Ingresa tu consumo eléctrico</span>{" "}
+                mensual, bimensual o anual.
               </p>
 
-              <ComboboxTarifas className="mt-6" onSelectTarifa={handleSelectTarifa} />
+              <ComboboxTarifas
+                className="mt-6"
+                onSelectTarifa={handleSelectTarifa}
+              />
             </div>
 
             {showTarifaWarning && (
               <div className="bg-red-200 text-red-800 p-4 rounded-lg mt-4 ">
-                <p>No has ingresado tu tarifa, esto no afecta tu cotización pero sí afecta en poder darte una comparativa de tu antes y después.</p>
+                <p>
+                  No has ingresado tu tarifa, esto no afecta tu cotización pero
+                  sí afecta en poder darte una comparativa de tu antes y
+                  después.
+                </p>
                 <button
                   onClick={continueWithoutTarifa}
                   className="bg-primary text-primary-foreground mt-2 px-4 py-2 rounded-lg shadow-lg hover:bg-primary-foreground hover:text-primary transition"
@@ -211,30 +236,54 @@ const InstallSystemPage: React.FC = () => {
           </div>
 
           <div className="bg-card p-6 rounded-lg shadow-lg ">
-            {selectedForm === 'annual' && <AnnualConsumptionForm annualConsumption={annualConsumption} setAnnualConsumption={handleAnnualSubmit} highlight={highlightAnnualInput} showCalculateButton={showCalculateButton} />}
-            {selectedForm === 'bimonthly' && <BimonthlyConsumptionForm setBimonthlyConsumption={handleBimonthlySubmit} />}
-            {selectedForm === 'monthly' && <MonthlyConsumptionForm setMonthlyConsumption={handleMonthlySubmit} />}
+            {selectedForm === "annual" && (
+              <AnnualConsumptionForm
+                annualConsumption={annualConsumption}
+                setAnnualConsumption={handleAnnualSubmit}
+                highlight={highlightAnnualInput}
+                showCalculateButton={showCalculateButton}
+              />
+            )}
+            {selectedForm === "bimonthly" && (
+              <BimonthlyConsumptionForm
+                setBimonthlyConsumption={handleBimonthlySubmit}
+              />
+            )}
+            {selectedForm === "monthly" && (
+              <MonthlyConsumptionForm
+                setMonthlyConsumption={handleMonthlySubmit}
+              />
+            )}
           </div>
 
           <ImageReader onAnnualKwhChange={handleImageReaderSubmit} />
-         
 
           <div className="mt-6 gap-6 flex flex-col sm:flex-row justify-center items-center">
-            <button onClick={toggleTarifasInfo} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-muted hover:text-muted-foreground transition">
-              {showTarifasInfo ? 'Ocultar Información de Tarifas' : 'Mostrar Información de Tarifas'}
+            <button
+              onClick={toggleTarifasInfo}
+              className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg mb-4 sm:mb-0 hover:bg-muted hover:text-muted-foreground transition"
+            >
+              {showTarifasInfo
+                ? "Ocultar Información de Tarifas"
+                : "Mostrar Información de Tarifas"}
             </button>
-            <button onClick={toggleAnnualConsumptionComponent} className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-muted hover:text-muted-foreground transition">
-              {showAnnualConsumptionComponent ? 'Ocultar como interpretar mi recibo' : 'Como interpretar mi recibo?'}
+            <button
+              onClick={toggleAnnualConsumptionComponent}
+              className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg hover:bg-muted hover:text-muted-foreground transition"
+            >
+              {showAnnualConsumptionComponent
+                ? "Ocultar como interpretar mi recibo"
+                : "Como interpretar mi recibo?"}
             </button>
           </div>
 
           {showTarifasInfo && <TarifasInfo />}
           {showAnnualConsumptionComponent && <AnnualConsumptionComponent />}
         </div>
-      )
+      ),
     },
-    { id: 'cotizationResults', component: <CotizacionResults /> },
-    { id: 'graficos', component: <Graficos /> },
+    { id: "cotizationResults", component: <CotizacionResults /> },
+    { id: "graficos", component: <Graficos /> },
   ];
 
   const nextComponent = () => {
@@ -250,7 +299,7 @@ const InstallSystemPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto p-6 bg-background text-foreground flex flex-col">
+    <div className="max-w-[1400px] mx-auto p-6 bg-magic-pattern text-foreground flex flex-col">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -266,7 +315,10 @@ const InstallSystemPage: React.FC = () => {
         <button onClick={prevComponent} disabled={currentIndex === 0}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-        <button onClick={nextComponent} disabled={currentIndex === components.length - 1}>
+        <button
+          onClick={nextComponent}
+          disabled={currentIndex === components.length - 1}
+        >
           <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>

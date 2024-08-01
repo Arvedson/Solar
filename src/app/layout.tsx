@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-magic-pattern ">
         <ClerkProvider publishableKey={clerkConfig.publishableKey}>
           <Navbar />
           {children}
