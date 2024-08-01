@@ -144,8 +144,8 @@ const VideoComponent: React.FC = () => {
           <Image
             src="https://firebasestorage.googleapis.com/v0/b/solar-f11ad.appspot.com/o/Black%20%26%20Blue%20Monoline%20Technology%20Logo%20(Espa%C3%B1ol)%20(2).png?alt=media&token=ef394569-4e9e-443d-9702-03781f29d94b"
             alt="Ququlkan Energia Solar"
-            width={500}
-            height={500}
+            width={450   }
+            height={450}
             className={"hero-logo"}
           />
           <h1 className={"hero-title"}>QUQULKÁN</h1>
