@@ -28,9 +28,9 @@ const Footer = () => {
           </div>
           <div className="flex space-x-4">
             <a href="https://www.facebook.com/profile.php?id=61563310886523" className="text-gray-700 hover:text-black"><FaFacebook size="1.5em" className="md:size-2em lg:size-2.5em" /></a>
-            <a href="#" className="text-gray-700 hover:text-black"><FaTwitter size="1.5em" className="md:size-2em lg:size-2.5em" /></a>
+            <a href="https://x.com/Ququlkan_Solar" className="text-gray-700 hover:text-black"><FaTwitter size="1.5em" className="md:size-2em lg:size-2.5em" /></a>
             <a href="https://www.instagram.com/ququlkan.solar.mx/" className="text-gray-700 hover:text-black"><FaInstagram size="1.5em" className="md:size-2em lg:size-2.5em" /></a>
-            <a href="#" className="text-gray-700 hover:text-black"><FaLinkedin size="1.5em" className="md:size-2em lg:size-2.5em" /></a>
+            <a href="https://www.linkedin.com/in/ququlkan-solar-767293321/" className="text-gray-700 hover:text-black"><FaLinkedin size="1.5em" className="md:size-2em lg:size-2.5em" /></a>
           </div>
         </div>
       </div>
