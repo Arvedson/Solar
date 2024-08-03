@@ -49,7 +49,7 @@ const Privacidad = () => {
 
       <div className="bg-card text-card-foreground rounded-lg p-6 shadow-md">
         <h2 className="text-2xl font-semibold text-primary-foreground">Contacto</h2>
-        <p className="mt-4">Si tiene alguna pregunta o inquietud sobre nuestro Aviso de Privacidad, por favor contáctenos a <a href="mailto:admin@ququlkan-solar.com" className="text-info hover:underline">admin@ququlkan-solar.com</a> o al <a href="tel:+528717686817" className="text-info hover:underline">+52 (87) 1768 6817</a>.</p>
+        <p className="mt-4">Si tiene alguna pregunta o inquietud sobre nuestro Aviso de Privacidad, por favor contáctenos a <a href="mailto:admin@ququlkan-solar.com" className="text-info hover:underline">admin@ququlkan-solar.com</a> o al <a href="tel:+528717686817" className="text-info hover:underline">+52 (87)1 234 0891 </a>.</p>
       </div>
     </div>
   );

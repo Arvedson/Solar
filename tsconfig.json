@@ -20,7 +20,7 @@
         "name": "next"
       }
     ],
-    "typeRoots": ["./node_modules/@types", "./types", "./node_modules/@prisma/client" ],
+    "typeRoots": ["./node_modules/@types", "./types", "./node_modules/@prisma/client", "./src/types" ],
     "types": ["node", "react", "react-dom"]
   },
   "include": [

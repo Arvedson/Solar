@@ -12,7 +12,7 @@ const TerminosServicio = () => {
         <p className="mt-4">Nombre de la Empresa: Ququlkan Energía Solar S.A. de C.V.</p>
         <p>Domicilio: Torreón, Coahuila</p>
         <p>Correo Electrónico: <a href="mailto:admin@ququlkan-solar.com" className="text-info hover:underline">admin@ququlkan-solar.com</a></p>
-        <p>Teléfono: <a href="tel:+528717686817" className="text-info hover:underline">+52 (87) 1768 6817</a></p>
+        <p>Teléfono: <a href="tel:+528712340891" className="text-info hover:underline">+52 (87) 1234 0891</a></p>
         <p>Representante Legal: Jorge Eduardo Vallejo Leal</p>
       </div>
 

@@ -70,7 +70,7 @@ export default function Navbar() {
                   </ScrollToSection>
                 </li>
                 <li>
-                  <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition">
+                  <a href="https://wa.me/528712340891" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition">
                     <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
                     <span>Estamos para ti</span>
                   </a>
@@ -107,7 +107,7 @@ export default function Navbar() {
               </ScrollToSection>
             </li>
             <li>
-              <a href="https://wa.me/528715668027" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition">
+              <a href="https://wa.me/528712340891" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-primary text-[hsl(var(--secondary))] px-4 py-2 rounded hover:bg-primary-foreground hover:text-[hsl(var(--primary))] transition">
                 <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
                 <span>Estamos para ti</span>
               </a>
