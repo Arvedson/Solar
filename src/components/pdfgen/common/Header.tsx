@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 18,
+    fontSize: 24,
     textAlign: 'center',
     marginBottom: 20,
   },
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
 const Header: React.FC = () => (
   <View>
-    <Text style={styles.header}>Propuesta de Instalación de Paneles Solares</Text>
+    <Text style={styles.header}>Propuesta de instalacion</Text>
   </View>
 );
 

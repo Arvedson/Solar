@@ -1,18 +1,13 @@
 import React from 'react';
-import DoubleWaveFooter from '../../components/test/DoubleWaveFooter'; 
+
+import TestGenerateChartImage from '@/components/pdfgen/TestGenerateChartImage';
+
 
 const TestPage: React.FC = () => {
     return (
       <div>
-        <DoubleWaveFooter/>
-      
+        <TestGenerateChartImage/> 
       </div>
-     
-
-
-    
-
-  
   
     );
 };
