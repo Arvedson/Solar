@@ -47,8 +47,12 @@ const EstructuraAproximada: React.FC<EstructuraAproximadaProps> = ({ panelCount 
             className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
           >
             <h2 className="text-2xl font-bold mb-4">Estructura</h2>
-            <p><strong>Estructura para</strong> {panelCount} paneles</p>
-            <p><strong>Costo de la Estructura:</strong> ${costoEstructuraUSD.toFixed(2)} USD</p>
+            <p><strong>Para {panelCount} paneles</strong>: estructura de aluminio sobre una base especifica para techo laminado, concreto, teja y entre otros.</p>
+                            {/*   
+                             <p><strong>Costo de la Estructura:</strong> ${costoEstructuraUSD.toFixed(2)} USD</p>
+                                */}
+                                <p></p>
+           
           </motion.div>
         </div>
         <div className="flip-card-back flex flex-col items-center justify-center">

@@ -99,7 +99,9 @@ const InversorCalculator: React.FC<InversorCalculatorProps> = ({ panel, panelCou
               <>
                 <p className="textoo"><strong>Modelo del Inversor:</strong> {selectedInversor.modelo}</p>
                 <p className="textoo"><strong>Capacidad del Inversor:</strong> {selectedInversor.capacidadW} W</p>
-                <p className="textoo"><strong>Precio del Inversor:</strong> ${selectedInversor.precio.toFixed(2)}</p>
+                {/*   
+                 <p className="textoo"><strong>Precio del Inversor:</strong> ${selectedInversor.precio.toFixed(2)}</p>                 */}
+               
               </>
             ) : (
               <p>No se encontró un inversor compatible.</p>

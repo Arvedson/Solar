@@ -42,8 +42,10 @@ const ManoDeObra: React.FC<ManoDeObraProps> = ({ panelCount }) => {
       className="bg-card1t   rounded-lg shadow-lg border border-gray-300   "
     >
       <h2 className=" text-2xl font-bold mb-4 self-center">Obra y Permisos</h2>
-      <p><strong>Cantidad de Paneles:</strong> {panelCount}</p>
-      <p className='flex flex-col items-center'><strong>Costo de la Mano de Obra y permisos:</strong> ${costoManoDeObraUSD.toFixed(2)} USD</p>
+      <p>Pago a instaladores y técnicos, más gastos por permisos oficiales requeridos para la instalación  de  {panelCount} paneles Solares.</p>
+      {/*
+            <p className='flex flex-col items-center'><strong>Costo de la Mano de Obra y permisos:</strong> ${costoManoDeObraUSD.toFixed(2)} USD</p>*/ }
+
     </motion.div>
   );
 };

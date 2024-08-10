@@ -83,9 +83,15 @@ const Graficos: React.FC = () => {
           <div className='info '>
             <h2 className=" text-3xl">Gráficos y Análisis</h2>
             <ul className='lista'>
-              <li><FontAwesomeIcon icon={faDollarSign} className="icon-padding" /><strong> Tarifa Seleccionada:</strong> {selectedTarifa}</li>
-              <li><FontAwesomeIcon icon={faTools} className="icon-padding" /><strong> Costo Total de la Instalación:</strong> ${(18 * totalPrice * 1.8).toFixed(0)} pesos</li>
-              <li><FontAwesomeIcon icon={faLightbulb} className="icon-padding" /><strong> Consumo Anual:</strong> {annualConsumption ? `${annualConsumption} kWh` : 'No ingresado'}</li>
+              <li><FontAwesomeIcon icon={faDollarSign} className="icon-padding" /><strong> </strong> {selectedTarifa}</li>
+              <li><FontAwesomeIcon icon={faTools} className="icon-padding" /><strong> Costo aproximado de la Instalación:</strong> ${(18 * totalPrice * 1.8).toFixed(0)} pesos</li>
+              <li>
+  <FontAwesomeIcon icon={faLightbulb} className="icon-padding" />
+  <strong> Tamaño del Sistema Solar: </strong> 
+  {annualConsumption 
+    ? `${(annualConsumption / 1500).toFixed(2)} kW` 
+    : 'No disponible'}
+</li>
               <li><FontAwesomeIcon icon={faUser} className="icon-padding" /><strong> Tipo de Usuario:</strong> {isBusiness ? 'Negocio' : 'Residencial'}</li>
             </ul>
 

@@ -53,9 +53,11 @@ const ProteccionAproximada: React.FC<ProteccionAproximadaProps> = ({ panelCount 
             exit={{ opacity: 0, x: -50 }}
             className="bg-card1 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col items-center justify-center"
           >
-            <h2 className="text-2xl font-bold mb-4">Protecciones</h2>
-            <p><strong>Para un sistema de</strong> {panelCount} paneles</p>
-            <p><strong>Costo de las Protecciones:</strong> ${costoProteccionUSD.toFixed(2)} USD</p>
+            <h2 className="text-2xl font-bold mb-4">Materiales de instalacion</h2>
+            <p><strong>Para un sistema de</strong> {panelCount} paneles:</p>   <p>Cables, conectores, interruptores, fusibles, transformadores, capacitores y requerimentos especificos.</p>
+                        {/*   
+                <p><strong>Costo de las Protecciones:</strong> ${costoProteccionUSD.toFixed(2)} USD</p>               */}
+          
           </motion.div>
         </div>
         <div className="flip-card-back flex flex-col items-center justify-center">

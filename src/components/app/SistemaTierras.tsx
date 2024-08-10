@@ -47,11 +47,13 @@ const SistemaTierras: React.FC<SistemaTierrasProps> = ({ panelCount }) => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="bg-card1t   rounded-lg shadow-lg border border-gray-300   "
+      className="bg-card1t   rounded-lg shadow-lg border border-gray-300  flex flex-col "
     >
-      <h2 className="text-2xl font-bold mb-4">Sistema de Tierras</h2>
-      <p><strong>Tierras para</strong> {panelCount} paneles</p>
-      <p className=''><strong>Costo del Sistema de Tierras:</strong> ${costoSistemaTierrasUSD.toFixed(2)} USD</p>
+      <h2 className="text-2xl font-bold mb-4">Costos de operacion</h2>
+      <p className='items-center justify-center'>Necesarios para la planificación, control y coordinación de las operaciones. </p>
+      {/*
+      <p className=''><strong>Costo del Sistema de Tierras:</strong> ${costoSistemaTierrasUSD.toFixed(2)} USD</p>*/ }
+      
     </motion.div>
   );
 };

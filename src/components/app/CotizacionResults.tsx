@@ -86,7 +86,10 @@ const CotizacionResults: React.FC = () => {
         >
           <div>
             <h1 className=" flex text-2xl font-bold mb-6 text-center bg-card1 p-6 rounded-lg shadow-lg border border-gray-300  flex-col items-center justify-center ">
-              Resultados de tu Cotización
+             Un costo aproximado de
+             <p className="text-white font-bold">
+                ${(18 * totalPrice * 1.8).toFixed()} pesos Mexicanos.
+              </p>
             </h1>
             <div className="gridyflex">
               <div className="flip-card">
@@ -118,10 +121,11 @@ const CotizacionResults: React.FC = () => {
                               <strong>Cantidad de Paneles Necesarios:</strong>{" "}
                               {panelCount}
                             </p>
-                            <p className="textoo">
+                            {/*                            <p className="textoo">
                               <strong>Precio Total:</strong> $
                               {panelCost.toFixed(2)}
-                            </p>
+                            </p> */}
+
                           </>
                         )}
                       </div>
@@ -159,16 +163,14 @@ const CotizacionResults: React.FC = () => {
               <ManoDeObra panelCount={panelCount} />
             </div>
 
-            <div className="flex flex-col text-center mt-12 bg-card p-4 border border-gray-300 rounded items-center gap-4 text-black max-w-[200px] mx-auto">
-              <h3 className="text-white text-2xl font-bold">Costo Total</h3>
-              <p className="text-white font-bold">
-                ${(18 * totalPrice * 1.8).toFixed(2)}
-              </p>
+            <div className="flex flex-col text-center mt-12 bg-card p-6 border border-gray-300 rounded items-center gap-2 text-black max-w-[200px] mx-auto">
+              <h5 className="text-white text-2xl font-bold">Posible retorno</h5 >
+
               <button
                 className="flex items-center  justify-center text-xl text-white bg-gray-500 p-3  hover:bg-primary transition duration-300 ease-in-out rounded hover:text-black"
                 onClick={() => nextComponent()}
               >
-                Ver más <FaArrowRight className="ml-2" />
+                <FaArrowRight className=" " />
               </button>
             </div>
           </div>
