@@ -39,7 +39,7 @@ const ManoDeObra: React.FC<ManoDeObraProps> = ({ panelCount }) => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="bg-card1t   rounded-lg shadow-lg border border-gray-300   "
+      className="bg-card1t   rounded-lg shadow-lg border border-gray-300 flex flex-col p-6  items-center justify-center  "
     >
       <h2 className=" text-2xl font-bold mb-4 self-center">Obra y Permisos</h2>
       <p>Pago a instaladores y técnicos, más gastos por permisos oficiales requeridos para la instalación  de  {panelCount} paneles Solares.</p>
